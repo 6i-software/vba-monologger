@@ -17,7 +17,7 @@ The *VBA Monologger* library project was born out of the need for a more advance
 ## Documentation
 
 Please refer to the documentation for details on how to install and use VBA Monologger.
-> [Go to the documentation for VBA Monologger](./documentation/)
+> [Go to the documentation for VBA Monologger](./documentation)
 
 
 ## About
