@@ -1,5 +1,7 @@
 # IDE configuration files
-.idea
+.idea/
+.vscode/
+
 
 # Windows
 Thumbs.db
@@ -16,3 +18,10 @@ $RECYCLE.BIN/
 # Temp
 **/var/
 **/var/log
+**/logs
+
+# Python
+venv/
+.env/
+__pycache__/
+*.py[cod]
