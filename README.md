@@ -47,14 +47,18 @@ Public Sub howto_use_loggerConsoleVBA()
     Logger.info "User 'UltraVomit' has logged in successfully."
     Logger.notice "Process completed successfully with minor issues."
     Logger.warning "The user 'Beetlejuice' should not be called more than 3 times."
-    Logger.Error "An error occurred when the user 'DeadRobotZombieCopFromOuterspace' tried to read the dashboard file."
+    Logger.error "An error occurred when the user 'DeadRobotZombieCopFromOuterspace' tried to read the dashboard file."
     Logger.critical "System is in an unstable state. Unable to authenticate the user 'Skjalg Skagen'."
     Logger.alert "Action required: unable to generate the dashboard."
     Logger.emergency "A critical failure occurred in the application for moving files."
 End Sub
 ```
 
+You can see result in the VBA console (a.k.a. Excel's Immediate Windows).
+
 ![VBAMonologger-output-VBAConsole.png](docs/src/assets/VBAMonologger-output-VBAConsole.png)
+
+> Note: If the console is not visible in Excel Visual basidc IDE, go to the menu and select *View > Immediate Window*. Alternatively, you can press <kbd>Ctrl</kbd> + <kbd>G</kbd> to quickly open it.
 
 
 ### Log output to file
@@ -90,7 +94,7 @@ End Sub
 ![VBAMonologger-output-WindowsConsole.png](docs/src/assets/VBAMonologger-output-WindowsConsole.png)
 
 
-### Log output with placeholders and context data
+### Use placeholders with context data into log message
 
 By default, all loggers create with the factory includes the pre-processors placeholders. It is used to dynamically insert specific contextual data into logging messages, allowing for more detailed and contextualized log records. You can choose to display (or not) the context data, either on a single line or across multiple lines, formatted as pretty JSON with whitespace.
 
