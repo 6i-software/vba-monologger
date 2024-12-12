@@ -1,0 +1,156 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+
+site_name: VBA Monologger
+site_url: https://github.com/6i-software/vba-monologger/
+site_author: 2o1oo <vb20100bv@gmail.com>
+site_description: >-
+  Official site documentation of VBA Monologger, an advanced and flexible logging solution for VBA ecosystem.
+copyright: Copyright &copy; 2024, 6i-software - 2o1oo
+
+repo_name: 6i-software/vba-monologger
+repo_url: https://github.com/6i-software/vba-monologger
+
+docs_dir: src
+
+theme:
+  language: en
+  name: material
+  features:
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    - content.tabs.link
+    - navigation.footer
+    - navigation.indexes
+    - navigation.sections
+    - navigation.expand
+    - navigation.tabs
+    - navigation.top
+    - navigation.tracking
+    - navigation.instant
+    - toc.follow
+    - search.highlight
+    - search.share
+    - search.suggest
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: assets/logo.png
+  logo: assets/logo_white.png
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/link
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/toggle-switch-off
+        name: Switch to system preference
+
+plugins:
+  - offline
+  - blog
+  - search:
+      separator: '[\s\u200b\-_,:!=\[\]()"/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/v20100v
+    - icon: fontawesome/regular/envelope
+      link: "mailto:vb20100bv@gmail.com?subject=[VBA%20Monologger]"
+      label: "Contactez-nous"
+  consent:
+    title: Cookie consent
+    description: >-
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+
+extra_css:
+  - assets/css/extra-customize.css
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+      linenums_style: pymdownx-inline
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      normalize_issue_symbols: true
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      auto_append:
+        - includes/mkdocs.md
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# ------------ #
+#  Pages tree  #
+# ------------ #
+nav:
+  - Welcome: index.md
+  - Getting started:
+      - getting-started/index.md
+      - Installation: installation.md
+      - Creating your logger: creating-your-logger.md
+  - Under the hood:
+    - under-the-hood/index.md
+    - Log severity levels: under-the-hood/log-severity-levels.md
+    - Log record: under-the-hood/log-record.md
+    - Formatter: under-the-hood/formatter.md
+    - Handler: under-the-hood/handler.md
+    - Pre-processor: under-the-hood/pre-processor.md
+  - Blog:
+    - blog/index.md
+
+not_in_nav: |
+  /hide-my-content/**/*.md

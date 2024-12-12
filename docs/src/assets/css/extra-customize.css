@@ -1,0 +1,20 @@
+/* Enable code wrapping in code blocks */
+pre code {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.md-tabs {
+    background-color: color-mix(in srgb, var(--md-primary-fg-color) 80%, white);  /* Mixe la couleur avec du blanc pour l'éclaircir */
+}
+
+.md-footer-meta {
+    background-color: var(--md-primary-fg-color);
+    color: var(--md-primary-bg-color);
+}
+.md-copyright__highlight {
+    color: var(--md-primary-bg-color);
+}
+.md-main__inner {
+    margin-bottom: 1.5rem;
+}
