@@ -2,7 +2,6 @@
 .idea/
 .vscode/
 
-
 # Windows
 Thumbs.db
 ehthumbs.db
@@ -19,6 +18,9 @@ $RECYCLE.BIN/
 **/var/
 **/var/log
 **/logs
+~*.xlsm
+~*.xls
+~*.xlam
 
 # Python
 venv/
