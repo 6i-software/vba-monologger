@@ -1,4 +1,4 @@
-## Installation
+## Manual installation
 
 1. Download the VBA Monologger Excel Add-in (.xlam file) to your computer.
 
@@ -18,4 +18,15 @@
     <br/>
     ![excel_reference_vbamonologger.png](excel_reference_vbamonologger.png)
 
-That's it. Time to code with it!
+That's it.
+
+
+
+## Setup wizard installation (*as soon as possible*)
+
+In the future, we plan to introduce a setup wizard to simplify the deployment of VBA add-ins using [InnoSetup](https://jrsoftware.org/isinfo.php). 
+
+This setup will place the VBA Monologger `.xlam` file into the standard folder for Excel add-ins: `C:\Users\[name]\AppData\Roaming\Microsoft\AddIns\`. And after, it will automatically activate in Excel by updating the Windows Registry.
+
+> See : https://github.com/6i-software/deploy-microsoft-office-extensions  
+

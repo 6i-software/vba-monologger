@@ -141,10 +141,10 @@ markdown_extensions:
 nav:
   - Welcome: index.md
   - Getting started:
-      - getting-started/index.md
-      - Installation: getting-started/installation.md
+      - Introduction: getting-started/introduction.md
+      - Install: getting-started/install.md
       - Basic usages: getting-started/basic-usages.md
-      - Creating your logger: getting-started/creating-your-logger.md
+      - Creating your logger: getting-started/creating-custom-logger.md
   - Under the hood:
     - under-the-hood/index.md
     - Log severity levels: under-the-hood/log-severity-levels.md
