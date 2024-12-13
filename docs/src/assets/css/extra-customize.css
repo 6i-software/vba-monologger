@@ -4,8 +4,20 @@ pre code {
     word-wrap: break-word;
 }
 
+.md-header {
+    background: linear-gradient(
+            to bottom,
+            color-mix(in srgb, var(--md-primary-fg-color) 100%, white),
+            color-mix(in srgb, var(--md-primary-fg-color) 85%, white)
+    );    
+}
+
 .md-tabs {
-    background-color: color-mix(in srgb, var(--md-primary-fg-color) 80%, white);  /* Mixe la couleur avec du blanc pour l'éclaircir */
+    background: linear-gradient(
+            to bottom,
+            color-mix(in srgb, var(--md-primary-fg-color) 85%, white),
+            color-mix(in srgb, var(--md-primary-fg-color) 70%, white)
+    );
 }
 
 .md-footer-meta {
