@@ -4,23 +4,29 @@
 &nbsp;[![Want to support me? Offer me a coffee!](https://img.shields.io/badge/Want%20to%20support%20me%3F%20Offer%20me%20a%20coffee%21-donate-informational.svg)](https://www.buymeacoffee.com/vincent.blain)
 
 > VBA Monologger is an advanced and flexible logging solution for VBA (*Visual Basic for Applications*) ecosystem. It is largely inspired by the [Monolog](https://github.com/Seldaek/monolog) library in PHP, which itself is inspired by the [Logbook](https://logbook.readthedocs.io/en/stable/) library in Python.
+>
+> [Go to documentation](https://6i-software.github.io/vba-monologger/)
+ 
+## Introduction
 
-
-## Preamble
-
-VBA provides developers with the ability to automate tasks, interact with the features of 
-Microsoft Office applications, and even create applications with a graphical user interface (`Userform`). However, compared to other development ecosystems, VBA only offers a rudimentary logging solution, limited to the `Debug.Print` function, which writes to the Excel console (a.k.a. the Excel immediate window).
+VBA provides developers with the ability to automate tasks, interact with the features of Microsoft Office applications, and even create applications with a graphical user interface (`Userform`). However, compared to other development ecosystems, VBA only offers a rudimentary logging solution, limited to the `Debug.Print` function, which writes to the Excel console (a.k.a. the Excel immediate window).
 
 The *VBA Monologger* library project was born out of the need for a more advanced and flexible logging solution in the VBA ecosystem. It is (heavily) inspired by the PSR-3 standard in the PHP ecosystem and its most recognized implementation, the Monolog library. The goal of this library is to provide similar features and capabilities, particularly by offering a modular architecture that can easily adapt to different use cases. The main idea is for each developer to easily configure and customize their own logging system according to their needs.
 
 
 ## Features
 
-- Customize the logging format to define how log messages are structured and displayed - see [formatter](https://6i-software.github.io/vba-monologger/under-the-hood/formatter.html).
-- Specify the destination where logs should be viewed (*e.g.*, VBA console *a.k.a* Excel's immediate window, Windows console (cmd.exe) with ANSI color support, file...) and configure the conditions under which logging events are triggered based on specific criteria - see [handler](https://6i-software.github.io/vba-monologger/under-the-hood/handler.html).
-- Manages 8 standard severity levels to classify the importance of log messages, following the [PSR-3](https://www.php-fig.org/psr/psr-3/) standard - see [log severity levels](https://6i-software.github.io/vba-monologger/under-the-hood/log-severity-levels.html)
-- Enrich log records with pre-processors, enabling the addition of context, transformation of data, or customization of log entries to suit specific needs (*e.g.* add CPU or memory usage, generate a UID for each session, add tags... and more) - see [pre-processor](https://6i-software.github.io/vba-monologger/under-the-hood/pre-processor.html).
-- Use the provided loggers in the VBAMonologger factory (*e.g. `LoggerConsoleVBA`, `LoggerConsole` or `LoggerFile`*) for basic usage, or create your own custom logging system - see [logger](https://6i-software.github.io/vba-monologger/under-the-hood/logger.html).
+**In VBA Monologger, the logger is the central component of this library, acting as the primary interface for recording, categorizing, and managing log messages throughout an application**. It provides developers with a highly configurable and flexible tool for implementing custom logging logic tailored to their specific needs. By using a logger, applications can systematically capture events and system states, facilitating both real-time monitoring and historical analysis of system behavior.
+
+The logger is designed to handle multiple logging levels, directing each log entry to the appropriate handlers (i.e. appropriate destinations) and applying the correct formatting to messages. It also supports the use of various pre-processors, which can enrich log messages with extra contextual information, allowing for complex logging logic while keeping code readable and straightforward.
+
+Main features:
+
+- Customize the logging format to define how log messages are structured and displayed.
+- Specify the destination where logs should be viewed (*e.g.*, VBA console *a.k.a* Excel's immediate window, Windows console (cmd.exe) with ANSI color support, file...) and configure the conditions under which logging events are triggered based on specific criteria.
+- Manages 8 standard severity levels to classify the importance of log messages, following the [PSR-3](https://www.php-fig.org/psr/psr-3/) standard.
+- Enrich log records with pre-processors, enabling the addition of context, transformation of data, or customization of log entries to suit specific needs (*e.g.* add CPU or memory usage, generate a UID for each session, add tags... and more).
+- Use the provided loggers in the VBAMonologger factory (*e.g. `LoggerConsoleVBA`, `LoggerConsole` or `LoggerFile`*) for basic usage, or create your own custom logging system.
 - Easily develop your own custom formatter, handler, and pre-processors to tailor the logging system to your specific needs. By creating unique formatting styles, specialized handlers, and custom pre-processing logic, you can enhance the functionality and flexibility of your logging setup, ensuring it meets the precise requirements of your applications and workflows.
 
 
@@ -30,11 +36,16 @@ Please refer to the documentation for details on how to install and use VBA Mono
 > [Go to the website documentation](https://6i-software.github.io/vba-monologger/)
 
 
-## Basic usages
+## Quick start
+
+### Manual installation
+
+1. Download the VBA Monologger Excel Add-in (.xlam file) to your computer:   [6i_VBA-Monologger.xlam](https://github.com/6i-software/vba-monologger/raw/refs/heads/main/src/6i_VBA-Monologger.xlam)
+2. Put this xlam file into a folder trusted by Excel, and add it as a reference in your VBA project through *Tools > References* in the VBA editor.
 
 ### Log output to VBA Console
 
-To install the VBAMonologger library, simply download the `6i-VBAMonologger.xlam` file and add it as a reference in your project. Next, use the factory to create an instance of a logger preconfigured with default handler, formatter, and pre-processors, as shown below:
+In VBA Monologger, we use a factory in order to simplify and standardize the creation of objects, such as loggers, by encapsulating the logic needed to initialize them. The factory pattern abstracts the object creation process, which can be particularly useful. So to instantiate your first logger that output logs into the VBA console, just use the method `VBAMonologger.Factory.createLoggerConsoleVBA()`, as shown below. It provides an instance of a logger preconfigured with default handler, formatter, and pre-processors.
 
 ```vbscript
 Public Sub howto_use_loggerConsoleVBA()
@@ -42,78 +53,88 @@ Public Sub howto_use_loggerConsoleVBA()
     Dim Logger As VBAMonologger.LoggerInterface
     Set Logger = VBAMonologger.Factory.createLoggerConsoleVBA("App")
     
-    ' Logs message for each severity levels
-    Logger.trace "Authentication function call for user 'Bob Morane'." ' The 'debug' method exposes presents in PSR-3 is rename into 'trace' in order to be compatible in VBA ecosystem
+    ' Use the logger for each severity levels
+    Logger.trace "Authentication function call for user 'Bob Morane'." 
     Logger.info "User 'UltraVomit' has logged in successfully."
     Logger.notice "Process completed successfully with minor issues."
-    Logger.warning "The user 'Beetlejuice' should not be called more than 3 times."
-    Logger.error "An error occurred when the user 'DeadRobotZombieCopFromOuterspace' tried to read the dashboard file."
-    Logger.critical "System is in an unstable state. Unable to authenticate the user 'Skjalg Skagen'."
+    Logger.warning "'Beetlejuice' should not be called more than 3 times."
+    Logger.error "An error occurred with the user 'DRZCFOS2'."
+    Logger.critical "System is in an unstable state."
     Logger.alert "Action required: unable to generate the dashboard."
-    Logger.emergency "A critical failure occurred in the application for moving files."
+    Logger.emergency "A critical failure occurred in the application."
 End Sub
 ```
 
 You can see result in the VBA console (a.k.a. Excel's Immediate Windows).
 
-![VBAMonologger-output-VBAConsole.png](docs/src/assets/VBAMonologger-output-VBAConsole.png)
+![VBAMonologger-output-VBAConsole.png](docs/src/getting-started/VBAMonologger-output-VBAConsole.png)
 
-> Note: If the console is not visible in Excel Visual basidc IDE, go to the menu and select *View > Immediate Window*. Alternatively, you can press <kbd>Ctrl</kbd> + <kbd>G</kbd> to quickly open it.
-
-
-### Log output to file
-
-By default, the logger file writes logs to the `./var/log/logfile_xxxx-yy-zz.log` file, relative to the path of the workbook. You can change the name and the folder of the file into the `HandlerFile`. To ensure compatibility with special and multilingual characters in this Handler, the UTF-8 encoding is preferred.
+As you can see, in the signature of this factory's method, it is possible to set the name the logger (channel) and to load a custom formatter.
 
 ```vbscript
-Public Sub howto_use_loggerConsoleVBA()
-    ' Create a logger instance for output log into VBA console (Excel's immediate window)
-    Dim Logger As VBAMonologger.LoggerInterface
-    Set Logger = VBAMonologger.Factory.createLoggerConsoleVBA("App")
-    
-    ' Logs message for each severity levels
-    (...)
-End Sub
-```
+Public Function createLoggerConsoleVBA( _
+    Optional ByVal paramLoggerName As String = vbNullString, _
+    Optional ByRef paramFormatter As VBAMonologger.FormatterInterface = Nothing _
+) As VBAMonologger.Logger
+``` 
 
 
-### Log output to Windows console (cmd.exe)
+### Log output to Windows console
 
-By default, the logger Windows console created with the factory includes a formatter that supports ANSI colors, and more. It also includes the pre-processors placeholders according to PSR-3 rules. It allows to use placeholders in log message that will be replaced with value provided in the log record context.
+If you prefer to display your logs outside the Excel VBA IDE, you can output them directly to the Windows Console (cmd.exe). 
+
+The factory can create a dedicated logger for Windows Console with `VBAMonologger.Factory.createLoggerConsole()` method. It handles log messages by streaming them to the Windows console using an HTTP-based client/server architecture. The client sends log records as HTTP requests to the server, and the server processes these requests, displaying the log messages directly in the console output. This logger features a formatter that supports ANSI colors `VBAMonologger.Formatter.FormatterANSIcoloredLine`. 
+
+It also includes the pre-processors placeholders according to PSR-3 rules. It allows to use placeholders in log message that will be replaced with value provided in the log record context.
+
 
 ```vbscript
-Public Sub howto_use_loggerConsole()
+Public Sub howto_use_logger_console()
     Dim Logger As VBAMonologger.LoggerInterface
     Set Logger = VBAMonologger.Factory.createLoggerConsole("App")
-    
-    ' Logs message for each severity levels
+
+    ' Use the logger for each severity levels
+    Logger.trace "Authentication function call for user 'Bob Morane'." 
     (...)
 End Sub    
 ```
 
-![VBAMonologger-output-WindowsConsole.png](docs/src/assets/VBAMonologger-output-WindowsConsole.png)
+When you execute this code, it launches a `cmd.exe`, and you can view the results in it. The formatter's configuration allows you to customize the color scheme.
+
+![VBAMonologger-output-WindowsConsole.png](docs/src/getting-started/VBAMonologger-output-WindowsConsole.png)
 
 
-### Use placeholders with context data into log message
+### Log output to file
 
-By default, all loggers create with the factory includes the pre-processors placeholders. It is used to dynamically insert specific contextual data into logging messages, allowing for more detailed and contextualized log records. You can choose to display (or not) the context data, either on a single line or across multiple lines, formatted as pretty JSON with whitespace.
+You can send logs into a file with the default logger file provided by factory's method `VBAMonologger.Factory.createLoggerFile()`. By default, this logger writes logs to the `./var/log/logfile_yyyy-mm-dd.log` file, relative to the path of the workbook. To ensure compatibility with special and multilingual characters, the UTF-8 encoding is preferred.
 
-```vbscript 
-Public Sub howto_use_context()
+```vbscript
+Public Function createLoggerFile( _
+    Optional ByVal paramLoggerName As String = vbNullString, _
+    Optional ByRef paramFormatter As FormatterInterface = Nothing, _
+    Optional ByVal paramLogFileName As String = vbNullString, _
+    Optional ByVal paramLogFileFolder As String = vbNullString _
+) As VBAMonologger.Logger
+```
+
+Here’s an example with a custom name and custom folder of the log file.
+
+```vbscript
+Public Sub howto_change_logger_file_name_and_folder()
     Dim Logger As VBAMonologger.LoggerInterface
-    Set Logger = VBAMonologger.Factory.createLoggerConsole("App")
+    Set Logger = VBAMonologger.Factory.createLoggerFile( _ 
+        paramLoggerName:= "App", _
+        paramLogFileName:="my-log-file___"&format(Now, "yyyy-mm-dd") & ".log", _
+        paramLogFileFolder:=ThisWorkbook.Path & "\logs" _        
+    )
     
-    Dim context As Object: Set context = CreateObject("Scripting.Dictionary")
-    context.Add "UserName", "Bob Morane"
-    context.Add "UserID", 342527
-    
-    Logger.trace "Authentication function call for user '{UserName}' with id '{UserID}'.", context
+    ' Logs message for each severity levels
+    Logger.trace "Authentication function call for user 'Bob Morane'."
+    (...)
 End Sub
 ```
 
-![VBAMonologger-output-placeholders.png](docs/src/assets/VBAMonologger-output-placeholders.png)
-
-
+![VBAMonologger-output-File.png](docs/src/getting-started/VBAMonologger-output-File.png)
 
 
 ## About

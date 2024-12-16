@@ -22,7 +22,7 @@ That's it.
 
 
 
-## Setup wizard installation (*as soon as possible*)
+## Setup wizard installation (*not yet available*)
 
 In the future, we plan to introduce a setup wizard to simplify the deployment of VBA add-ins using [InnoSetup](https://jrsoftware.org/isinfo.php). 
 

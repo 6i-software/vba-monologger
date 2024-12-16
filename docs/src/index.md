@@ -9,4 +9,4 @@ hide:
   - feedback
 ---
 
-It is largely inspired by the [Monolog](https://github.com/Seldaek/monolog) library in PHP, which itself is inspired by the [Logbook](https://logbook.readthedocs.io/en/stable/) library in Python.
+VBA Monologger is an advanced and flexible logging solution for VBA (Visual Basic for Applications) ecosystem. Set up in two minutes.

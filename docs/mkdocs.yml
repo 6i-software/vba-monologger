@@ -143,7 +143,12 @@ nav:
   - Getting started:
       - Introduction: getting-started/introduction.md
       - Install: getting-started/install.md
-      - Basic usages: getting-started/basic-usages.md
+      - Quick start: getting-started/quick-start.md
+      - Usages:
+          - "Set the logger's name":  getting-started/usages/channel.md
+          - "Use placeholders":  getting-started/usages/placeholders.md
+          - "Add a custom formatter":  getting-started/usages/add-custom-formatter.md
+          - "Add a pre-processor":  getting-started/usages/add-pre-processor.md
       - Creating your logger: getting-started/creating-custom-logger.md
   - Under the hood:
     - under-the-hood/index.md

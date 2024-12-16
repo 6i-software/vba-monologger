@@ -4,23 +4,24 @@
 
 {% set class = "md-header" %}
 {% if "navigation.tabs.sticky" in features %}
-    {% set class = class ~ " md-header--shadow md-header--lifted" %}
+{% set class = class ~ " md-header--shadow md-header--lifted" %}
 {% elif "navigation.tabs" not in features %}
-    {% set class = class ~ " md-header--shadow" %}
+{% set class = class ~ " md-header--shadow" %}
 {% endif %}
 <header class="{{ class }}" data-md-component="header">
     <nav class="md-header__inner md-grid" aria-label="{{ lang.t('header') }}">
-        <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" title="{{ config.site_name | e }}" class="md-header__button md-logo" aria-label="{{ config.site_name }}" data-md-component="logo">
+        <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" title="{{ config.site_name | e }}"
+           class="md-header__button md-logo" aria-label="{{ config.site_name }}" data-md-component="logo">
             {% include "partials/logo.html" %}
         </a>
         <label class="md-header__button md-icon" for="__drawer">
             {% set icon = config.theme.icon.menu or "material/menu" %}
             {% include ".icons/" ~ icon ~ ".svg" %}
-        </label>        
+        </label>
         {% if config.theme.palette %}
-            {% if not config.theme.palette is mapping %}
-                {% include "partials/palette.html" %}
-            {% endif %}
+        {% if not config.theme.palette is mapping %}
+        {% include "partials/palette.html" %}
+        {% endif %}
         {% endif %}
 
         <div class="md-header__title" data-md-component="header-title">
@@ -31,10 +32,10 @@
                     </span>
                 </div>
             </div>
-        </div>        
-        
+        </div>
+
         {% if not config.theme.palette is mapping %}
-            {% include "partials/javascripts/palette.html" %}
+        {% include "partials/javascripts/palette.html" %}
         {% endif %}
     </nav>
 </header>
@@ -42,13 +43,11 @@
 {% endblock %}
 
 
-
 <!-- Render landing page under block tabs -->
 {% block tabs %}
 
 <!-- Additional styles for landing page -->
 <style>
-
     /* Application header should be static for the landing page */
     .md-header {
         position: initial;
@@ -63,31 +62,17 @@
     .md-content {
         display: none;
     }
-
-    /* Hide table of contents */
-    @media screen and (min-width: 60em) {
-        .md-sidebar--secondary {
-            display: none;
-        }
-    }
-
-    /* Hide navigation */
-    @media screen and (min-width: 76.25em) {
-        .md-sidebar--primary {
-            display: none;
-        }
-    }
-
-    .custom-hero {
-        margin-top:3%;
-        margin-left:6%;
-        margin-right:6%;
-    }
     
+    .custom-hero {
+        margin-top: 3%;
+        margin-left: 6%;
+        margin-right: 6%;
+    }
+
     .custom-hero-content p {
         max-width: 400px;
     }
-    
+
     .decoration {
         background: linear-gradient(
                 to bottom,
@@ -95,6 +80,13 @@
                 color-mix(in srgb, var(--md-primary-fg-color) 0%, transparent)
         );
         height: 20vh;
+    }
+
+    @media screen and (min-width: 76.25em) {
+        /* Hide table of contents */
+        /* .md-sidebar--secondary { display: none; } */
+        /* Hide navigation */
+        .md-sidebar--primary { display: none;}
     }
 </style>
 
@@ -104,7 +96,7 @@
 <section class="custom-landing-container">
 
     <div class="decoration"></div>
-    
+
     <div class="md-grid md-typeset">
         <div class="custom-hero">
             <!-- Hero image -->
@@ -116,10 +108,13 @@
             <div class="custom-hero-content">
                 <h1>Log smarter, debug faster in VBA</h1>
                 <p>{{ config.site_description }} Set up in two minutes.</p>
-                <a href="{{ 'getting-started/introduction.html' | url }}" title="Set up in two minutes!" class="md-button md-button--primary">
+                <a href="{{ 'getting-started/introduction.html' | url }}" title="Set up in two minutes!"
+                   class="md-button md-button--primary">
                     Get started
                 </a>
-                <a href="{{ 'under-the-hood/' | url }}" title="To understand and learn what's happening with each compontents of this library" class="md-button">
+                <a href="{{ 'under-the-hood/' | url }}"
+                   title="To understand and learn what's happening with each compontents of this library"
+                   class="md-button">
                     Learn more
                 </a>
             </div>
