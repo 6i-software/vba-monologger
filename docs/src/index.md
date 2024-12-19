@@ -9,4 +9,5 @@ hide:
   - feedback
 ---
 
-VBA Monologger is an advanced and flexible logging solution for VBA (Visual Basic for Applications) ecosystem. Set up in two minutes.
+VBA Monologger is an advanced and flexible logging solution for VBA (Visual Basic for Applications) ecosystem. 
+

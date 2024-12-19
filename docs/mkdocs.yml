@@ -4,7 +4,7 @@ site_name: VBA Monologger
 site_url: https://github.com/6i-software/vba-monologger/
 site_author: 2o1oo <vb20100bv@gmail.com>
 site_description: >-
-  VBA Monologger is an advanced and flexible logging solution for VBA (<i>Visual Basic for Applications</i>) ecosystem.
+  VBA Monologger is an advanced and flexible logging open-source solution for VBA (<i>Visual Basic for Applications</i>) ecosystem.
 copyright: Copyright &copy; 2024, 6i-software - 2o1oo
 
 repo_name: 6i-software/vba-monologger
@@ -145,11 +145,13 @@ nav:
       - Install: getting-started/install.md
       - Quick start: getting-started/quick-start.md
       - Usages:
-          - "Set the logger's name":  getting-started/usages/channel.md
-          - "Use placeholders":  getting-started/usages/placeholders.md
-          - "Add a custom formatter":  getting-started/usages/add-custom-formatter.md
-          - "Add a pre-processor":  getting-started/usages/add-pre-processor.md
-      - Creating your logger: getting-started/creating-custom-logger.md
+          - "Identify a logger with a channel":  getting-started/usages/channel.md
+          - "Add context data to log messages":  getting-started/usages/add-context-data-to-log-messages.md
+          - "Add extra data to log messages via a pre-processor":  getting-started/usages/add-pre-processor.md
+          - "Create a custom formatter":  getting-started/usages/create-custom-formatter.md          
+          - "Create a custom logger from scratch": getting-started/usages/create-custom-logger.md
+          - "Create a null logger":  getting-started/usages/create-null-logger.md
+          - "Dependency injection for logging capabilities in a custom class module": getting-started/usages/inject-logger-into-custom-class-module.md  
   - Under the hood:
     - under-the-hood/index.md
     - Log severity levels: under-the-hood/log-severity-levels.md

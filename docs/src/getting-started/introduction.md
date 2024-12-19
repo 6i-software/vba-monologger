@@ -57,16 +57,16 @@ It indicates the severity of each event, from the most trivial to the most catas
 
 *VBA Monologger* manages 8 standard severity levels **to classify the importance of log messages**, following the [PSR-3](https://www.php-fig.org/psr/psr-3/) standard, which is itself based on [RFC-5424](https://www.rfc-editor.org/rfc/rfc5424), the standard defined by the IETF (*Internet Engineering Task Force*) to specify the format of messages for the Syslog protocol, which is used for transmitting logs over IP networks.
 
-| Log level   | Description                                                                                                                                                                                                                               |
-|-------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `EMERGENCY` | Indicates a very critical situation that requires immediate attention. (System crash, data corruption)                                                                                                                                    |
-| `ALERT`     | Signals an alert condition. (Critical disk space running out)                                                                                                                                                                             |
-| `CRITICAL`  | Indicates a serious error. (Database connection failure, server downtime)                                                                                                                                                                 |
-| `ERROR`     | Represents an error in the system. (Failed to save user data, unexpected exception)                                                                                                                                                       |
-| `WARNING`   | A warning about a potential problem. (Use a deprecated function used, low memory warning)                                                                                                                                                 |
-| `NOTICE`    | Important notifications that are not urgent. (User login successful, configuration change detected)                                                                                                                                       |
-| `INFO`      | General information about the normal operation. (System startup, data processed successfully)                                                                                                                                             |
-| `DEBUG`     | Detailed information for debugging. (Variable values during loop iteration, query execution details). Notes, that the '**debug**' method exposes presents in PSR-3 is rename into '**trace**' in order to be compatible in VBA ecosystem. |
+| Log level   | Description                                                                                                                                                                                                                           |
+|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `EMERGENCY` | Indicates a very critical situation that requires immediate attention. (*system crash, data corruption*)                                                                                                                              |
+| `ALERT`     | Signals an alert condition. (*critical disk space running out*)                                                                                                                                                                       |
+| `CRITICAL`  | Indicates a serious error. (*database connection failure, server downtime*)                                                                                                                                                           |
+| `ERROR`     | Represents an error in the system. (*failed to save user data, unexpected exception*)                                                                                                                                                 |
+| `WARNING`   | A warning about a potential problem. (*use a deprecated function used, low memory warning*)                                                                                                                                           |
+| `NOTICE`    | Important notifications that are not urgent. (*user login successful, configuration change detected*)                                                                                                                                 |
+| `INFO`      | General information about the normal operation. (*system startup, data processed successfully*)                                                                                                                                       |
+| `TRACE`     | Detailed information for debugging. (*variable values during loop iteration, execution details*). Notes, that the '**debug**' method exposes presents in PSR-3 is rename into '**trace**' in order to be compatible in VBA ecosystem. |
 
 
 
@@ -79,44 +79,44 @@ The logger is designed to handle multiple logging levels, directing each log ent
 ```mermaid
 mindmap
   root((Logger))
-    Handlers
+    node1(Handlers)
       HandlerConsoleVBA<br>*for all levels*
         FormatterLine
       HandlerConsole<br>*for all levels*
-        FormatterANSIColoredLine        
+        FormatterANSIColoredLine
       HandlerFile<br>*exclude debug level*
         FormatterJSON
       HandlerEmail<br>*for level greater than error*
         FormatterHTML
-    Processors
+    node2(Processors)
       ProcessorPlaceholders
       ProcessorUID
-    Name of loger, a.k.a. log channel
+    node3(Name of loger, a.k.a. log channel)
 ```
 
 Additionally, the logger standardizes and simplifies the use of logging methods (such as methods: `logger.trace`, `logger.info`, ...). It offers a consistent and intuitive approach to logging at different levels of severity, letting developers effortlessly call the appropriate logging level without dealing with the underlying technical details. Each log level can be invoked through a simple, clear method, making logging an integral yet unobtrusive part of the development process. 
 
-Every logger must implement the `LoggerInterface`, which provides the following methods:
+Every logger implements the `LoggerInterface`, which provides the following methods:
 
 ```vbscript
-Logger.trace "Authentication function call for user 'Bob Morane'." 
-Logger.info "User 'UltraVomit' has logged in successfully."
-Logger.notice "Process completed successfully with minor issues."
-Logger.warning "'Beetlejuice' should not be called more than 3 times."
-Logger.error "An error occurred with the user 'DRZCFOS2'."
-Logger.critical "System is in an unstable state."
-Logger.alert "Action required: unable to generate the dashboard."
 Logger.emergency "A critical failure occurred in the application."
+Logger.alert "Action required: unable to generate the dashboard."
+Logger.critical "System is in an unstable state."
+Logger.error "An error occurred with the user 'DRZCFOS2'."
+Logger.warning "'Beetlejuice' should not be called more than 3 times."
+Logger.notice "Process completed successfully with minor issues."
+Logger.info "User 'UltraVomit' has logged in successfully."
+Logger.trace "Authentication function call for user 'Bob Morane'." 
 ```
 
 
 ### Identifying a logger with a channel
 
-**A log channel is a powerful way to identify which part of an application a log entry is associated with**. This is especially useful in large applications with multiple components and multiple loggers. The idea is to have several logging systems sharing the same handler, all writing into a single log file. Channels help identify the source of the log, making filtering and searching more manageable.
+**A channel is a powerful way to identify which part of an application a log entry is associated with**. This is especially useful in large applications with multiple components and multiple loggers. The idea is to have several logging systems sharing the same handler, all writing into a single log file. Channels help identify the source of the log, making filtering and searching more manageable.
 
 Here’s an example with three distinct logging channels to demonstrate how they help differentiate logs by application component: one channel for the main application (`app`), another for authentication (`auth`), and a third for data processing (`data`).
 
-```
+``` title='Logging system with multiples loggers identified by channels'
 [2024-11-05 09:15:34] auth.INFO: User login successful
 [2024-11-05 09:16:01] app.INFO: Dashboard loaded successfully
 [2024-11-05 09:16:20] data.DEBUG: Data import started
@@ -225,7 +225,7 @@ In addition to the basic log message, you may sometimes want to include extra in
 
 Whether it's the `context` option or the `extra` option, they are essentially VBA dictionaries, where you can store key-value pairs that hold relevant information. When you create a log entry, this context can be attached and will be incorporated into the log output, providing deeper insights into the logged event. This feature is a great way to enrich your log entries with important details and provide better traceability and understanding of your application's behavior.
 
-```vbscript
+```vbscript title='Using placeholders with data context'
 ' Set context 
 Dim context As Object: Set context = CreateObject("Scripting.Dictionary")
 context.Add "Username", "v20100v"
@@ -239,9 +239,7 @@ Logger.info "Adding the new user: '{username}'", context
 Logger.info "Adding the new user: '{username}'", context, extra
 ```
 
-Result:
-
-```
+``` title='Result'
 [2024-11-05 09:15:34] app.INFO: Adding a new user | {"Username": "v20100v"}
 [2024-11-05 09:15:34] app.INFO: Adding the new user: 'v20100v' | {"Username": "v20100v"}
 [2024-11-05 09:15:34] app.INFO: Adding the new user: 'v20100v' | {"Username": "v20100v"} | extra: {"CPU-Usage":"51%"}

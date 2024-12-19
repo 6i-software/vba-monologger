@@ -1,13 +1,13 @@
-## What is a log context and a placeholder?
+## What is a log context?
 
-In addition to the basic log message, you may sometimes want to include extra data that helps to provide more context for the event being logged. You can give a variable context with log message. It is a simply VBA dictionary, where you can store key-value pairs that hold relevant information. When you create a log entry, this context can be attached and will be incorporated into the log output, providing deeper insights into the logged event.
+In addition to the basic log message, you may sometimes want to include [extra data](../introduction.html#adding-metadatas-in-log-records) that helps to provide more context for the event being logged. You can give a variable context with log message. It is a simply VBA dictionary, where you can store key-value pairs that hold relevant information. When you create a log entry, this context can be attached and will be incorporated into the log output, providing deeper insights into the logged event.
 
 This variable can simply be displayed (or not) into the log message, or can be consumed by using placeholders in log message.
 
 
 ## Create a log context
 
-To create a dictionary, it is recommended to do it like this:
+To create a log context (*i.e.* a VBA dictionary), it is recommended to do it like this:
 
 ```vbscript
 ' Set context 
@@ -36,9 +36,7 @@ Logger.info "Adding a new user", context
 Logger.info "Adding the new user: '{username}'", context
 ```
 
-Result
-
-```
+``` title='Result'
 [2024-11-05 09:15:34] app.INFO: Adding a new user | {"Username": "v20100v"}
 [2024-11-05 09:15:34] app.INFO: Adding the new user: 'v20100v' | {"Username": "v20100v"}
 ```

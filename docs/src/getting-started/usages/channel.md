@@ -1,11 +1,15 @@
-## What is a log channel?
+## What is a channel?
 
-A [log channel](./introduction.html#identifying-a-logger-with-a-channel) is a powerful way to identify which part of an application a log entry is associated with. This is especially useful in large applications with multiple components and multiple loggers.
+A [channel](../introduction.html#identifying-a-logger-with-a-channel) refers to the name given to a specific logger.
+
+This name helps categorize and manage log messages effectively. By using different channels, each logger can be configured with specific handlers, formatters, and log levels. This ensures that logs from different parts of an application are handled appropriately and organized for easy analysis. 
+
+It is a powerful way to identify which part of an application a log entry is associated with. This is especially useful in large applications with multiple components and multiple loggers.
 
 
-## Set logger's name into default logger
+## Set log channel into built-in loggers
 
-In each default loggers provided by the VBA Monologger factory (*e.g. `LoggerConsoleVBA`, `LoggerConsole` or `LoggerFile`*) you can set the name with the first parameter `paramLoggerName`.
+In each default built-in loggers provided by the VBA Monologger factory (*e.g.* `LoggerConsoleVBA`, `LoggerConsole` or `LoggerFile`) you can set the name with its first parameter `paramLoggerName`.
 
 ```vbscript
 Public Sub howto_set_logger_name()
@@ -29,9 +33,7 @@ Public Sub howto_set_logger_name()
 End Sub
 ```
 
-Result in VBA console:
-
-```
+``` title='Result in VBA console'
 [2024/12/16 12:51:17] App.DEBUG: Authentication function call for user 'Bob Morane'.
 [2024/12/16 12:51:17] App.INFO: User 'UltraVomit' has logged in successfully.
 [2024/12/16 12:51:17] App.NOTICE: Process completed successfully with minor issues.

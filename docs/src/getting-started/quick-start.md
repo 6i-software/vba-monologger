@@ -6,7 +6,6 @@ So to instantiate your first logger that output logs into the VBA console, just 
 
 ```vbscript
 Public Sub howto_use_logger_console_VBA()
-    ' Instantiate the logger with the factory
     Dim Logger As VBAMonologger.LoggerInterface
     Set Logger = VBAMonologger.Factory.createLoggerConsoleVBA()
     
@@ -36,10 +35,10 @@ This logger, provided by the factory's method `createLoggerConsoleVBA`, is confi
 
 As you can see, in the signature of this factory's method, it is possible to set the name the logger (channel) and to load a custom formatter.
 
-```vbscript
+```vbscript title='VBAMonologger.Factroy.createLoggerConsoleVBA()' 
 Public Function createLoggerConsoleVBA( _
     Optional ByVal paramLoggerName As String = vbNullString, _
-    Optional ByRef paramFormatter As VBAMonologger.FormatterInterface = Nothing _
+    Optional ByRef paramFormatter As FormatterInterface = Nothing _
 ) As VBAMonologger.Logger
 ```
 

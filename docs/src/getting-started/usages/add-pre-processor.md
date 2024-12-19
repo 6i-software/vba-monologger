@@ -1,27 +1,28 @@
 ## What is a log pre-processor?
 
-[Pre-processors](../introduction.html#pre-processor-of-log-records) are a powerful feature, allowing for additional metadatas to be added to log messages before they are recorded. These functions can be used to enrich log messages with extra information that might not be directly part of the log entry itself, but is still relevant for better understanding and tracking. Pre-processors can modify, format, or even generate additional metadata that can be attached to each log message into the extra property. A logger can reference one or more pre-processors.
+[Pre-processors](../introduction.html#pre-processor-of-log-records) are a powerful feature, allowing for additional metadatas to be added to log messages before they are recorded. These functions can be used to enrich log messages with extra information that might not be directly part of the log entry itself, but is still relevant for better understanding and tracking. 
+
+Pre-processors can modify, format, or even generate additional metadata that can be attached to each log message into the extra property. A logger can reference one or more pre-processors.
 
 
 ## Default pre-processor loaded in built-in loggers
 
-When creating loggers with the factory methods provided by `VBAMonologger.Factory`, the type of handler and its formatter depend on the target output (VBA console, file, or Windows console). 
+When creating loggers with the factory methods provided by `VBAMonologger.Factory`, it automatically loads the pre-processor `ProcessorPlaceholders` for each built-in loggers. This ensures that all log entries include the placeholder's features.
 
-| **Factory method**         | **Default processor** |  
-|----------------------------|-----------------------|  
-| `createLoggerConsoleVBA()` | `ProcessorPlaceholders` |  
-| `createLoggerFile()`       | `ProcessorPlaceholders` |  
-| `createLoggerConsole()`    | `ProcessorPlaceholders` |  
+| **Factory method**         | **Default pre-processor** |  
+|----------------------------|---------------------------|  
+| `createLoggerConsoleVBA()` | `ProcessorPlaceholders`   |  
+| `createLoggerFile()`       | `ProcessorPlaceholders`   |  
+| `createLoggerConsole()`    | `ProcessorPlaceholders`   |  
 
-The ProcessorPlaceholders, allows to replace specific variables, or [placeholders](./placeholders.html), in log messages with their corresponding values, adding dynamic context to the logs. It uses a `context` variable given with the log message.
-[add-pre-processor.md](add-pre-processor.md)
+The `ProcessorPlaceholders`, allows to replace specific variables, or [placeholders](../introduction.html#adding-metadatas-in-log-records), in log messages with their corresponding values, adding dynamic context to the logs. It consumes the log context variable given with the log message.
 
 
 ## Available pre-processors
 
 In VBA Monologger, several built-in processors offer specific functionalities to enhance the log entry by adding additional context or modifying it in various ways before it is passed to the handlers. Here are some examples of the available pre-processors:
 
-| Log processor           | Description                                                                                                                                                                                                                                                                                               |
+| Pre-processor          | Description                                                                                                                                                                                                                                                                                               |
 |-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `ProcessorPlaceholders` | Allows to replace specific variables or placeholders in log messages with their corresponding values, adding dynamic context to the logs. The `context` variable must be a VBA `Scripting.Dictionary`. (*e.g.* `logger.info("Authentication failed for user '{UserName}' with id '{UserID}'.", context)`. |
 | `ProcessorTags`         | Adds one or more tags to a log entry.                                                                                                                                                                                                                                                                     |
@@ -80,9 +81,7 @@ VBAMonologger.Factory.pushProcessorTags Logger, tags, TAGS_DESTINATION.LOG_EXTRA
 Logger.trace "Authentication function call."
 ```
 
-Result:
-
-```
+``` title='Result'
 [2024/12/16 18:34:09] DEBUG: Authentication function call. | extra: {"session-UID":"F056D5EE","CPU-used":"0,0%","memory-used":"62%","tags":{"environment":"production"}}
 ```
 
@@ -129,9 +128,7 @@ Public Sub howto_show_context_and_extra_on_multilples_line()
 End Sub
 ```
 
-Result:
-
-```
+``` title='Result'
 [2024/12/16 18:46:28] App.DEBUG: Authentication function call.
  | extra: 
  | {
