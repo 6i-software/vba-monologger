@@ -1,6 +1,6 @@
 ## What is a log context?
 
-In addition to the basic log message, you may sometimes want to include [extra data](../introduction.html#adding-metadatas-in-log-records) that helps to provide more context for the event being logged. You can give a variable context with log message. It is a simply VBA dictionary, where you can store key-value pairs that hold relevant information. When you create a log entry, this context can be attached and will be incorporated into the log output, providing deeper insights into the logged event.
+In addition to the basic log message, you may sometimes want to include [extra data](../introduction.md#adding-metadatas-in-log-records) that helps to provide more context for the event being logged. You can give a variable context with log message. It is a simply VBA dictionary, where you can store key-value pairs that hold relevant information. When you create a log entry, this context can be attached and will be incorporated into the log output, providing deeper insights into the logged event.
 
 This variable can simply be displayed (or not) into the log message, or can be consumed by using placeholders in log message.
 

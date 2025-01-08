@@ -20,7 +20,7 @@ End Sub
 
 To illustrate how to load a custom formatter, we will create a new line formatter with a different line template, but it works the same way with any formatter. 
 
-Check this out for additional details on [creating a custom formatter](./create-custom-formatter.html#what-is-a-log-formatter).
+Check this out for additional details on [creating a custom formatter](./create-custom-formatter.md#what-is-a-log-formatter).
 
 ```vbscript
 Public Sub howto_create_handler_with_custom_formatter()

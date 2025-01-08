@@ -4,16 +4,17 @@ The severity levels indicate the severity of each event, from the most trivial t
 
 **VBA Monologger** manages 8 standard severity levels to classify the importance of log messages, following the [PSR-3](https://www.php-fig.org/psr/psr-3/) standard, which is itself based on RFC 5424, the standard defined by the IETF (*Internet Engineering Task Force*) to specify the format of messages for the Syslog protocol, which is used for transmitting logs over IP networks.
 
-| Log level   | Description                                                                                            |
-|-------------|--------------------------------------------------------------------------------------------------------|
-| `EMERGENCY` | Indicates a very critical situation that requires immediate attention. (System crash, data corruption) |
-| `ALERT`     | Signals an alert condition. (Critical disk space running out)                                          |
-| `CRITICAL`  | Indicates a serious error. (Database connection failure, server downtime)                              |
-| `ERROR`     | Represents an error in the system. (Failed to save user data, unexpected exception)                    |
-| `WARNING`   | A warning about a potential problem. (Use a deprecated function used, low memory warning)              |
-| `NOTICE`    | Important notifications that are not urgent. (User login successful, configuration change detected)    |
-| `INFO`      | General information about the normal operation. (System startup, data processed successfully)          |
-| `DEBUG`     | Detailed information for debugging. (Variable values during loop iteration, query execution details)   |
+| Log level   | Description                                                                                                                                                                                                                           |
+|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `EMERGENCY` | Indicates a very critical situation that requires immediate attention. (*system crash, data corruption*)                                                                                                                              |
+| `ALERT`     | Signals an alert condition. (*critical disk space running out*)                                                                                                                                                                       |
+| `CRITICAL`  | Indicates a serious error. (*database connection failure, server downtime*)                                                                                                                                                           |
+| `ERROR`     | Represents an error in the system. (*failed to save user data, unexpected exception*)                                                                                                                                                 |
+| `WARNING`   | A warning about a potential problem. (*use a deprecated function used, low memory warning*)                                                                                                                                           |
+| `NOTICE`    | Important notifications that are not urgent. (*user login successful, configuration change detected*)                                                                                                                                 |
+| `INFO`      | General information about the normal operation. (*system startup, data processed successfully*)                                                                                                                                       |
+| `TRACE`     | Detailed information for debugging. (*variable values during loop iteration, execution details*). Notes, that the '**debug**' method exposes presents in PSR-3 is rename into '**trace**' in order to be compatible in VBA ecosystem. |
+
 
 
 ## Modeling
@@ -27,7 +28,7 @@ classDiagram
     class LogLevel {
         +LOG_LEVELS currentLogLevel
 
-        +Function construct(paramLogLevel As LOG_LEVELS) : logLevel
+        +Function construct(paramLogLevel As LOG_LEVELS) : LogLevel
         +Property Get name() As String
 
         +Sub fromName(name As String)
@@ -90,9 +91,9 @@ End Function
 ```
 
 
-### Instantiation a LogLevel
+### Instantiate an instance of LogLevel
 
-To create a new instance of `LogLevel` and use its `construct` method:
+Here's an example of how to instantiate an instance of `LogLevel` and use its construct method to set the log level.
 
 ``` vbscript
 Sub Usecases_LogLevel()    
@@ -120,7 +121,7 @@ End Sub
 ```
 
 
-### Implementing `toString()` for readable object representation
+### Implement `StringableInterface` with `toString()` method for readable object representation
 
 The `toString()` function in the interface `StringableInterface` provides a straightforward, meaningful text representation of an instance. This feature proves especially useful for debugging, as it allows developers to easily inspect the state of an object by simply converting it to a string. With `toString()`, the internal data of an object can be output as a human-readable string that reveals key details, such as the current log level, its severity designation, or other significant properties. This approach helps developers quickly understand an object’s state without needing to access each property individually, streamlining both the debugging process and log readability.
 
@@ -155,7 +156,7 @@ End Function
 ```
 
 
-## Usage
+## Usages
 
 ### Setting the current log level
 

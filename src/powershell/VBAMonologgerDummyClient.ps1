@@ -19,9 +19,9 @@ $content = New-Object System.Net.Http.StringContent($message, [System.Text.Encod
 $response = $client.PostAsync($uri, $content).Result
 
 # Afficher le statut de la réponse et le contenu
-Write-Host "Réponse HTTP: $($response.StatusCode)"
+[console]::WriteLine("HTTP response: $($response.StatusCode)")
 $responseContent = $response.Content.ReadAsStringAsync().Result
-Write-Host "Contenu de la réponse: $responseContent"
+[console]::WriteLine("Body response: $responseContent")
 
 # Fermer le client HTTP
 $client.Dispose()

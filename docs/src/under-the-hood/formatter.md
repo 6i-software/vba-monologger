@@ -2,14 +2,14 @@
 
 A log formatter is used to transform and structure a log record into a readable representation that adheres to a specific format (*e.g.*, text file, JSON, HTML…). 
 
-**VBA Monologger** provides (as soon as possible) the following formatters:
+**VBA Monologger** provides the following formatters:
 
-| Log Formatter              | Description                                                                                                                                                     |
-|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `FormatterLine`            | The default formatter that represents each log entry on a single line of text.                                                                                  |
-| `FormatterANSIColoredLine` | A version derived from *FormatterLine* that supports color coding each log entry line by using ANSI escape sequences.                                           |
-| `FormatterJSON`            | Formats the logs in JSON. This is the most interoperable format, facilitating integration with external log aggregation and analysis tools (e.g., *ELK stack*). |
-| `FormatterHTML`            | Produces messages in HTML format, typically used when sending logs via email.                                                                                   |
+| Log Formatter              | Description                                                                                                                                                                               |
+|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `FormatterLine`            | The default formatter that represents each log entry on a single line of text.                                                                                                            |
+| `FormatterANSIColoredLine` | A version derived from *FormatterLine* that supports color coding each log entry line by using ANSI escape sequences.                                                                     |
+| ~~`FormatterJSON`~~        | ~~Formats the logs in JSON. This is the most interoperable format, facilitating integration with external log aggregation and analysis tools (e.g., *ELK stack*).~~ (*not yet available*) |
+| ~~`FormatterHTML`~~        | ~~Produces messages in HTML format, typically used when sending logs via email.~~ (*not yet available*)                                                                                   |
 
 
 ## Modeling
@@ -50,22 +50,26 @@ classDiagram
         +Function construct(Optional paramTemplateLine As String, Optional paramWhitespace As Variant) As FormatterInterface
         +Property Get templateLine() As String
         +Property Let templateLine(ByVal newTemplateLine As String)
+        +Function setTemplateLineDefault() As void
+        +Function setTemplateLineWithNewlineForContextAndExtra() As void
         +Function format(ByRef paramLogRecord As LogRecordInterface) As Variant
         +Function formatBatch(ByRef records() As LogRecordInterface) As Variant
         +Function toString() As String
+        -Function pApplyPlaceholder((ByVal output As String, placeholder As String, value As String) As String
+        -Function pRemoveEmptyPlaceholder(ByVal output As String, placeholder As String) As String
+        -Function pGetPrefixFromTemplate(ByVal templateLine As String, ByVal placeholder As String) As String
+        -Function pAddPrefixToJsonLines(ByVal json As String, ByVal prefix As String) As String
 
         -Const TEMPLATE_LINE_SIMPLE As String
         -String pTemplateLine
         -Variant pWhitespace
         -Boolean showContext
         -Boolean showExtra
+        -Boolean withAllowingInlineLineBreaks
+        -Boolean withWhitespace
+        -String withPrefixToJsonLines
     }
-    
-    class StringableInterface {
-        <<Interface>>
-        +Function toString() As String
-    }
-    
+        
     FormatterLine ..|> FormatterInterface : Implements
     FormatterLine ..|> StringableInterface : Implements
 ```
@@ -139,40 +143,55 @@ This class also supports batch processing of multiple log entries, according to 
 
 ### Customizing the line template
 
-The `FormatterLine` uses a **line template**, as a string, in order to format each log entry. This template defines the representation of a log entry, with **placeholders** that will be replaced by actual values from the log record. 
+The `FormatterLine` uses a **line template**, as a string, in order to format each log entry. It uses regular expressions to handle placeholders within the line template, allowing them to be defined with prefixes and suffixes to modify their final output. This template defines the representation of a log entry, with **line placeholders** that will be replaced by actual values from the log record. Please note, this is unrelated to the preprocessors placeholders. It's a different templating engine.
 
-By default, this line template looks like the following:
+A prefix text can be added before the placeholder’s value, and also a suffix text can be added after the placeholder's value. If a placeholder has no value, then the prefix and postfix are not displayed in the final output. Here’s how a placeholder can be structured in the template:
 
-``` twig title="Line template"
-[{{datetime}}] {{channel}}{{level_name}}: {{message}}{{< | ctx=/> context}}{{< | extra=/> extra}}
+```twig
+{{ <prefix/> placeholder <suffix/> }}
 ```
+
+The line formatter provides two lines templates:
+
+ - **A default line template**, enable by default or by `formatter.setTemplateLineDefault()` method. It looks like the following:
+   ``` twig title="Default line template"
+   [{{ datetime }}] {{ channel <./>}}{{ level_name }}: {{ message }}{{< | context: /> context }}{{< | extra: /> extra }}
+   ```
+
+ - **And a line template with newline for log context and extra**, that you can enable it with the method `formatter.setTemplateLineWithNewlineForContextAndExtra()`
+    ``` twig title="Line template with new line for data context and extra"
+    [{{ datetime }}] {{ channel <./>}}{{ level_name }}: {{ message }}{{<\n | context: /> context }}{{<\n | extra: /> extra }}
+    ```
+
 
 #### Available placeholders
 
 These placeholders include:
 
-| Placeholder&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description                                                                                                                                    |
-|-------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| `{{datetime}}`                                                                            | The date and time of the log entry.                                                                                                            |
-| `{{channel}}`                                                                             | The channel (or source) from which the log originates.                                                                                         |
-| `{{level_name}}`                                                                          | The log level (*e.g.*, `INFO`, `ERROR`, `DEBUG` ...).                                                                                          |
-| `{{message}}`                                                                             | The main log message.                                                                                                                          |
-| `{{extra}}`                                                                               | Extra metadata or custom information attached to the log entry. This can include arbitrary key-value pairs, typically added by pre-processors. |
+| Placeholder&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description                                                                                                                                 |
+|-------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| `{{datetime}}`                                                                            | The date and time of the log entry.                                                                                                         |
+| `{{channel}}`                                                                             | The channel (or source) from which the log originates.                                                                                      |
+| `{{level_name}}`                                                                          | The log level (*e.g.*, `INFO`, `ERROR`, `DEBUG` ...).                                                                                       |
+| `{{message}}`                                                                             | The main log message.                                                                                                                       |
+| `{{context}}`                                                                             | The log context data. This includes arbitrary key-value pairs.                                                                              |
+| `{{extra}}`                                                                               | Extra metadata or custom information attached to the log entry. This includes arbitrary key-value pairs, typically added by pre-processors. |
 
-So you can customize the template to fit your needs. For example, if you prefer a simpler format or want to add additional information, you can easily adjust the template using the templateLine property. This provides flexibility in defining the exact format of your logs, whether for console output or a log file.
+So you can customize the template to fit your needs. 
+
+For example, if you prefer a simpler format or want to add additional information, you can easily adjust the template using the templateLine property. This provides flexibility in defining the exact format of your logs, whether for console output or a log file.
 
 #### Changing the line template
 
-To change the template line just set the property `templateLine`.
+To change the template line just set the property `templateLine`. With this line template, it will produce new output:
 
 ```vbscript
 Set formatter = New VBAMonologger.FormatterLine
-formatter.templateLine = "{{datetime}} | {{ channel }} | {{ level_name }} | {{ message }}"
+formatter.templateLine = _ 
+   "{{datetime}} | {{ channel }} | {{ level_name }} | {{ message }}"
 ```
 
-With this line template, it will produce new output: 
-
-```
+``` title='Result with new template'
 >>> Output minimal log record 
 2024/11/12 16:11:24 | | NOTICE | I believe I can fly
 
@@ -180,10 +199,10 @@ With this line template, it will produce new output:
 2024/11/12 16:13:44 | App | NOTICE | I believe I can fly
 ```
 
-As tou can see, when the log record have not chanel value, we would to not hoave the '|' caracter. To hide it, in this case, we need to use prefixes and suffixes placehodler.
+As tou can see, when the log record have not chanel value, we would to not have the '|' character. To hide it, in this case, we need to use prefixes and suffixes placeholder.
 
 
-#### Using prefixe and suffix of placeholders
+#### Using prefix and suffix of placeholders
 
 This formatting system uses regular expressions to handle placeholders within the log template, allowing them to be defined with *prefixes* and *suffixes* to modify their final output. 
 
@@ -195,7 +214,7 @@ Here’s how a placeholder can be structured in the template:
 
 The prefix text is added before the placeholder’s value, and the suffixe text is added after the placeholder's value. And if a placeholder has no value, then the prefix and postfix are not displayed in the final output. 
 
-For example, using this new line template with prefix and suffix on `{{ channel }}` placeholder.
+For example, using this new line template with prefix and suffix on `{{ channel }}` placeholder. With this new line template, it will produce new output.
 
 ```vbscript
 Set formatter = New VBAMonologger.FormatterLine
@@ -203,9 +222,7 @@ Set formatter = New VBAMonologger.FormatterLine
 formatter.templateLine = "{{datetime}} | {{ <Chanel:/>channel< | /> }}{{ level_name }} | {{ message }}{{< | ctx: /> context}}{{< | extra: /> extra < |/> }}"
 ```
 
-With this new line template, it will produce new output:
-
-```
+``` title='Result'
 >>> Output minimal log record 
 2024/11/12 16:11:24 | NOTICE | I believe I can fly
 
@@ -218,22 +235,64 @@ Indeed, in this example, if the log entry does not contain a value for the `{{ch
 
 #### Show or hide log context and extra metadata
 
-Logs can include context information (such as data specific to the execution of a process) and additional metadata. The `FormatterLine` class allows you to control the display of this data using the `showContext` and `showExtra` properties.
+Logs can include context information (such as data specific to the execution of a process) and additional metadata. The `FormatterLine` class allows you to control the display of this data using the `showContext` and `showExtra` properties. 
 
-By default, these properties are set to true, but you can hide its by setting these properties to `False`.
+By default, these properties are set to `True`, but you can hide them by setting the properties to `False`.
 
 ```vbscript    
 Set formatter = New VBAMonologger.FormatterLine
+
 formatter.showContext = False
 formatter.showExtra = False
 ```
 
 
-## FormatterANSIColoredLine
+#### Beautify representation of log context and extra (whitespace)
 
-The main purpose of `FormatterANSIColoredLine` class is to augment FormatterLine by adding color support. It formats log messages by converting them into text strings using the templating model provided by `FormatterLine`, while applying ANSI escape sequences for coloring the messages in terminals based on the log level. 
+Here's an example demonstrating how to beautify the representation of log context and extra data. The code below sets up a formatter to include newlines for log context and extra metadata, allowing for a more readable log output. This setup is particularly useful during the development phase for debugging, as it makes log outputs more readable and easier to analyze.
+
+```vbscript
+Set formatter = New VBAMonologger.FormatterLine
+
+formatter.setTemplateLineWithNewlineForContextAndExtra
+formatter.withWhitespace = True
+formatter.withAllowingInlineLineBreaks = True
+formatter.withPrefixToJsonLines = " | "
+
+Debug.Print ">>> Output log record with context and extra metadatas"
+Set dummyRecord = dummyRecord.construct( _
+  "I believe I can fly!", _
+  VBAMonologger.LEVEL_NOTICE, _
+  "App", _
+  logContext, _
+  logExtra
+)
+Debug.Print formatter.format(dummyRecord)
+```
+
+``` title='Result'
+>>> Output log record with context and extra metadatas
+[2024/11/12 16:13:44] App.NOTICE: I believe I can fly!
+ | context: 
+ | { 
+ |    "UserName":"v20100v",
+ |    "UserID":25508,
+ |    "Operation":"Create"
+ | } 
+ | extra: 
+ | {
+ |     "ExecutionTime":"3,9127 seconds"
+ | }
+```
+
+## Add colors support with FormatterANSIColoredLine
+
+The main purpose of `FormatterANSIColoredLine` is to augment FormatterLine by adding color support. It formats log messages by converting them into text strings using the templating model provided by `FormatterLine`, while applying ANSI escape sequences for coloring the messages in terminals based on the log level. 
 
 It enables the customization of log display by assigning specific colors to each log level through a configurable color palette.
+
+![VBAMonologger-output-WindowsConsole.png](../getting-started/VBAMonologger-output-WindowsConsole.png)
+
 
 ### Not through inheritance, but by composing with FormatterLine
 
@@ -250,8 +309,16 @@ classDiagram
         +Property Let templateLine(ByVal newTemplateLine As String)
         +Property Get colorScheme() As Scripting.Dictionary
         +Property Set colorScheme(ByVal newColorScheme As Scripting.Dictionary)
-        +Function getAnsiColorOfLogLevel(levelName As String) As String
-        +Function getAnsiColorReset() As String
+        +Property showContext As Boolean
+        +Property showExtra As Boolean
+        +Property withWhitespace as Boolean
+        +Property withAllowingInlineLineBreaks as Boolean
+
+        +Function setTemplateLineWithNewlineForContextAndExtra() as void
+        +Function getDefaultColorScheme() As Scripting.Dictionary
+        +Function getTrafficLightColorScheme() As Scripting.Dictionary
+        +Function getANSIEscapeSequenceColorOfLogLevel(levelName As String) As String
+        +Function getANSIEscapeSequenceColorReset() As String
         +Function format(ByRef paramLogRecord As LogRecordInterface) As Variant
         +Function formatBatch(ByRef records() As LogRecordInterface) As Variant
         +Function toString() As String
@@ -347,27 +414,100 @@ To change the color scheme, all you need to do is create a dictionary and assign
 By updating the dictionary, you can easily modify the color scheme without altering the underlying code logic, providing flexibility in how the logs are visually represented.
 
 ```vbscript
-Public Function customColorScheme() As Scripting.Dictionary
-  Dim colorScheme As Scripting.Dictionary
-  Set colorScheme = New Scripting.Dictionary
-  colorScheme.Add "DEBUG", Chr$(27) & "[2;32m" ' FG Green faint
-  colorScheme.Add "INFO", Chr$(27) & "[32m" ' FG Green normal
-  colorScheme.Add "NOTICE", Chr$(27) & "[1;32m" ' FG Green bright
-  colorScheme.Add "WARNING", Chr$(27) & "[2;33m" ' FG Yellow faint
-  colorScheme.Add "ERROR", Chr$(27) & "[33m" ' FG Yellow normal
-  colorScheme.Add "CRITICAL", Chr$(27) & "[31m" ' FG Red normal
-  colorScheme.Add "ALERT", Chr$(27) & "[1;31m" ' FG Red bright
-  colorScheme.Add "EMERGENCY", Chr$(27) & "[41;37;5m"
-  colorScheme.Add "RESET", Chr$(27) & "[0m"
-  
-  Set customColorScheme = trafficLightColorScheme
+Public Function getCustomColorScheme() As Scripting.Dictionary
+   Dim colorScheme As Scripting.Dictionary
+   Set colorScheme = New Scripting.Dictionary
+   colorScheme.Add "DEBUG", Chr$(27) & "[2;32m" ' FG Green faint
+   colorScheme.Add "INFO", Chr$(27) & "[32m" ' FG Green normal
+   colorScheme.Add "NOTICE", Chr$(27) & "[1;32m" ' FG Green bright
+   colorScheme.Add "WARNING", Chr$(27) & "[2;33m" ' FG Yellow faint
+   colorScheme.Add "ERROR", Chr$(27) & "[33m" ' FG Yellow normal
+   colorScheme.Add "CRITICAL", Chr$(27) & "[31m" ' FG Red normal
+   colorScheme.Add "ALERT", Chr$(27) & "[1;31m" ' FG Red bright
+   colorScheme.Add "EMERGENCY", Chr$(27) & "[41;37;5m"
+   colorScheme.Add "RESET", Chr$(27) & "[0m"
+   
+   Set getCustomColorScheme = colorScheme
 End Function
 
 Dim formatterAnsiColoredLine As VBAMonologger.formatterAnsiColoredLine
 Set formatterAnsiColoredLine = New VBAMonologger.formatterAnsiColoredLine
-Set formatterAnsiColoredLine.colorScheme = customColorScheme
+Set formatterAnsiColoredLine.colorScheme = getCustomColorScheme
 formatterAnsiColoredLine.showContext = False
 formatterAnsiColoredLine.showExtra = False
 ```
 
 ![formatterAnsiColored_defaultColorScheme.png](../assets/formatterAnsiColored_customColorScheme.png)
+
+To get an ANSI sequence color, you can also use the `VBAMonologger.ANSI` module. It provides various ANSI escape sequences to colorize your text output. You can combine styles using the "&" operator. For example to get a bright red background with white foreground text, use the following: `VBAMonologger.ANSI.BG_BRIGHT_RED & VBAMonologger.ANSI.WHITE`.
+
+Here’s an example of how to create a custom color scheme:
+
+```
+Public Function getCustomColorScheme() As Scripting.Dictionary
+   Dim colorScheme As Scripting.Dictionary
+   Set colorScheme = New Scripting.Dictionary
+   colorScheme.Add "DEBUG", VBAMonologger.ANSI.WHITE
+   colorScheme.Add "INFO", VBAMonologger.ANSI.GREEN
+   colorScheme.Add "NOTICE", VBAMonologger.ANSI.CYAN
+   colorScheme.Add "WARNING", VBAMonologger.ANSI.YELLOW
+   colorScheme.Add "ERROR", VBAMonologger.ANSI.BRIGHT_RED
+   colorScheme.Add "CRITICAL", VBAMonologger.ANSI.RED
+   colorScheme.Add "ALERT", _ 
+      VBAMonologger.ANSI.BG_BRIGHT_RED & VBAMonologger.ANSI.WHITE
+   colorScheme.Add "EMERGENCY", _ 
+      VBAMonologger.ANSI.BG_RED & VBAMonologger.ANSI.WHITE
+  
+   Set getCustomColorScheme = colorScheme
+End Function
+```
+
+### Available ANSI sequence colors
+
+The `VBAMonologger.ANSI` module provides a variety of ANSI escape sequences for styling text. 
+
+Here’s a list of the available sequences:
+
+| **Function Name**     | **Description**                               |
+|-----------------------|-----------------------------------------------|
+| `RESET`               | Reset all attributes                          |
+| `BOLD`                | Bold text style                               |
+| `WEAK`                | Weak (dim) text style                         |
+| `UNDERLINE`           | Underline text                                |
+| `BLINK`               | Blink text                                    |
+| `REVERSE`             | Reverse foreground and background colors      |
+| `HIDDEN`              | Hidden text                                   |
+| `BLACK`               | Black foreground color                        |
+| `RED`                 | Red foreground color                          |
+| `GREEN`               | Green foreground color                        |
+| `YELLOW`              | Yellow foreground color                       |
+| `BLUE`                | Blue foreground color                         |
+| `MAGENTA`             | Magenta foreground color                      |
+| `CYAN`                | Cyan foreground color                         |
+| `WHITE`               | White foreground color                        |
+| `BRIGHT_BLACK`        | Bright black foreground color                 |
+| `BRIGHT_RED`          | Bright red foreground color                   |
+| `BRIGHT_GREEN`        | Bright green foreground color                 |
+| `BRIGHT_YELLOW`       | Bright yellow foreground color                |
+| `BRIGHT_BLUE`         | Bright blue foreground color                  |
+| `BRIGHT_MAGENTA`      | Bright magenta foreground color               |
+| `BRIGHT_CYAN`         | Bright cyan foreground color                  |
+| `BRIGHT_WHITE`        | Bright white foreground color                 |
+| `BG_BLACK`            | Black background color                        |
+| `BG_RED`              | Red background color                          |
+| `BG_GREEN`            | Green background color                        |
+| `BG_YELLOW`           | Yellow background color                       |
+| `BG_BLUE`             | Blue background color                         |
+| `BG_MAGENTA`          | Magenta background color                      |
+| `BG_CYAN`             | Cyan background color                         |
+| `BG_WHITE`            | White background color                        |
+| `BG_BRIGHT_BLACK`     | Bright black background color                 |
+| `BG_BRIGHT_RED`       | Bright red background color                   |
+| `BG_BRIGHT_GREEN`     | Bright green background color                 |
+| `BG_BRIGHT_YELLOW`    | Bright yellow background color                |
+| `BG_BRIGHT_BLUE`      | Bright blue background color                  |
+| `BG_BRIGHT_MAGENTA`   | Bright magenta background color               |
+| `BG_BRIGHT_CYAN`      | Bright cyan background color                  |
+| `BG_BRIGHT_WHITE`     | Bright white background color                 |
+
+Enjoy the ... colors!

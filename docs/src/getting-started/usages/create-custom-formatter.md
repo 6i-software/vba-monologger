@@ -1,6 +1,6 @@
 ## What is a log formatter?
 
-A [log handler](../introduction.html#processing-log-records-with-a-handler) is a key component responsible for processing each log entry. When a log message is generated, it is not simply recorded; it must be directed to a location where it can be viewed and used. This is where the handler comes in, determining where and how each log entry will be sent or saved (show into console, send to a file, send by mail...). And each "log handler" is associated with a unique [log formatter](../introduction.html#formatting-log-records-the-serialization-of-logs-record). 
+A [log handler](../introduction.md#processing-log-records-with-a-handler) is a key component responsible for processing each log entry. When a log message is generated, it is not simply recorded; it must be directed to a location where it can be viewed and used. This is where the handler comes in, determining where and how each log entry will be sent or saved (show into console, send to a file, send by mail...). And each "log handler" is associated with a unique [log formatter](../introduction.md#formatting-log-records-the-serialization-of-logs-record). 
 
 The formatter is a specialized component responsible for defining the structure and presentation of log messages. The formatter processes and organizes each log entry, converting it from its raw form to a readable format tailored to a specific type (text, HTML, JSON, etc.). This process can be seen as similar to the serialization of a log record.
 
@@ -79,7 +79,8 @@ The `FormatterLine` uses a **line template**, as a string, in order to format ea
 > | `{{datetime}}`                                                                            | The date and time of the log entry.                                                                                                            |
 > | `{{channel}}`                                                                             | The channel (or source) from which the log originates.                                                                                         |
 > | `{{level_name}}`                                                                          | The log level (*e.g.*, `INFO`, `ERROR`, `DEBUG` ...).                                                                                          |
-> | `{{message}}`                                                                             | The main log message.                                                                                                                          |
+> | `{{message}}`                                                                             | The main log message.                                                                                                                          | 
+> | `{{context}}`                                                                             | The log context data. This includes arbitrary key-value pairs.                                                                              |
 > | `{{extra}}`                                                                               | Extra metadata or custom information attached to the log entry. This can include arbitrary key-value pairs, typically added by pre-processors. |
 
 Here's an example of a new custom line formatter.

@@ -9,6 +9,14 @@ A log record refers to an entry that captures specific information about an even
 - **Log Context**: Additional relevant information about the event, *e.g.* user ID.
 - **Log Extra**: Optional, useful details, *e.g.* memory or CPU usage.
 
+In addition to the basic log message, you may sometimes want to include extra information that helps to provide more context for the event being logged. This could include things like the username of the person triggering the event, a session ID, or any other piece of data that can assist in understanding the log entry better. 
+
+For adding complementary data to a log record, you have two options : `context` and `extra`.
+
+- The `context` is used to add information directly related to the logged event, such as details about an error or an ongoing operation.
+- Meanwhile, `extra` is reserved for additional metadata, often generated automatically or added by pre-processors, providing a global context.
+
+Whether it's the `context` option or the `extra` option, they are essentially VBA dictionaries, where you can store key-value pairs that hold relevant information. When you create a log entry, this context can be attached and will be incorporated into the log output, providing deeper insights into the logged event. This feature is a great way to enrich your log entries with important details and provide better traceability and understanding of your application's behavior.
 
 ## Modeling
 
@@ -48,17 +56,12 @@ classDiagram
         +Function toString() As String
     }
     
-    class StringableInterface {
-        <<Interface>>
-        +Function toString() As String
-    }    
-    
     LogRecord ..|> LogRecordInterface : Implements
     LogRecord ..|> StringableInterface : Implements    
     LogRecord --> LogLevel : Has (property pLevel)
 ```
 
-## Usage
+## Usages
 
 ### Creating a LogRecord
 
@@ -154,7 +157,7 @@ Debug.Print record.toString
 
 ### Randomize a log record for testing
 
-This VBA code is designed to generates random log records with varying levels of severity, log context, and extra metadata. It's designed to simulate realistic log entries for testing and debugging purposes in the VBA Monologger system.
+Here's an example to generate random log records with varying levels of severity, log context, and extra metadata. It's designed to simulate realistic log entries for testing and debugging purposes in the VBA Monologger system.
 
 ``` vbscript
 '@Description("To generate a random LogRecord")

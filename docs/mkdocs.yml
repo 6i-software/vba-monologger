@@ -1,10 +1,10 @@
 # yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
 
 site_name: VBA Monologger
-site_url: https://github.com/6i-software/vba-monologger/
+site_url: https://6i-software.github.io/vba-monologger/
 site_author: 2o1oo <vb20100bv@gmail.com>
 site_description: >-
-  VBA Monologger is an advanced and flexible logging open-source solution for VBA (<i>Visual Basic for Applications</i>) ecosystem.
+  VBA Monologger is an advanced and flexible logging open-source solution for VBA (<i>Visual Basic for Applications</i>) ecosystem. Easily send logs to the Excel console (Immediate Windows), or simultaneously to a file, or even in a Windows console.
 copyright: Copyright &copy; 2024, 6i-software - 2o1oo
 
 repo_name: 6i-software/vba-monologger
@@ -73,7 +73,7 @@ extra:
       link: https://github.com/v20100v
     - icon: fontawesome/regular/envelope
       link: "mailto:vb20100bv@gmail.com?subject=[6i-VBA%20Monologger]"
-      label: "Contactez-nous"
+      label: "Contact"
   consent:
     title: Cookie consent
     description: >-

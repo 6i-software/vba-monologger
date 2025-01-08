@@ -1,9 +1,9 @@
 ---
 template: welcome.html
-title: VBA Monologger
+title: An advanced and flexible logging solution in VBA
 social:
   cards_layout_options:
-    title: Documentation of VBA Monologger, an advanced and flexible logging solution in VBA.
+    title: An advanced and flexible logging solution in VBA
 hide:
   - footer
   - feedback

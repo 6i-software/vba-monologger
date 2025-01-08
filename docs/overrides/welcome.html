@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block header %}
-
 {% set class = "md-header" %}
 {% if "navigation.tabs.sticky" in features %}
 {% set class = class ~ " md-header--shadow md-header--lifted" %}
@@ -62,15 +61,21 @@
     .md-content {
         display: none;
     }
-    
+
+    .custom-landing-container {
+        height: 100vh;
+        min-height: 480px;
+        max-height: 1080px;
+    }
+
     .custom-hero {
-        margin-top: 3%;
+        margin-top: 9%;
         margin-left: 6%;
         margin-right: 6%;
     }
 
     .custom-hero-content p {
-        max-width: 400px;
+        max-width: 550px;
     }
 
     .decoration {
@@ -82,11 +87,64 @@
         height: 20vh;
     }
 
+    .content-features {
+        background: var(--md-primary-fg-color);
+        margin-bottom: 4.8rem;
+    }
+
+    .features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.2rem;
+        margin: 4.8rem 0;
+    }
+
+    .feature {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 80%;
+        padding: 20px;
+        box-sizing: border-box;
+        background: var(--md-primary-fg-color);
+        color: var(--md-primary-bg-color);
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .feature .feature-icon {
+        fill: currentcolor;
+        background-color: var(--md-default-fg-color--lightest);
+        border-radius: 100%;
+        height: 4.4rem;
+        padding: .8rem;
+        width: 4.4rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .feature .feature-description {
+        padding: 0;
+        margin: 0;
+    }
+
+    .feature h2 {
+        text-align: center;
+        font-weight: 700;
+        margin-top: .175em;
+    }
+
     @media screen and (min-width: 76.25em) {
         /* Hide table of contents */
         /* .md-sidebar--secondary { display: none; } */
         /* Hide navigation */
-        .md-sidebar--primary { display: none;}
+        .md-sidebar--primary {
+            display: none;
+        }
+
+        .feature {
+            flex: 1 1 30%;
+            margin: 10px;
+        }
     }
 </style>
 
@@ -94,9 +152,7 @@
 
 
 <section class="custom-landing-container">
-
     <div class="decoration"></div>
-
     <div class="md-grid md-typeset">
         <div class="custom-hero">
             <!-- Hero image -->
@@ -117,6 +173,75 @@
                    class="md-button">
                     Learn more
                 </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-features">
+    <div class="md-grid md-typeset">
+        <div class="features">
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M2.494 18.913h3.52v-3.52c0-.43.35-.78.781-.78h3.52v-3.52c0-.432.35-.783.781-.783h3.52V6.791c0-.432.35-.782.782-.782h3.519V2.49c0-.432.35-.782.782-.782h3.52c.43 0 .781.35.781.782v20.724c0 .432-.35.782-.782.782H2.494a.78.78 0 0 1-.782-.782v-3.52c0-.43.35-.78.782-.78ZM.172 15.928a.587.587 0 0 1 0-.83L15.102.168a.587.587 0 0 1 .83.83l-14.93 14.93c-.23.23-.6.23-.83 0"></path>
+                    </svg>
+                </div>
+
+                <h2>Severity log levels</h2>
+                <p>Manages 8 standard severity levels to classify the importance of log messages, following the PSR-3 standard. It indicates the severity of each event, from the most trivial to the most catastrophic, and allow administrators or developers to filter messages based on their importance. </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path
+                            d="M20.06 18a4 4 0 0 1-.2-.89c-.67.7-1.48 1.05-2.41 1.05-.83 0-1.52-.24-2.05-.71-.53-.45-.8-1.06-.8-1.79 0-.88.33-1.56 1-2.05s1.61-.73 2.83-.73h1.4v-.64q0-.735-.45-1.17c-.3-.29-.75-.43-1.33-.43-.52 0-.95.12-1.3.36-.35.25-.52.54-.52.89h-1.46c0-.43.15-.84.45-1.24.28-.4.71-.71 1.22-.94.51-.21 1.06-.35 1.69-.35.98 0 1.74.24 2.29.73s.84 1.16.86 2.02V16c0 .8.1 1.42.3 1.88V18zm-2.4-1.12c.45 0 .88-.11 1.29-.32.4-.21.7-.49.88-.83v-1.57H18.7c-1.77 0-2.66.47-2.66 1.41 0 .43.15.73.46.96.3.23.68.35 1.16.35m-12.2-3.17h4.07L7.5 8.29zM6.64 6h1.72l4.71 12h-1.93l-.97-2.57H4.82L3.86 18H1.93z"></path></svg>
+                </div>
+
+                <h2>Logging format</h2>
+                <p>Specify the logging format to define how log messages are structured and displayed. This can be represented on one or multiple lines, with or without ANSI color support, in JSON format, or any other format such as an HTML content.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path
+                            d="M20.3636 5.7778c-.1616.3232-.5656.5656-.9697.5656-.6464 0-1.1313-.4848-1.1313-1.1313s.4849-1.1313 1.1313-1.1313c.404 0 .7273.2424.9697.5657h3.5556V.1212H0v2.7475h15.0303c.1616-.3232.5657-.5657.9697-.5657.6465 0 1.1313.4849 1.1313 1.1313S16.6465 4.5657 16 4.5657c-.404 0-.7273-.2425-.9697-.5657H0v6.5455h2.101V6.505h10.586c.1616-.3232.5656-.5656.9697-.5656.6464 0 1.1313.4848 1.1313 1.1313s-.485 1.1313-1.1314 1.1313c-.404 0-.7273-.2424-.9697-.5656H3.313v3.0707h11.798c.1616-.3233.5657-.5657.9697-.5657.6465 0 1.1313.4849 1.1313 1.1313s-.4848 1.1313-1.1313 1.1313c-.404 0-.7273-.2424-.9697-.5656H0v3.0707h6.5455c.1616-.3232.5656-.5657.9697-.5657.6464 0 1.1313.4849 1.1313 1.1313 0 .6465-.4849 1.1314-1.1313 1.1314-.404 0-.7273-.2425-.9697-.5657H0v3.0707h7.6768c.1616-.3232.5656-.5657.9697-.5657.6464 0 1.1313.4849 1.1313 1.1314 0 .6464-.4849 1.1313-1.1313 1.1313-.404 0-.7273-.2424-.9697-.5657H0v3.6364h12.606v-7.4344c-.3232-.1616-.5656-.5656-.5656-.9697 0-.6464.4849-1.1313 1.1313-1.1313s1.1313.4849 1.1313 1.1313c0 .404-.2424.7273-.5656.9697v7.4344h2.6666v-5.6566c-.3232-.1616-.5656-.5656-.5656-.9697 0-.6464.4848-1.1313 1.1313-1.1313s1.1313.4849 1.1313 1.1313c0 .404-.2424.7273-.5656.9697v5.6566h2.6666v-8.3232c-.3232-.1617-.5656-.5657-.5656-.9697 0-.6465.4848-1.1314 1.1313-1.1314.6464 0 1.1313.4849 1.1313 1.1314 0 .404-.2424.7272-.5657.9697v8.3232H24V9.9798h-2.9899c-.1616.3232-.5657.5657-.9697.5657-.6465 0-1.1313-.4849-1.1313-1.1314s.4848-1.1313 1.1313-1.1313c.404 0 .7273.2425.9697.5657H24V5.697l-3.6364.0808z"/></svg>
+                </div>
+
+                <h2>Multiples logs destinations</h2>
+                <p>Specify the destination where logs should be sent, whether it be the VBA console (<i>Excel's immediate window</i>), the Windows console (<i>cmd.exe</i>), or in a file. Additionally, configure the conditions under which logging events are triggered based on specific criteria.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="m345 39.1 127.8 129.3c52.4 53 52.4 138.2 0 191.2l-112 113.3c-9.3 9.4-24.5 9.5-33.9.2s-9.5-24.5-.2-33.9l111.9-113.3c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6.2-33.9s24.6-9.2 33.9.2zM0 229.5V80c0-26.5 21.5-48 48-48h149.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5M144 144a32 32 0 1 0-64 0 32 32 0 1 0 64 0"></path></svg>
+                </div>
+
+                <h2>Enrich log records</h2>
+                <p>Enhance log records using pre-processors to add context, transform data, or customize log entries
+                    to meet specific requirements. Examples include adding CPU or memory usage, generating a unique
+                    identifier for each session, or adding tags and more.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 4v2h3v2H7l-2 2v3H3v-3H1v8h2v-3h2v3h3l2 2h8v-4h2v3h3V9h-3v3h-2V8h-6V6h3V4z"></path></svg>
+                </div>
+
+                <h2>Advanced usages</h2>
+                <p>Create your own custom logging system and manage log propagation (bubbling) when multiple destinations are used. Use channels to identify which part of an application a log entry is associated with. Use dependency injection for logging capabilities within a custom class module.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 1-1.26 2.75L15 5l2.74 1.26L19 9l1.25-2.74L23 5l-2.75-1.25M9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5M19 15l-1.26 2.74L15 19l2.74 1.25L19 23l1.25-2.75L23 19l-2.75-1.26"></path></svg>
+                </div>
+
+                <h2>Develop</h2>
+                <p>Easily develop your own formatter, handler, and pre-processors to tailor the logging
+                    system to your specific needs. By creating unique formatting styles, specialized handlers, and
+                    custom pre-processing logic, you can enhance the functionality and flexibility of your logging system.</p>
             </div>
         </div>
     </div>

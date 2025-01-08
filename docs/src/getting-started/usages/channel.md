@@ -1,6 +1,6 @@
 ## What is a channel?
 
-A [channel](../introduction.html#identifying-a-logger-with-a-channel) refers to the name given to a specific logger.
+A [channel](../introduction.md#identifying-a-logger-with-a-channel) refers to the name given to a specific logger.
 
 This name helps categorize and manage log messages effectively. By using different channels, each logger can be configured with specific handlers, formatters, and log levels. This ensures that logs from different parts of an application are handled appropriately and organized for easy analysis. 
 

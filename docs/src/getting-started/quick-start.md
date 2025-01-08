@@ -131,4 +131,4 @@ End Sub
 
 ## Next steps
 
-If you skipped the [Introduction](./introduction.html) and especially the [Concepts](./introduction.html#concepts) section., we strongly recommend reading it before moving on to the rest of the documentation.
+If you skipped the [Introduction](./introduction.md) and especially the [Concepts](./introduction.md#concepts) section., we strongly recommend reading it before moving on to the rest of the documentation.

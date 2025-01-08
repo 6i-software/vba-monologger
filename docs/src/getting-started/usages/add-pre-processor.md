@@ -1,6 +1,6 @@
 ## What is a log pre-processor?
 
-[Pre-processors](../introduction.html#pre-processor-of-log-records) are a powerful feature, allowing for additional metadatas to be added to log messages before they are recorded. These functions can be used to enrich log messages with extra information that might not be directly part of the log entry itself, but is still relevant for better understanding and tracking. 
+[Pre-processors](../introduction.md#pre-processor-of-log-records) are a powerful feature, allowing for additional metadatas to be added to log messages before they are recorded. These functions can be used to enrich log messages with extra information that might not be directly part of the log entry itself, but is still relevant for better understanding and tracking. 
 
 Pre-processors can modify, format, or even generate additional metadata that can be attached to each log message into the extra property. A logger can reference one or more pre-processors.
 
@@ -15,7 +15,7 @@ When creating loggers with the factory methods provided by `VBAMonologger.Factor
 | `createLoggerFile()`       | `ProcessorPlaceholders`   |  
 | `createLoggerConsole()`    | `ProcessorPlaceholders`   |  
 
-The `ProcessorPlaceholders`, allows to replace specific variables, or [placeholders](../introduction.html#adding-metadatas-in-log-records), in log messages with their corresponding values, adding dynamic context to the logs. It consumes the log context variable given with the log message.
+The `ProcessorPlaceholders`, allows to replace specific variables, or [placeholders](../introduction.md#adding-metadatas-in-log-records), in log messages with their corresponding values, adding dynamic context to the logs. It consumes the log context variable given with the log message.
 
 
 ## Available pre-processors
