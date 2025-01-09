@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /blog
+Allow: /getting-started
+Allow: /under-the-hood
+
+Sitemap: https://6i-software.github.io/vba-monologger/sitemap.xml
