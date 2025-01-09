@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{%- set htmltitle -%}
+    {%- if page.meta and page.meta.title -%}
+        {{ config.site_name }} - {{ page.meta.title }}
+    {%- elif page.title and not page.is_homepage -%}
+        {{ config.site_name }} - {{ page.title | striptags }}
+    {%- else -%}
+        {{ config.site_name }}
+    {%- endif -%}
+{%- endset -%}
+
+{% block htmltitle %}
+<title>{{ htmltitle }}</title>
+{% endblock %}
+
+{% block extrahead %}
+<meta property="og:title" content="{{ htmltitle }}" />
+<meta property="og:description" content="{{ config.site_description }}" />
+<meta property="og:image" content="https://6i-software.github.io/vba-monologger/assets/logo.png" />
+<meta property="og:url" content="https://6i-software.github.io/vba-monologger/{{ page.url }}" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="{{ config.site_name }}" />
+<meta property="og:locale" content="en_US" />
+{% endblock %}

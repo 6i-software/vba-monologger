@@ -1,46 +1,4 @@
-{% extends "base.html" %}
-
-{% block header %}
-{% set class = "md-header" %}
-{% if "navigation.tabs.sticky" in features %}
-{% set class = class ~ " md-header--shadow md-header--lifted" %}
-{% elif "navigation.tabs" not in features %}
-{% set class = class ~ " md-header--shadow" %}
-{% endif %}
-<header class="{{ class }}" data-md-component="header">
-    <nav class="md-header__inner md-grid" aria-label="{{ lang.t('header') }}">
-        <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" title="{{ config.site_name | e }}"
-           class="md-header__button md-logo" aria-label="{{ config.site_name }}" data-md-component="logo">
-            {% include "partials/logo.html" %}
-        </a>
-        <label class="md-header__button md-icon" for="__drawer">
-            {% set icon = config.theme.icon.menu or "material/menu" %}
-            {% include ".icons/" ~ icon ~ ".svg" %}
-        </label>
-        {% if config.theme.palette %}
-        {% if not config.theme.palette is mapping %}
-        {% include "partials/palette.html" %}
-        {% endif %}
-        {% endif %}
-
-        <div class="md-header__title" data-md-component="header-title">
-            <div class="md-header__ellipsis">
-                <div class="md-header__topic">
-                    <span class="md-ellipsis">
-                        {{ config.site_name }}
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        {% if not config.theme.palette is mapping %}
-        {% include "partials/javascripts/palette.html" %}
-        {% endif %}
-    </nav>
-</header>
-
-{% endblock %}
-
+{% extends "main.html" %}
 
 <!-- Render landing page under block tabs -->
 {% block tabs %}
@@ -58,7 +16,7 @@
     }
 
     /* Hide main content for now */
-    .md-content {
+    .md-content, .md-search, .md-header__source {
         display: none;
     }
 
@@ -133,14 +91,20 @@
         margin-top: .175em;
     }
 
-    @media screen and (min-width: 76.25em) {
+    /* Extra large devices (large desktops and up) */
+    @media screen and (min-width: 1200px) {
         /* Hide table of contents */
         /* .md-sidebar--secondary { display: none; } */
         /* Hide navigation */
-        .md-sidebar--primary {
-            display: none;
+        /* .md-sidebar--primary { display: none; } */
+        .feature {
+            flex: 1 1 30%;
+            margin: 10px;
         }
+    }
 
+    /* Medium devices (tablets, 768px and up) */
+    @media screen and (min-width: 768px) {
         .feature {
             flex: 1 1 30%;
             margin: 10px;
@@ -151,7 +115,7 @@
 <!-- Hero for landing page -->
 
 
-<section class="custom-landing-container">
+<section class="md-main custom-landing-container">
     <div class="decoration"></div>
     <div class="md-grid md-typeset">
         <div class="custom-hero">
@@ -238,7 +202,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 1-1.26 2.75L15 5l2.74 1.26L19 9l1.25-2.74L23 5l-2.75-1.25M9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5M19 15l-1.26 2.74L15 19l2.74 1.25L19 23l1.25-2.75L23 19l-2.75-1.26"></path></svg>
                 </div>
 
-                <h2>Develop</h2>
+                <h2>Customize</h2>
                 <p>Easily develop your own formatter, handler, and pre-processors to tailor the logging
                     system to your specific needs. By creating unique formatting styles, specialized handlers, and
                     custom pre-processing logic, you can enhance the functionality and flexibility of your logging system.</p>

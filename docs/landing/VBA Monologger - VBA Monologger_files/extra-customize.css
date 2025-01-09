@@ -1,0 +1,32 @@
+/* Enable code wrapping in code blocks */
+pre code {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.md-header {
+    background: linear-gradient(
+            to bottom,
+            color-mix(in srgb, var(--md-primary-fg-color) 100%, white),
+            color-mix(in srgb, var(--md-primary-fg-color) 85%, white)
+    );    
+}
+
+.md-tabs {
+    background: linear-gradient(
+            to bottom,
+            color-mix(in srgb, var(--md-primary-fg-color) 85%, white),
+            color-mix(in srgb, var(--md-primary-fg-color) 70%, white)
+    );
+}
+
+.md-footer-meta {
+    background-color: var(--md-primary-fg-color);
+    color: var(--md-primary-bg-color);
+}
+.md-copyright__highlight {
+    color: var(--md-primary-bg-color);
+}
+.md-main__inner {
+    margin-bottom: 1.5rem;
+}

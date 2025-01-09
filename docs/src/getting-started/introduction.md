@@ -6,19 +6,13 @@ Logging is a process that involves recording and storing traces of events, activ
 
 In its simplest form, log entries are recorded in text format, with each line representing an event that occurred during the application's lifecycle.
 
-```bash
+```
 [2024-11-05 09:15:34] app.INFO: Application started
-  | context: {"version": "2.3.1", "user_id": 101}
 [2024-11-05 09:16:01] app.INFO: Workbook loaded successfully
-  | context: {"workbook_id": 789, "workbook_name": "Q4 Marketing"}
 [2024-11-05 09:17:15] app.DEBUG: Task modified
-  | context: {"task_id": 456, "task_name": "Strategy Review", "user_id": 101}
 [2024-11-05 09:18:45] app.WARNING: Low disk space - risky save
-  | context: {"available": "100 MB", "required": "200 MB"}
 [2024-11-05 09:19:03] app.ERROR: Project save failed
-  | context: {"project_id": 789, "error": "Insufficient disk space", "user_id": 101}
 [2024-11-05 09:20:00] app.INFO: Application closed
-  | context: {"user_id": 101}
 ```
 
 According to the *twelve-factor app* manifest, you should "*[treat logs as event streams](https://12factor.net/logs)*". Logs are not just recorded in a file for later consultation. They can also be monitored in real-time in a terminal, sent to a database, or redirected to external log aggregation and analysis tools (such as the ELK stack, Graylog, BetterStack, Splunk...).
