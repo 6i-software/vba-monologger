@@ -159,6 +159,7 @@ nav:
     - Formatter: under-the-hood/formatter.md
     - Handler: under-the-hood/handler.md
     - Pre-processor: under-the-hood/pre-processor.md
+    - Logger: under-the-hood/logger.md
   - Blog:
     - blog/index.md
 

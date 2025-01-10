@@ -4,7 +4,7 @@ A log record refers to an entry that captures specific information about an even
 
 - **Date and Time**: To track the exact date and time the log entry was created.
 - **Message**: The main text describing the event, *e.g.* "*User attempted to log in.*".
-- **Severity level**: The importance or severity level of the log entry, *e.g.* `INFO`, `WARNING` or `ERROR`. See [Log severity levels](../log-severity-levels))
+- **Severity level**: The importance or severity level of the log entry, *e.g.* `INFO`, `WARNING` or `ERROR`. See [Log severity levels](./log-severity-levels.md))
 - **Channel**: A way to categorize or segment logs based on their source or purpose.
 - **Log Context**: Additional relevant information about the event, *e.g.* user ID.
 - **Log Extra**: Optional, useful details, *e.g.* memory or CPU usage.
@@ -121,7 +121,7 @@ Debug.Print record.toString
 
 In addition to the basic log message, you may sometimes want to add extra information to provide more context. With a log record, this can be done using either the log context or the log extra. 
 
-The log context allows you to attach additional data that provides more detailed information about the event, such as user information, session details, or request data. On the other hand, the log extra metadata can be used to include supplementary details processed by custom pre-processors (see [Pre-processor](./pre-processor)), enabling a more dynamic and flexible logging structure for advanced debugging or analysis.
+The log context allows you to attach additional data that provides more detailed information about the event, such as user information, session details, or request data. On the other hand, the log extra metadata can be used to include supplementary details processed by custom pre-processors (see [Pre-processor](./pre-processor.md)), enabling a more dynamic and flexible logging structure for advanced debugging or analysis.
 
 ```vbscript
 ' Set a dummy log context

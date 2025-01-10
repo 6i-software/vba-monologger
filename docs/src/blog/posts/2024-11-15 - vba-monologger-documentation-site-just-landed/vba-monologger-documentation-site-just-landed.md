@@ -15,7 +15,7 @@ links:
 
 **Welcome! You're looking at the new website documentation, built with [Material for Mkdocs](https://squidfunk.github.io/mkdocs-material/), and deploy on [GitHub Pages](https://docs.github.com/en/pages).** Thanks to them for this wedding.
 
-![img.png](img.png)
+![img.png](welcome.png)
 
 
 <!-- more -->

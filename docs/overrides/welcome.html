@@ -16,7 +16,7 @@
     }
 
     /* Hide main content for now */
-    .md-content, .md-search, .md-header__source {
+    .md-content {
         display: none;
     }
 
@@ -32,8 +32,18 @@
         margin-right: 6%;
     }
 
+    .content-showcases {
+        margin-left: 6%;
+        margin-right: 6%;
+    }
+
+    .custom-hero-content h1 {
+        margin-bottom:0;
+    }
     .custom-hero-content p {
         max-width: 550px;
+        margin-top: 1.2rem;
+        margin-bottom: 1.2rem;
     }
 
     .decoration {
@@ -50,11 +60,49 @@
         margin-bottom: 4.8rem;
     }
 
+    .content-about {
+        background: var(--md-code-fg-color);
+        color: var(--md-default-bg-color--light);
+        margin-bottom: 4.8rem;
+    }
+
+    .content-about .md-grid {
+        display:flex;
+        flex-direction: column;
+        gap: 2.4rem;
+        padding:2.4rem;
+        align-items: center;
+    }
+
+    .content-about .buy-me-a-coffee-qrcode {
+        max-width: 300px;
+    }
+
+    .content-about-text h2:first-of-type {
+        margin-top:0;
+    }
+
     .features {
         display: flex;
         flex-wrap: wrap;
         gap: 1.2rem;
-        margin: 4.8rem 0;
+        margin: 1.2rem 0;
+    }
+
+    .showcase {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2rem;
+        margin-bottom: 2.4rem;
+    }
+
+    .showcase-reverse {
+        flex-direction: column-reverse;
+    }
+
+    .showcase .showcase-text h2 {
+        margin-top:0;
     }
 
     .feature {
@@ -80,15 +128,22 @@
         margin-right: auto;
     }
 
-    .feature .feature-description {
-        padding: 0;
-        margin: 0;
-    }
-
-    .feature h2 {
+    .feature h3 {
         text-align: center;
         font-weight: 700;
         margin-top: .175em;
+    }
+
+    .w40 {
+        width:100%;
+    }
+    .minw {
+        min-width: unset;
+    }
+
+    body[data-md-color-media='(prefers-color-scheme: dark)'] .content-about a {
+        color: #1e2129;
+        font-weight: 700;
     }
 
     /* Extra large devices (large desktops and up) */
@@ -101,6 +156,15 @@
             flex: 1 1 30%;
             margin: 10px;
         }
+        .showcase {
+            flex-flow: row nowrap;
+        }
+        .w40 {
+            width:40%;
+        }
+        .minw {
+            min-width: 700px;
+        }
     }
 
     /* Medium devices (tablets, 768px and up) */
@@ -109,12 +173,16 @@
             flex: 1 1 30%;
             margin: 10px;
         }
+        .content-about .md-grid {
+            flex-flow: row nowrap;
+        }
+        .content-about .buy-me-a-coffee-qrcode {
+            max-width: 600px;
+        }
     }
 </style>
 
 <!-- Hero for landing page -->
-
-
 <section class="md-main custom-landing-container">
     <div class="decoration"></div>
     <div class="md-grid md-typeset">
@@ -127,11 +195,11 @@
             <!-- Hero content -->
             <div class="custom-hero-content">
                 <h1>VBA Monologger - Log smarter, debug faster !</h1>
-                <p>{{ config.site_description }} Set up in two minutes.</p>
+                <p>VBA Monologger is an advanced and flexible logging open-source solution for VBA (Visual Basic for Applications) ecosystem. Easily send logs to the Excel console (Immediate Windows), or simultaneously to a file, or even in a Windows console. Set up in two minutes.</p>
                 <a href="{{ 'getting-started/introduction.html' | url }}" title="Set up in two minutes!"
                    class="md-button md-button--primary">
                     Get started
-                </a>
+                </a> &nbsp;
                 <a href="{{ 'under-the-hood/' | url }}"
                    title="To understand and learn what's happening with each components of this library"
                    class="md-button">
@@ -153,7 +221,7 @@
                     </svg>
                 </div>
 
-                <h2>Severity log levels</h2>
+                <h3>Severity log levels</h3>
                 <p>Manages 8 standard severity levels to classify the importance of log messages, following the PSR-3 standard. It indicates the severity of each event, from the most trivial to the most catastrophic, and allow administrators or developers to filter messages based on their importance. </p>
             </div>
 
@@ -163,7 +231,7 @@
                             d="M20.06 18a4 4 0 0 1-.2-.89c-.67.7-1.48 1.05-2.41 1.05-.83 0-1.52-.24-2.05-.71-.53-.45-.8-1.06-.8-1.79 0-.88.33-1.56 1-2.05s1.61-.73 2.83-.73h1.4v-.64q0-.735-.45-1.17c-.3-.29-.75-.43-1.33-.43-.52 0-.95.12-1.3.36-.35.25-.52.54-.52.89h-1.46c0-.43.15-.84.45-1.24.28-.4.71-.71 1.22-.94.51-.21 1.06-.35 1.69-.35.98 0 1.74.24 2.29.73s.84 1.16.86 2.02V16c0 .8.1 1.42.3 1.88V18zm-2.4-1.12c.45 0 .88-.11 1.29-.32.4-.21.7-.49.88-.83v-1.57H18.7c-1.77 0-2.66.47-2.66 1.41 0 .43.15.73.46.96.3.23.68.35 1.16.35m-12.2-3.17h4.07L7.5 8.29zM6.64 6h1.72l4.71 12h-1.93l-.97-2.57H4.82L3.86 18H1.93z"></path></svg>
                 </div>
 
-                <h2>Logging format</h2>
+                <h3>Logging format</h3>
                 <p>Specify the logging format to define how log messages are structured and displayed. This can be represented on one or multiple lines, with or without ANSI color support, in JSON format, or any other format such as an HTML content.</p>
             </div>
 
@@ -173,7 +241,7 @@
                             d="M20.3636 5.7778c-.1616.3232-.5656.5656-.9697.5656-.6464 0-1.1313-.4848-1.1313-1.1313s.4849-1.1313 1.1313-1.1313c.404 0 .7273.2424.9697.5657h3.5556V.1212H0v2.7475h15.0303c.1616-.3232.5657-.5657.9697-.5657.6465 0 1.1313.4849 1.1313 1.1313S16.6465 4.5657 16 4.5657c-.404 0-.7273-.2425-.9697-.5657H0v6.5455h2.101V6.505h10.586c.1616-.3232.5656-.5656.9697-.5656.6464 0 1.1313.4848 1.1313 1.1313s-.485 1.1313-1.1314 1.1313c-.404 0-.7273-.2424-.9697-.5656H3.313v3.0707h11.798c.1616-.3233.5657-.5657.9697-.5657.6465 0 1.1313.4849 1.1313 1.1313s-.4848 1.1313-1.1313 1.1313c-.404 0-.7273-.2424-.9697-.5656H0v3.0707h6.5455c.1616-.3232.5656-.5657.9697-.5657.6464 0 1.1313.4849 1.1313 1.1313 0 .6465-.4849 1.1314-1.1313 1.1314-.404 0-.7273-.2425-.9697-.5657H0v3.0707h7.6768c.1616-.3232.5656-.5657.9697-.5657.6464 0 1.1313.4849 1.1313 1.1314 0 .6464-.4849 1.1313-1.1313 1.1313-.404 0-.7273-.2424-.9697-.5657H0v3.6364h12.606v-7.4344c-.3232-.1616-.5656-.5656-.5656-.9697 0-.6464.4849-1.1313 1.1313-1.1313s1.1313.4849 1.1313 1.1313c0 .404-.2424.7273-.5656.9697v7.4344h2.6666v-5.6566c-.3232-.1616-.5656-.5656-.5656-.9697 0-.6464.4848-1.1313 1.1313-1.1313s1.1313.4849 1.1313 1.1313c0 .404-.2424.7273-.5656.9697v5.6566h2.6666v-8.3232c-.3232-.1617-.5656-.5657-.5656-.9697 0-.6465.4848-1.1314 1.1313-1.1314.6464 0 1.1313.4849 1.1313 1.1314 0 .404-.2424.7272-.5657.9697v8.3232H24V9.9798h-2.9899c-.1616.3232-.5657.5657-.9697.5657-.6465 0-1.1313-.4849-1.1313-1.1314s.4848-1.1313 1.1313-1.1313c.404 0 .7273.2425.9697.5657H24V5.697l-3.6364.0808z"/></svg>
                 </div>
 
-                <h2>Multiples logs destinations</h2>
+                <h3>Multiples logs destinations</h3>
                 <p>Specify the destination where logs should be sent, whether it be the VBA console (<i>Excel's immediate window</i>), the Windows console (<i>cmd.exe</i>), or in a file. Additionally, configure the conditions under which logging events are triggered based on specific criteria.</p>
             </div>
 
@@ -182,7 +250,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="m345 39.1 127.8 129.3c52.4 53 52.4 138.2 0 191.2l-112 113.3c-9.3 9.4-24.5 9.5-33.9.2s-9.5-24.5-.2-33.9l111.9-113.3c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6.2-33.9s24.6-9.2 33.9.2zM0 229.5V80c0-26.5 21.5-48 48-48h149.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5M144 144a32 32 0 1 0-64 0 32 32 0 1 0 64 0"></path></svg>
                 </div>
 
-                <h2>Enrich log records</h2>
+                <h3>Enrich log records</h3>
                 <p>Enhance log records using pre-processors to add context, transform data, or customize log entries
                     to meet specific requirements. Examples include adding CPU or memory usage, generating a unique
                     identifier for each session, or adding tags and more.</p>
@@ -193,7 +261,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 4v2h3v2H7l-2 2v3H3v-3H1v8h2v-3h2v3h3l2 2h8v-4h2v3h3V9h-3v3h-2V8h-6V6h3V4z"></path></svg>
                 </div>
 
-                <h2>Advanced usages</h2>
+                <h3>Advanced usages</h3>
                 <p>Create your own custom logging system and manage log propagation (bubbling) when multiple destinations are used. Use channels to identify which part of an application a log entry is associated with. Use dependency injection for logging capabilities within a custom class module.</p>
             </div>
 
@@ -202,7 +270,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 1-1.26 2.75L15 5l2.74 1.26L19 9l1.25-2.74L23 5l-2.75-1.25M9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5M19 15l-1.26 2.74L15 19l2.74 1.25L19 23l1.25-2.75L23 19l-2.75-1.26"></path></svg>
                 </div>
 
-                <h2>Customize</h2>
+                <h3>Customize</h3>
                 <p>Easily develop your own formatter, handler, and pre-processors to tailor the logging
                     system to your specific needs. By creating unique formatting styles, specialized handlers, and
                     custom pre-processing logic, you can enhance the functionality and flexibility of your logging system.</p>
@@ -210,6 +278,131 @@
         </div>
     </div>
 </section>
+
+<section class="content-showcases">
+    <div class="md-grid md-typeset">
+
+        <div class="showcase">
+            <div class="showcase-text w40 minw">
+                <h2>8 severity log levels</h2>
+                <p>Easily create a logger for ouputting logs into the VBA console with the factory pattern. You have 8 methods, one for each log severity level.</p>
+                <div class="language-vbscript highlight"><pre id="__code_6"><span></span><button class="md-clipboard md-icon" title="Copy to clipboard" data-clipboard-target="#__code_6 > code"></button><code class="md-code__content"><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-1"></a><span class="k">Public</span><span class="w"> </span><span class="kd">Sub</span><span class="w"> </span><span class="nf">howto_use_logger_console_VBA</span><span class="p">()</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-2"></a><span class="w">    </span><span class="kd">Dim</span><span class="w"> </span><span class="nv">Logger</span><span class="w"> </span><span class="n">As</span><span class="w"> </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">LoggerInterface</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-3"></a><span class="w">    </span><span class="k">Set</span><span class="w"> </span><span class="n">Logger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">Factory</span><span class="p">.</span><span class="n">createLoggerConsoleVBA</span><span class="p">()</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-5"></a><span class="w">    </span><span class="c1">' Use the logger for each severity levels</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-6"></a><span class="w">    </span><span class="n">Logger</span><span class="p">.</span><span class="n">trace</span><span class="w"> </span><span class="s2">"Authentication function call for user 'Bob Morane'."</span><span class="w"> </span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-7"></a><span class="w">    </span><span class="n">Logger</span><span class="p">.</span><span class="n">info</span><span class="w"> </span><span class="s2">"User 'UltraVomit' has logged in successfully."</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-8"></a><span class="w">    </span><span class="n">Logger</span><span class="p">.</span><span class="n">notice</span><span class="w"> </span><span class="s2">"Process completed successfully with minor issues."</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-9"></a><span class="w">    </span><span class="n">Logger</span><span class="p">.</span><span class="n">warning</span><span class="w"> </span><span class="s2">"'Beetlejuice' should not be called more than 3 times."</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-10"></a><span class="w">    </span><span class="n">Logger</span><span class="p">.</span><span class="n">error</span><span class="w"> </span><span class="s2">"An error occurred with the user 'DRZCFOS2'."</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-11"></a><span class="w">    </span><span class="n">Logger</span><span class="p">.</span><span class="n">critical</span><span class="w"> </span><span class="s2">"System is in an unstable state."</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-12"></a><span class="w">    </span><span class="n">Logger</span><span class="p">.</span><span class="n">alert</span><span class="w"> </span><span class="s2">"Action required: unable to generate the dashboard."</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-13"></a><span class="w">    </span><span class="n">Logger</span><span class="p">.</span><span class="n">emergency</span><span class="w"> </span><span class="s2">"A critical failure occurred in the application."</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-14"></a><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
+</span></code></pre></div>
+                <p>
+                    <a href="./getting-started/quick-start.html#log-output-to-vba-console" aria-label="Built-in search"> <span class="twemoji"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"></path></svg></span>
+                        Learn more
+                    </a>
+                </p>
+            </div>
+            <div class="showcase-caption">
+                <img src="./assets/VBAMonologger-VBAConsole.png" />
+            </div>
+        </div>
+
+        <div class="showcase showcase-reverse">
+            <div class="showcase-caption">
+                <img src="./assets/VBAMonologger-WindowsConsole.png" />
+            </div>
+            <div class="showcase-text w40">
+                <h2>Redirect logs to the Windows console or save them to a file</h2>
+                <p>If you prefer, you can display your VBA logs outside the Microsoft Excel by outputting them directly to the Windows Console (<i>cmd.exe</i>), with or without ANSI color support. You can also customize the color scheme based on the log level.</p>
+                <p>And simultaneously, you can also write log entries to one or multiple files: for example a specific file for errors and another for debugging.</p>
+                <p>
+                    <a href="./getting-started/quick-start.html#log-output-to-windows-console" aria-label="Built-in search"> <span class="twemoji"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"></path></svg></span>
+                        Learn more
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <div class="showcase">
+            <div class="showcase-text w40">
+                <h2>Add context data into log message</h2>
+                <p>In addition to the basic log message, you may sometimes want to include extra data that helps to provide more context for the event being logged. You can give a variable context with log message. It is a simply VBA dictionary, where you can store key-value pairs that hold relevant information. When you create a log entry, this context can be attached and will be incorporated into the log output, providing deeper insights into the logged event.</p>
+
+                <p>This variable can simply be displayed (or not) into the log message, or can be consumed by using placeholders in log message.</p>
+
+                <p>
+                    <a href="./getting-started/usages/add-context-data-to-log-messages.html" aria-label="Built-in search"> <span class="twemoji"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"></path></svg></span>
+                        Learn more
+                    </a>
+                </p>
+            </div>
+            <div class="showcase-caption">
+                <div class="language-vbscript highlight"><pre id="__code_72"><span></span><button class="md-clipboard md-icon" title="Copy to clipboard" data-clipboard-target="#__code_72 > code"></button><code class="md-code__content"><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-1-1"></a><span class="c1">' Set context </span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-1-2"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">context</span><span class="w"> </span><span class="n">As</span><span class="w"> </span><span class="n">Object</span><span class="p">:</span><span class="w"> </span><span class="k">Set</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">CreateObject</span><span class="p">(</span><span class="s2">"Scripting.Dictionary"</span><span class="p">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-1-3"></a><span class="n">context</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="s2">"Username"</span><span class="p">,</span><span class="w"> </span><span class="s2">"v20100v"</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-1-5"></a><span class="c1">' Only display log context (if configuration's formatter allow to show it)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-1-6"></a><span class="n">Logger</span><span class="p">.</span><span class="n">info</span><span class="w"> </span><span class="s2">"Adding a new user"</span><span class="p">,</span><span class="w"> </span><span class="n">context</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-1-8"></a><span class="c1">' Consume log context with placeholder</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-1-9"></a><span class="n">Logger</span><span class="p">.</span><span class="n">info</span><span class="w"> </span><span class="s2">"Adding the new user: '{username}'"</span><span class="p">,</span><span class="w"> </span><span class="n">context</span>
+</span></code></pre></div>
+                <div class="language-text highlight"><span class="filename">Result</span><pre id="__code_73"><span></span><button class="md-clipboard md-icon" title="Copy to clipboard" data-clipboard-target="#__code_73 > code"></button><code class="md-code__content"><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-2-1"></a>[2024-11-05 09:15:34] app.INFO: Adding a new user | {"Username": "v20100v"}</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-2-2"></a>[2024-11-05 09:15:34] app.INFO: Adding the new user: 'v20100v' | {"Username": "v20100v"}
+</span></code></pre></div>
+            </div>
+        </div>
+
+        <div class="showcase showcase-reverse">
+            <div class="showcase-caption">
+                <div class="language-text highlight"><pre id="__code_66"><span></span><button class="md-clipboard md-icon" title="Copy to clipboard" data-clipboard-target="#__code_66 > code"></button><code class="md-code__content"><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-0-123" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-12"></a>[2024/12/13 18:59:30] App.INFO: User '35353' has logged in successfully.
+</span><span id="__span-0-102"><a id="__codelineno-0-102" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-10"></a> | extra:
+</span><span id="__span-0-112"><a id="__codelineno-0-112" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-11"></a> | {
+</span><span id="__span-0-122"><a id="__codelineno-0-122" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-12"></a> |    "session-UID": "A09A248CF0",
+</span><span id="__span-0-132"><a id="__codelineno-0-132" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-13"></a> |    "memory": {
+</span><span id="__span-0-142"><a id="__codelineno-0-142" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-14"></a> |       "memory-used": "65%",
+</span><span id="__span-0-152"><a id="__codelineno-0-152" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-15"></a> |       "memory-total": "15,23",
+</span><span id="__span-0-162"><a id="__codelineno-0-162" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-16"></a> |       "memory-available": "5,30"
+</span><span id="__span-0-172"><a id="__codelineno-0-172" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-17"></a> |    },
+</span><span id="__span-0-182"><a id="__codelineno-0-182" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-18"></a> |    "CPU-used": "21,4%"
+</span><span id="__span-0-192"><a id="__codelineno-0-192" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-19"></a> | }
+</span></code></pre></div>
+            </div>
+            <div class="showcase-text w40">
+                <h2>Enrich log records with pre-processors</h2>
+                <p>Pre-processors are a powerful feature, allowing for additional metadatas to be added to log messages before they are recorded. These functions can be used to enrich log messages with extra information that might not be directly part of the log entry itself, but is still relevant for better understanding and tracking.</p>
+                <p>Pre-processors can modify, format, or even generate additional metadata that can be attached to each log message into the extra property, for example to add a session ID, one or more tags, the CPU usage, the memory usage and more.</p>
+                <p>
+                    <a href="./getting-started/usages/add-pre-processor.html" aria-label="Built-in search"> <span class="twemoji"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"></path></svg></span>
+                        Learn more
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-about">
+    <div class="md-grid md-typeset">
+        <a class="buy-me-a-coffee-qrcode" href="https://www.buymeacoffee.com/vincent.blain">
+            <img alt="Buy me a coffee" src="./assets/v20100v_buy-me-a-coffee_qrcode.png"/>
+        </a>
+
+        <div class="content-about-text">
+            <h2>Want to support me? Offer me a coffee!</h2>
+            <p>VBA Monologger is fully free and open source under the MIT License, but if you want to support me, you can offer me a coffee <a href="https://www.buymeacoffee.com/vincent.blain">here</a> or by scanning this QR code. Thank you in advance for your assistance and your appreciation ^^.</p>
+
+            <h2>Want to contribute?</h2>
+            <p>Ideas, bug reports, reports a typo in documentation, comments and suggestions, pull-request & Github stars are always welcome on <a href="https://github.com/6i-software/vba-monologger">VBA Monologger repository</a>.
+            </p>
+        </div>
+    </div>
+</section>
+
 {% endblock %}
 
 <!-- Content -->
