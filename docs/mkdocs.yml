@@ -82,8 +82,8 @@ extra:
       find what they're searching for. With your consent, you're helping us to
       make our documentation better.
 
-#extra_css:
-#  - assets/css/extra-customize.css
+extra_css:
+  - assets/css/extra-customize.css
 
 markdown_extensions:
   - abbr
