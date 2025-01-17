@@ -2,7 +2,7 @@
 
 > VBA Monologger is an advanced and flexible logging solution for VBA (*Visual Basic for Applications*) ecosystem. It is largely inspired by the [Monolog](https://github.com/Seldaek/monolog) library in PHP, which itself is inspired by the [Logbook](https://logbook.readthedocs.io/en/stable/) library in Python.
 >
-> https://6i-software.github.io/vba-monologger/
+> Website documentation : https://6i-software.github.io/vba-monologger/
 
 
 ## Local installation
@@ -43,9 +43,9 @@ name: CI
 # Controls when the workflow will run
 on:
   push:
-    branches: ["main", "master"]
+    branches: ["documentation"]
   pull_request:
-    branches: ["main", "master"]
+    branches: ["documentation"]
     
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -73,5 +73,5 @@ jobs:
           restore-keys: |
             mkdocs-material-
       - run: pip install mkdocs-material 
-      - run: mkdocs gh-deploy --force --config-file ./docs/mkdocs.yml
+      - run: mkdocs gh-deploy --force --config-file ./mkdocs.yml
 ```

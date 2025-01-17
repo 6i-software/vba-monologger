@@ -45,6 +45,20 @@
         margin-top: 1.2rem;
         margin-bottom: 1.2rem;
     }
+    .custom-hero-more {
+        display:none;
+        position: -webkit-sticky;
+        position: sticky;
+        bottom: 0;
+        text-align: center;
+        width: 100%;
+        padding: 0.8rem;
+    }
+    .custom-hero-more svg {
+        fill: var(--md-primary-fg-color);
+        height: 2.4rem;
+        width: 2.4rem;
+    }
 
     .decoration {
         background: linear-gradient(
@@ -179,6 +193,9 @@
         .content-about .buy-me-a-coffee-qrcode {
             max-width: 600px;
         }
+        .custom-hero-more {
+            display:block;
+        }
     }
 </style>
 
@@ -209,6 +226,10 @@
         </div>
     </div>
 </section>
+
+<div class="custom-hero-more">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 4h2v12l5.5-5.5 1.42 1.42L12 19.84l-7.92-7.92L5.5 10.5 11 16z"></path></svg>
+</div>
 
 <section class="content-features">
     <div class="md-grid md-typeset">
