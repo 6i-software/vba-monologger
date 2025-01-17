@@ -7,6 +7,7 @@
 >
 > 📕 Documentation : [https://6i-software.github.io/vba-monologger/](https://6i-software.github.io/vba-monologger/)
  
+<br/>
 
 ## Introduction
 
@@ -14,8 +15,9 @@ VBA provides developers with the ability to automate tasks, interact with the fe
 
 The *VBA Monologger* library project was born out of the need for a more advanced and flexible logging solution in the VBA ecosystem. It is (heavily) inspired by the PSR-3 standard in the PHP ecosystem and its most recognized implementation, the Monolog library. The goal of this library is to provide similar features and capabilities, particularly by offering a modular architecture that can easily adapt to different use cases. The main idea is for each developer to easily configure and customize their own logging system according to their needs.
 
+<br/>
 
-## Features
+## ✨ Features
 
 **In VBA Monologger, the logger is the central component of this library, acting as the primary interface for recording, categorizing, and managing log messages throughout an application**. It provides developers with a highly configurable and flexible tool for implementing custom logging logic tailored to their specific needs. By using a logger, applications can systematically capture events and system states, facilitating both real-time monitoring and historical analysis of system behavior.
 
@@ -24,20 +26,23 @@ The logger is designed to handle multiple logging levels, directing each log ent
 Main features:
 
 - Customize the logging format to define how log messages are structured and displayed.
-- Specify the destination where logs should be viewed (*e.g.*, VBA console *a.k.a* Excel's immediate window, Windows console (cmd.exe) with ANSI color support, file...) and configure the conditions under which logging events are triggered based on specific criteria.
+- Specify the destination where logs should be redirected (*e.g.*, VBA console *a.k.a* Excel's immediate window, Windows console (cmd.exe) with ANSI color support, file...) and configure the conditions under which logging events are triggered based on specific criteria.
 - Manages 8 standard severity levels to classify the importance of log messages, following the [PSR-3](https://www.php-fig.org/psr/psr-3/) standard.
 - Enrich log records with pre-processors, enabling the addition of context, transformation of data, or customization of log entries to suit specific needs (*e.g.* add CPU or memory usage, generate a UID for each session, add tags... and more).
 - Use the provided loggers in the VBAMonologger factory (*e.g. `LoggerConsoleVBA`, `LoggerConsole` or `LoggerFile`*) for basic usage, or create your own custom logging system.
 - Easily develop your own custom formatter, handler, and pre-processors to tailor the logging system to your specific needs. By creating unique formatting styles, specialized handlers, and custom pre-processing logic, you can enhance the functionality and flexibility of your logging setup, ensuring it meets the precise requirements of your applications and workflows.
 
+<br/>
 
-## Documentation
+## 📕 Documentation
 
 Please refer to the documentation for details on how to install and use VBA Monologger.
-> [Website documentation](https://6i-software.github.io/vba-monologger/)
 
+> Website documentation : [https://6i-software.github.io/vba-monologger/](https://6i-software.github.io/vba-monologger/)
 
-## Quick start
+<br/>
+
+## 🚀 Quick start
 
 ### Manual installation
 
@@ -137,6 +142,7 @@ End Sub
 
 ![VBAMonologger-output-File.png](https://6i-software.github.io/vba-monologger/getting-started/VBAMonologger-output-File.png)
 
+<br/>
 
 ## About
 
