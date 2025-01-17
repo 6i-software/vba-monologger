@@ -11,33 +11,70 @@
 {%- endset -%}
 
 {% block htmltitle %}
-<title>{{ htmltitle }}</title>
+    <title>{{ htmltitle }}</title>
+{% endblock %}
+
+{% block site_meta %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    {% if page.meta and page.meta.canonical_url -%}
+        <link rel="canonical" href="{{ page.meta.canonical_url }}">
+    {% elif page.canonical_url -%}
+        <link rel="canonical" href="{{ page.canonical_url }}">
+    {% endif -%}
+    {% if page.meta and page.meta.description -%}
+        <meta name="description" content="{{ page.meta.description }}">
+    {% elif config.site_description -%}
+        <meta name="description" content="{{ config.site_description }}">
+    {% endif -%}
+    {% if config.site_keywords -%}
+        <meta name="keywords" content="{{ config.site_keywords }}">
+    {% endif -%}
+    {% if page.meta and page.meta.author -%}
+        <meta name="author" content="{{ page.meta.author }}">
+    {% elif config.site_author -%}
+        <meta name="author" content="{{ config.site_author }}">
+    {% endif -%}
+    {% if page.previous_page -%}
+        <link rel="prev" href="{{ page.previous_page.url | url }}">
+    {% endif -%}
+    {% if page.next_page -%}
+        <link rel="next" href="{{ page.next_page.url | url }}">
+    {% endif -%}
+    {% if "rss" in config.plugins -%}
+        <link rel="alternate" type="application/rss+xml" title="{{ lang.t('rss.created') }}" href="{{ 'feed_rss_created.xml' | url }}">
+        <link rel="alternate" type="application/rss+xml" title="{{ lang.t('rss.updated') }}" href="{{ 'feed_rss_updated.xml' | url }}">
+    {% endif -%}
+    <link rel="icon" href="{{ config.theme.favicon | url }}">
+    <meta name="generator" content="mkdocs-{{ mkdocs_version }}, mkdocs-material-9.5.44">
 {% endblock %}
 
 {% block extrahead %}
-<meta name="google-site-verification" content="Bgc5zeCZQiIqLNNXlqfYBze5xIKp8tVkQMSmpzw2o6w" />
-<meta name="msvalidate.01" content="8511FEAF26477D5E56A8D7143D793CBD" />
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="{{ config.site_name }}" />
-<meta name="twitter:creator" content="2o1oo" />
-<meta property="og:title" content="{{ htmltitle }}" />
-<meta property="og:description" content="{{ config.site_description }}" />
-<meta property="og:image" content="https://6i-software.github.io/vba-monologger/assets/logo.png" />
-<meta property="og:url" content="https://6i-software.github.io/vba-monologger/{{ page.url }}" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="{{ config.site_name }}" />
-<meta property="og:locale" content="en_US" />
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "url": "https://6i-software.github.io/vba-monologger/",
-  "name": "{{ config.site_name }}",
-  "description": "{{ config.site_description }}",
-  "publisher": {
-    "@type": "Organization",
-    "name": "6i Software"
-  }
-}
-</script>
+    <meta name="google-site-verification" content="Bgc5zeCZQiIqLNNXlqfYBze5xIKp8tVkQMSmpzw2o6w" />
+    <meta name="msvalidate.01" content="8511FEAF26477D5E56A8D7143D793CBD" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="{{ config.site_name }}" />
+    <meta name="twitter:creator" content="2o1oo" />
+
+    <meta property="og:title" content="{{ htmltitle }}" />
+    <meta property="og:description" content="{{ config.site_description }}" />
+    <meta property="og:image" content="https://6i-software.github.io/vba-monologger/assets/logo.png" />
+    <meta property="og:url" content="https://6i-software.github.io/vba-monologger/{{ page.url }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="{{ config.site_name }}" />
+    <meta property="og:locale" content="en_US" />
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": "https://6i-software.github.io/vba-monologger/",
+            "name": "{{ config.site_name }}",
+            "description": "{{ config.site_description }}",
+            "publisher": {
+                "@type": "Organization",
+                "name": "6i Software"
+            }
+        }
+    </script>
 {% endblock %}

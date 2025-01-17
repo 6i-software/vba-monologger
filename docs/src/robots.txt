@@ -1,4 +1,3 @@
-Sitemap: https://6i-software.github.io/vba-monologger/sitemap.xml
+Sitemap: https://6i-software.github.io/vba-monologger/sitemap
 
 User-agent: *
-Disallow:
