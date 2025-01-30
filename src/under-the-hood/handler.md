@@ -1,3 +1,7 @@
+---
+description: Learn about log handlers in VBA Monologger. Understand their role in directing log messages to specific outputs and managing the logging process with custom formatters and levels.
+---
+
 ## Concept
 
 A log handler is the key component responsible for processing each log entry. When a log message is generated, it is not simply recorded; it must be directed to a location where it can be viewed and used. This is where the handler comes in, determining where and how each log entry will be sent or saved. 

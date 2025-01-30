@@ -1,3 +1,7 @@
+---
+description: Discover their VBA Monologger concepts, and how to implement robust logging for your Excel application in VBA.
+---
+
 ## Preamble
 
 ### A logging system

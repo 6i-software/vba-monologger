@@ -1,3 +1,7 @@
+---
+description: Learn how to create and use log contexts in VBA Monologger. Understand the importance of adding extra data to log entries and how to incorporate placeholders in log messages for detailed insights.
+---
+
 ## What is a log context?
 
 In addition to the basic log message, you may sometimes want to include [extra data](../introduction.md#adding-metadatas-in-log-records) that helps to provide more context for the event being logged. You can give a variable context with log message. It is a simply VBA dictionary, where you can store key-value pairs that hold relevant information. When you create a log entry, this context can be attached and will be incorporated into the log output, providing deeper insights into the logged event.

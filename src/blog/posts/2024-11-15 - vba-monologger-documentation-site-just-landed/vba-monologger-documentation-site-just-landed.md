@@ -1,9 +1,7 @@
 ---
 date: 2024-11-15
 authors: [2o1oo]
-description: >
-  Our new blog is built with the brand new built-in blog plugin. You can build
-  a blog alongside your documentation or standalone
+description: VBA Monologger documentation site just landed
 categories:
   - Blog
 links:

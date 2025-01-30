@@ -1,3 +1,7 @@
+---
+description: Understand how to use channels in VBA Monologger to effectively categorize and manage log messages. Learn how to set log channels in built-in and custom loggers for better log organization and analysis.
+---
+
 ## What is a channel?
 
 A [channel](../introduction.md#identifying-a-logger-with-a-channel) refers to the name given to a specific logger.

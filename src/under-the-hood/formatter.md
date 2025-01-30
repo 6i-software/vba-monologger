@@ -1,3 +1,7 @@
+---
+description: Learn about log formatters in VBA Monologger. Understand how to transform and structure log records into readable formats such as text, JSON, and HTML.
+---
+
 ## Concept
 
 A log formatter is used to transform and structure a log record into a readable representation that adheres to a specific format (*e.g.*, text file, JSON, HTML…). 

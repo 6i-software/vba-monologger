@@ -1,3 +1,7 @@
+---
+description: Learn how pre-processors in VBA Monologger enrich log messages with additional metadata before recording. Discover how to modify, format, and enhance log entries using built-in processors like tags, UID, and memory usage.
+---
+
 ## Concept
 
 Pre-processor is a powerful feature, allowing for additional metadatas to be added to log entries before they are recorded. This function can be used to enrich log messages with extra metadata that might not be directly part of the log entry itself, but is still relevant for better understanding and tracking. Pre-processors can modify, format, or even generate additional metadata that can be attached to each log message into the `extra` property.

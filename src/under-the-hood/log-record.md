@@ -1,3 +1,7 @@
+---
+description: Understand the concept and the modelling of a log record in VBA Monologger. Learn how to capture specific information about events with date, time, message, severity level, channel, context, and extra data. Discover how to create and use log records.
+---
+
 ## Concept
 
 A log record refers to an entry that captures specific information about an event or action occurring within an application. A log entry includes several key elements:

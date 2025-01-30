@@ -1,3 +1,7 @@
+---
+description: Understand the central role of the logger in VBA Monologger.
+---
+
 ## Concept
 
 **The logger is the central component of this library, acting as the primary interface for recording, categorizing, and managing log messages throughout an application**. It provides developers with a highly configurable and flexible tool for implementing custom logging logic tailored to their specific needs. By using a logger, applications can systematically capture events and system states, facilitating both real-time monitoring and historical analysis of system behavior.

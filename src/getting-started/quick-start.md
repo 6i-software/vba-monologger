@@ -1,3 +1,7 @@
+---
+description: A quick start guide to using the Monologger VBA framework.
+---
+
 ## Log output to VBA console
 
 In *VBA Monologger*, we use a factory in order to simplify and standardize the creation of objects, such as loggers, by encapsulating the logic needed to initialize them. The factory pattern abstracts the object creation process, which can be particularly useful. 

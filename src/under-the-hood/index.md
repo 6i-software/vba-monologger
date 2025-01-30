@@ -1,4 +1,5 @@
 ---
+description: Explore the key components of VBA Monologger, including log levels, log records, formatters, handlers, pre-processors, and loggers. Understand their roles in ensuring effective and structured logging.
 hide:
   - footer
 ---

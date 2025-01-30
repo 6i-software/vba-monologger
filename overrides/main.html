@@ -10,6 +10,14 @@
     {%- endif -%}
 {%- endset -%}
 
+{%- set htmlMetaDescription -%}
+    {%- if page.meta and page.meta.description -%}
+        {{ page.meta.description }}
+    {%- elif config.site_description -%}
+        {{ config.site_description }}
+    {%- endif -%}
+{%- endset -%}
+
 {% block htmltitle %}
     <title>{{ htmltitle }}</title>
 {% endblock %}
@@ -17,15 +25,11 @@
 {% block site_meta %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="{{ htmlMetaDescription }}">
     {% if page.meta and page.meta.canonical_url -%}
         <link rel="canonical" href="{{ page.meta.canonical_url }}">
     {% elif page.canonical_url -%}
         <link rel="canonical" href="{{ page.canonical_url }}">
-    {% endif -%}
-    {% if page.meta and page.meta.description -%}
-        <meta name="description" content="{{ page.meta.description }}">
-    {% elif config.site_description -%}
-        <meta name="description" content="{{ config.site_description }}">
     {% endif -%}
     {% if config.site_keywords -%}
         <meta name="keywords" content="{{ extra.keywords }}">
@@ -54,22 +58,20 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="{{ config.site_name }}" />
     <meta name="twitter:creator" content="2o1oo" />
-
     <meta property="og:title" content="{{ htmltitle }}" />
-    <meta property="og:description" content="{{ config.site_description }}" />
+    <meta property="og:description" content="{{ htmlMetaDescription }}" />
     <meta property="og:image" content="https://6i-software.github.io/vba-monologger/assets/logo.png" />
     <meta property="og:url" content="https://6i-software.github.io/vba-monologger/{{ page.url }}" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="{{ config.site_name }}" />
     <meta property="og:locale" content="en_US" />
-
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "url": "https://6i-software.github.io/vba-monologger/",
             "name": "{{ config.site_name }}",
-            "description": "{{ config.site_description }}",
+            "description": "{{ htmlMetaDescription }}",
             "publisher": {
                 "@type": "Organization",
                 "name": "6i Software"

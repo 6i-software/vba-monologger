@@ -1,3 +1,6 @@
+---
+description: Learn how to use LoggerAwareInterface for injecting loggers into classes, enhancing modularity and testability in your VBA applications.
+---
 
 ## Dependency injection?
 

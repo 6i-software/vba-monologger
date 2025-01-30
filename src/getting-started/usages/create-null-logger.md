@@ -1,3 +1,7 @@
+---
+description: Learn how to create a null logger in VBA Monologger.
+---
+
 ## Why choose a null logger?
 
 Using a null Logger can be quite useful in several situations:

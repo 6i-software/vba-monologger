@@ -1,3 +1,7 @@
+---
+description: Guide for installing VBA Monologger Excel Add-in.
+---
+
 ## Manual installation
 
 1. Download the VBA Monologger Excel Add-in (.xlam file) to your computer.

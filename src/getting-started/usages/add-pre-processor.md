@@ -1,3 +1,7 @@
+---
+description: Explore the role and implementation of log pre-processors in VBA Monologger. Learn how to enrich log messages with additional metadata and manage logging effectively using built-in pre-processors and custom formatter settings.
+---
+
 ## What is a log pre-processor?
 
 [Pre-processors](../introduction.md#pre-processor-of-log-records) are a powerful feature, allowing for additional metadatas to be added to log messages before they are recorded. These functions can be used to enrich log messages with extra information that might not be directly part of the log entry itself, but is still relevant for better understanding and tracking. 

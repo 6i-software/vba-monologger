@@ -1,3 +1,6 @@
+---
+description: Learn how to create custom loggers in VBA Monologger. This guide covers creating an empty logger, adding custom handlers and formatters, and managing log entries with multiple destinations.
+---
 
 ## Custom logger with one handler
 

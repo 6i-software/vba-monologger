@@ -1,3 +1,7 @@
+---
+description: Learn about log handlers and formatters in VBA Monologger. Understand how to customize the structure and presentation of log messages with custom formatters. Discover default and custom formatter implementations.
+---
+
 ## What is a log formatter?
 
 A [log handler](../introduction.md#processing-log-records-with-a-handler) is a key component responsible for processing each log entry. When a log message is generated, it is not simply recorded; it must be directed to a location where it can be viewed and used. This is where the handler comes in, determining where and how each log entry will be sent or saved (show into console, send to a file, send by mail...). And each "log handler" is associated with a unique [log formatter](../introduction.md#formatting-log-records-the-serialization-of-logs-record). 

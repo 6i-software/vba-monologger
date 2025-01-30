@@ -1,3 +1,7 @@
+---
+description: Understand the concept of log severity levels in VBA Monologger. Learn how to classify and filter log messages by their importance using standard severity levels
+---
+
 ## Concept
 
 The severity levels indicate the severity of each event, from the most trivial to the most catastrophic, and allow administrators or developers to filter messages based on their importance.
