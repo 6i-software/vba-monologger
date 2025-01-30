@@ -1,5 +1,5 @@
 ---
-description: Learn about log handlers and formatters in VBA Monologger. Understand how to customize the structure and presentation of log messages with custom formatters. Discover default and custom formatter implementations.
+description: Understand how to customize the structure and presentation of log messages with custom log formatters.
 ---
 
 ## What is a log formatter?

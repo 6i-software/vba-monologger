@@ -1,5 +1,5 @@
 ---
-description: Understand how to use channels in VBA Monologger to effectively categorize and manage log messages. Learn how to set log channels in built-in and custom loggers for better log organization and analysis.
+description: Understand how to use channels in VBA Monologger to effectively categorize and manage log messages.
 ---
 
 ## What is a channel?

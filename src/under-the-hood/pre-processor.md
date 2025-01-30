@@ -1,5 +1,5 @@
 ---
-description: Learn how pre-processors in VBA Monologger enrich log messages with additional metadata before recording. Discover how to modify, format, and enhance log entries using built-in processors like tags, UID, and memory usage.
+description: Learn how pre-processors in VBA Monologger enrich log messages with additional metadata before recording.
 ---
 
 ## Concept

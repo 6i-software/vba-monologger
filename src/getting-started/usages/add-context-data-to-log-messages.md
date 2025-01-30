@@ -1,5 +1,5 @@
 ---
-description: Learn how to create and use log contexts in VBA Monologger. Understand the importance of adding extra data to log entries and how to incorporate placeholders in log messages for detailed insights.
+description: Learn how to create and use log contexts in VBA Monologger.
 ---
 
 ## What is a log context?

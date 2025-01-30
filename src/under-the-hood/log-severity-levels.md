@@ -1,5 +1,5 @@
 ---
-description: Understand the concept of log severity levels in VBA Monologger. Learn how to classify and filter log messages by their importance using standard severity levels
+description: Learn how to classify and filter log messages by their importance using standard severity levels.
 ---
 
 ## Concept

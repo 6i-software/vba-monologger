@@ -1,5 +1,5 @@
 ---
-description: Explore the role and implementation of log pre-processors in VBA Monologger. Learn how to enrich log messages with additional metadata and manage logging effectively using built-in pre-processors and custom formatter settings.
+description: Explore the role and implementation of log pre-processors in VBA Monologger. Learn how to enrich log messages with additional metadata.
 ---
 
 ## What is a log pre-processor?

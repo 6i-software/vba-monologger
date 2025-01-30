@@ -1,5 +1,5 @@
 ---
-description: Learn about log handlers in VBA Monologger. Understand their role in directing log messages to specific outputs and managing the logging process with custom formatters and levels.
+description: Learn about log handlers in VBA Monologger. Understand their role in directing log to specific outputs with custom formatters and levels.
 ---
 
 ## Concept
