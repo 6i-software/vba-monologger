@@ -1,4 +1,5 @@
 ---
+title: Dependency injection in a custom class module
 description: Learn how to inject loggers into VBA classes module, enhancing modularity and testability in your VBA applications.
 ---
 
