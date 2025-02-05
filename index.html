@@ -1,0 +1,1745 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="An open source, advanced and flexible logging solution for VBA. Easily send logs to the Excel VBA console, a file or a Windows console.">
+    <link rel="canonical" href="https://6i-software.github.io/vba-monologger/">
+    <meta name="author" content="2o1oo <vb20100bv@gmail.com>">
+    <link rel="next" href="getting-started/introduction.html">
+    <link rel="icon" href="assets/logo.png">
+    <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+
+    
+    <title>VBA Monologger - An advanced and flexible logging solution in VBA</title>
+
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.d7758b05.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="assets/css/extra-customize.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-LT06F6P562"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-LT06F6P562",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-LT06F6P562",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script>
+  
+
+    
+    
+    
+    <meta name="google-site-verification" content="232S62jZFxoHqiZjIoVueSZT-LjT3NGHUMUqzahLLKI" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="VBA Monologger" />
+    <meta name="twitter:creator" content="2o1oo" />
+    <meta property="og:title" content="VBA Monologger - An advanced and flexible logging solution in VBA" />
+    <meta property="og:description" content="An open source, advanced and flexible logging solution for VBA. Easily send logs to the Excel VBA console, a file or a Windows console." />
+    <meta property="og:image" content="https://6i-software.github.io/vba-monologger/assets/logo.png" />
+    <meta property="og:url" content="https://6i-software.github.io/vba-monologger/index.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="VBA Monologger" />
+    <meta property="og:locale" content="en_US" />
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": "https://6i-software.github.io/vba-monologger/",
+            "name": "VBA Monologger",
+            "description": "An open source, advanced and flexible logging solution for VBA. Easily send logs to the Excel VBA console, a file or a Windows console.",
+            "publisher": {
+                "@type": "Organization",
+                "name": "6i Software"
+            }
+        }
+    </script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="VBA Monologger" class="md-header__button md-logo" aria-label="VBA Monologger" data-md-component="logo">
+      
+  <img src="assets/logo_white.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VBA Monologger
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              An advanced and flexible logging solution in VBA
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/6i-software/vba-monologger" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    6i-software/vba-monologger
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+
+<!-- Additional styles for landing page -->
+<style>
+    /* Application header should be static for the landing page */
+    .md-header {
+        position: initial;
+    }
+
+    /* Remove spacing, as we cannot hide it completely */
+    .md-main__inner {
+        margin: 0;
+    }
+
+    /* Hide main content for now */
+    .md-content {
+        display: none;
+    }
+
+    .custom-landing-container {
+        height: 100vh;
+        min-height: 480px;
+        max-height: 1080px;
+    }
+
+    .custom-hero {
+        margin-top: 9%;
+        margin-left: 6%;
+        margin-right: 6%;
+    }
+
+    .content-showcases {
+        margin-left: 6%;
+        margin-right: 6%;
+    }
+
+    .custom-hero-content h1 {
+        margin-bottom:0;
+    }
+    .custom-hero-content p {
+        max-width: 550px;
+        margin-top: 1.2rem;
+        margin-bottom: 1.2rem;
+    }
+    .custom-hero-more {
+        display:none;
+        position: -webkit-sticky;
+        position: sticky;
+        bottom: 0;
+        text-align: center;
+        width: 100%;
+        padding: 0.8rem;
+    }
+    .custom-hero-more svg {
+        fill: var(--md-primary-fg-color);
+        height: 2.4rem;
+        width: 2.4rem;
+    }
+
+    .decoration {
+        background: linear-gradient(
+                to bottom,
+                rgba(0, 148, 133, 0.85),
+                rgba(0, 148, 133, 0)
+        );
+        height: 20vh;
+    }
+
+    .content-features {
+        background: var(--md-primary-fg-color);
+        margin-bottom: 4.8rem;
+    }
+
+    .content-about {
+        background: var(--md-code-fg-color);
+        color: var(--md-default-bg-color--light);
+        margin-bottom: 4.8rem;
+    }
+
+    .content-about .md-grid {
+        display:flex;
+        flex-direction: column;
+        gap: 2.4rem;
+        padding:2.4rem;
+        align-items: center;
+    }
+
+    .content-about .buy-me-a-coffee-qrcode {
+        max-width: 300px;
+    }
+
+    .content-about-text h2:first-of-type {
+        margin-top:0;
+    }
+
+    .features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.2rem;
+        margin: 1.2rem 0;
+    }
+
+    .showcase {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2rem;
+        margin-bottom: 2.4rem;
+    }
+
+    .showcase-reverse {
+        flex-direction: column-reverse;
+    }
+
+    .showcase .showcase-text h2 {
+        margin-top:0;
+    }
+
+    .feature {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 80%;
+        padding: 20px;
+        box-sizing: border-box;
+        background: var(--md-primary-fg-color);
+        color: var(--md-primary-bg-color);
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .feature .feature-icon {
+        fill: currentcolor;
+        background-color: var(--md-default-fg-color--lightest);
+        border-radius: 100%;
+        height: 4.4rem;
+        padding: .8rem;
+        width: 4.4rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .feature h3 {
+        text-align: center;
+        font-weight: 700;
+        margin-top: .175em;
+    }
+
+    .w40 {
+        width:100%;
+    }
+    .minw {
+        min-width: unset;
+    }
+
+    body[data-md-color-media='(prefers-color-scheme: dark)'] .content-about a {
+        color: #1e2129;
+        font-weight: 700;
+    }
+
+    /* Extra large devices (large desktops and up) */
+    @media screen and (min-width: 1200px) {
+        .feature {
+            flex: 1 1 30%;
+            margin: 10px;
+        }
+        .showcase {
+            flex-flow: row nowrap;
+        }
+        .w40 {
+            width:40%;
+        }
+        .minw {
+            min-width: 700px;
+        }
+    }
+
+    /* Medium devices (tablets, 768px and up) */
+    @media screen and (min-width: 768px) {
+        .feature {
+            flex: 1 1 30%;
+            margin: 10px;
+        }
+        .content-about .md-grid {
+            flex-flow: row nowrap;
+        }
+        .content-about .buy-me-a-coffee-qrcode {
+            max-width: 600px;
+        }
+        .custom-hero-more {
+            display:block;
+        }
+    }
+</style>
+
+<!-- Hero for landing page -->
+<section class="md-main custom-landing-container">
+    <div class="decoration"></div>
+    <div class="md-grid md-typeset">
+        <div class="custom-hero">
+            <!-- Hero image -->
+            <div class="custom-hero-image"></div>
+
+            <!-- Hero content -->
+            <div class="custom-hero-content">
+                <h1>VBA Monologger - Log smarter, debug faster !</h1>
+                <p>VBA Monologger is an advanced and flexible logging open-source solution for VBA (Visual Basic for Applications) ecosystem. Easily send logs to the Excel console (Immediate Windows), or simultaneously to a file, or even in a Windows console. Set up in two minutes.</p>
+                <a href="getting-started/introduction.html" title="Set up in two minutes!"
+                   class="md-button md-button--primary">
+                    Get started
+                </a> &nbsp;
+                <a href="under-the-hood/"
+                   title="To understand and learn what's happening with each components of this library"
+                   class="md-button">
+                    Learn more
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="custom-hero-more">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 4h2v12l5.5-5.5 1.42 1.42L12 19.84l-7.92-7.92L5.5 10.5 11 16z"></path></svg>
+</div>
+
+<section class="content-features">
+    <div class="md-grid md-typeset">
+        <div class="features">
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M2.494 18.913h3.52v-3.52c0-.43.35-.78.781-.78h3.52v-3.52c0-.432.35-.783.781-.783h3.52V6.791c0-.432.35-.782.782-.782h3.519V2.49c0-.432.35-.782.782-.782h3.52c.43 0 .781.35.781.782v20.724c0 .432-.35.782-.782.782H2.494a.78.78 0 0 1-.782-.782v-3.52c0-.43.35-.78.782-.78ZM.172 15.928a.587.587 0 0 1 0-.83L15.102.168a.587.587 0 0 1 .83.83l-14.93 14.93c-.23.23-.6.23-.83 0"></path>
+                    </svg>
+                </div>
+
+                <h3>Severity log levels</h3>
+                <p>Manages 8 standard severity levels to classify the importance of log messages, following the PSR-3 standard. It indicates the severity of each event, from the most trivial to the most catastrophic, and allow administrators or developers to filter messages based on their importance. </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path
+                            d="M20.06 18a4 4 0 0 1-.2-.89c-.67.7-1.48 1.05-2.41 1.05-.83 0-1.52-.24-2.05-.71-.53-.45-.8-1.06-.8-1.79 0-.88.33-1.56 1-2.05s1.61-.73 2.83-.73h1.4v-.64q0-.735-.45-1.17c-.3-.29-.75-.43-1.33-.43-.52 0-.95.12-1.3.36-.35.25-.52.54-.52.89h-1.46c0-.43.15-.84.45-1.24.28-.4.71-.71 1.22-.94.51-.21 1.06-.35 1.69-.35.98 0 1.74.24 2.29.73s.84 1.16.86 2.02V16c0 .8.1 1.42.3 1.88V18zm-2.4-1.12c.45 0 .88-.11 1.29-.32.4-.21.7-.49.88-.83v-1.57H18.7c-1.77 0-2.66.47-2.66 1.41 0 .43.15.73.46.96.3.23.68.35 1.16.35m-12.2-3.17h4.07L7.5 8.29zM6.64 6h1.72l4.71 12h-1.93l-.97-2.57H4.82L3.86 18H1.93z"></path></svg>
+                </div>
+
+                <h3>Logging format</h3>
+                <p>Specify the logging format to define how log messages are structured and displayed. This can be represented on one or multiple lines, with or without ANSI color support, in JSON format, or any other format such as an HTML content.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path
+                            d="M20.3636 5.7778c-.1616.3232-.5656.5656-.9697.5656-.6464 0-1.1313-.4848-1.1313-1.1313s.4849-1.1313 1.1313-1.1313c.404 0 .7273.2424.9697.5657h3.5556V.1212H0v2.7475h15.0303c.1616-.3232.5657-.5657.9697-.5657.6465 0 1.1313.4849 1.1313 1.1313S16.6465 4.5657 16 4.5657c-.404 0-.7273-.2425-.9697-.5657H0v6.5455h2.101V6.505h10.586c.1616-.3232.5656-.5656.9697-.5656.6464 0 1.1313.4848 1.1313 1.1313s-.485 1.1313-1.1314 1.1313c-.404 0-.7273-.2424-.9697-.5656H3.313v3.0707h11.798c.1616-.3233.5657-.5657.9697-.5657.6465 0 1.1313.4849 1.1313 1.1313s-.4848 1.1313-1.1313 1.1313c-.404 0-.7273-.2424-.9697-.5656H0v3.0707h6.5455c.1616-.3232.5656-.5657.9697-.5657.6464 0 1.1313.4849 1.1313 1.1313 0 .6465-.4849 1.1314-1.1313 1.1314-.404 0-.7273-.2425-.9697-.5657H0v3.0707h7.6768c.1616-.3232.5656-.5657.9697-.5657.6464 0 1.1313.4849 1.1313 1.1314 0 .6464-.4849 1.1313-1.1313 1.1313-.404 0-.7273-.2424-.9697-.5657H0v3.6364h12.606v-7.4344c-.3232-.1616-.5656-.5656-.5656-.9697 0-.6464.4849-1.1313 1.1313-1.1313s1.1313.4849 1.1313 1.1313c0 .404-.2424.7273-.5656.9697v7.4344h2.6666v-5.6566c-.3232-.1616-.5656-.5656-.5656-.9697 0-.6464.4848-1.1313 1.1313-1.1313s1.1313.4849 1.1313 1.1313c0 .404-.2424.7273-.5656.9697v5.6566h2.6666v-8.3232c-.3232-.1617-.5656-.5657-.5656-.9697 0-.6465.4848-1.1314 1.1313-1.1314.6464 0 1.1313.4849 1.1313 1.1314 0 .404-.2424.7272-.5657.9697v8.3232H24V9.9798h-2.9899c-.1616.3232-.5657.5657-.9697.5657-.6465 0-1.1313-.4849-1.1313-1.1314s.4848-1.1313 1.1313-1.1313c.404 0 .7273.2425.9697.5657H24V5.697l-3.6364.0808z"/></svg>
+                </div>
+
+                <h3>Multiples logs destinations</h3>
+                <p>Specify the destination where logs should be sent, whether it be the VBA console (<i>Excel's immediate window</i>), the Windows console (<i>cmd.exe</i>), or in a file. Additionally, configure the conditions under which logging events are triggered based on specific criteria.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="m345 39.1 127.8 129.3c52.4 53 52.4 138.2 0 191.2l-112 113.3c-9.3 9.4-24.5 9.5-33.9.2s-9.5-24.5-.2-33.9l111.9-113.3c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6.2-33.9s24.6-9.2 33.9.2zM0 229.5V80c0-26.5 21.5-48 48-48h149.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5M144 144a32 32 0 1 0-64 0 32 32 0 1 0 64 0"></path></svg>
+                </div>
+
+                <h3>Enrich log records</h3>
+                <p>Enhance log records using pre-processors to add context, transform data, or customize log entries
+                    to meet specific requirements. Examples include adding CPU or memory usage, generating a unique
+                    identifier for each session, or adding tags and more.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 4v2h3v2H7l-2 2v3H3v-3H1v8h2v-3h2v3h3l2 2h8v-4h2v3h3V9h-3v3h-2V8h-6V6h3V4z"></path></svg>
+                </div>
+
+                <h3>Advanced usages</h3>
+                <p>Create your own custom logging system and manage log propagation (bubbling) when multiple destinations are used. Use channels to identify which part of an application a log entry is associated with. Use dependency injection for logging capabilities within a custom class module.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 1-1.26 2.75L15 5l2.74 1.26L19 9l1.25-2.74L23 5l-2.75-1.25M9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5M19 15l-1.26 2.74L15 19l2.74 1.25L19 23l1.25-2.75L23 19l-2.75-1.26"></path></svg>
+                </div>
+
+                <h3>Customize</h3>
+                <p>Easily develop your own formatter, handler, and pre-processors to tailor the logging
+                    system to your specific needs. By creating unique formatting styles, specialized handlers, and
+                    custom pre-processing logic, you can enhance the functionality and flexibility of your logging system.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-showcases">
+    <div class="md-grid md-typeset">
+
+        <div class="showcase">
+            <div class="showcase-text w40 minw">
+                <h2>8 severity log levels</h2>
+                <p>Easily create a logger for ouputting logs into the VBA console with the factory pattern. You have 8 methods, one for each log severity level.</p>
+                <div class="language-vbscript highlight"><pre id="__code_6"><span></span><button class="md-clipboard md-icon" title="Copy to clipboard" data-clipboard-target="#__code_6 > code"></button><code class="md-code__content"><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-1"></a><span class="k">Public</span><span class="w"> </span><span class="kd">Sub</span><span class="w"> </span><span class="nf">howto_use_logger_console_VBA</span><span class="p">()</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-2"></a><span class="w">    </span><span class="kd">Dim</span><span class="w"> </span><span class="nv">Logger</span><span class="w"> </span><span class="n">As</span><span class="w"> </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">LoggerInterface</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-3"></a><span class="w">    </span><span class="k">Set</span><span class="w"> </span><span class="n">Logger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">Factory</span><span class="p">.</span><span class="n">createLoggerConsoleVBA</span><span class="p">()</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-5"></a><span class="w">    </span><span class="c1">' Use the logger for each severity levels</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-6"></a><span class="w">    </span><span class="n">Logger</span><span class="p">.</span><span class="n">trace</span><span class="w"> </span><span class="s2">"Authentication function call for user 'Bob Morane'."</span><span class="w"> </span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-7"></a><span class="w">    </span><span class="n">Logger</span><span class="p">.</span><span class="n">info</span><span class="w"> </span><span class="s2">"User 'UltraVomit' has logged in successfully."</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-8"></a><span class="w">    </span><span class="n">Logger</span><span class="p">.</span><span class="n">notice</span><span class="w"> </span><span class="s2">"Process completed successfully with minor issues."</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-9"></a><span class="w">    </span><span class="n">Logger</span><span class="p">.</span><span class="n">warning</span><span class="w"> </span><span class="s2">"'Beetlejuice' should not be called more than 3 times."</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-10"></a><span class="w">    </span><span class="n">Logger</span><span class="p">.</span><span class="n">error</span><span class="w"> </span><span class="s2">"An error occurred with the user 'DRZCFOS2'."</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-11"></a><span class="w">    </span><span class="n">Logger</span><span class="p">.</span><span class="n">critical</span><span class="w"> </span><span class="s2">"System is in an unstable state."</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-12"></a><span class="w">    </span><span class="n">Logger</span><span class="p">.</span><span class="n">alert</span><span class="w"> </span><span class="s2">"Action required: unable to generate the dashboard."</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-13"></a><span class="w">    </span><span class="n">Logger</span><span class="p">.</span><span class="n">emergency</span><span class="w"> </span><span class="s2">"A critical failure occurred in the application."</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="https://6i-software.github.io/vba-monologger/getting-started/quick-start.html#__codelineno-0-14"></a><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
+</span></code></pre></div>
+                <p>
+                    <a href="./getting-started/quick-start.html#log-output-to-vba-console" aria-label="Built-in search"> <span class="twemoji"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"></path></svg></span>
+                        Learn more
+                    </a>
+                </p>
+            </div>
+            <div class="showcase-caption">
+                <img alt="VBA Monologger - Log ouput in Excel VBA console" src="./assets/VBAMonologger-VBAConsole.png" />
+            </div>
+        </div>
+
+        <div class="showcase showcase-reverse">
+            <div class="showcase-caption">
+                <img alt="VBA Monologger - Log output in Windows console (cmd.exe)" src="./assets/VBAMonologger-WindowsConsole.png" />
+            </div>
+            <div class="showcase-text w40">
+                <h2>Redirect logs to the Windows console or save them to a file</h2>
+                <p>If you prefer, you can display your VBA logs outside the Microsoft Excel by outputting them directly to the Windows Console (<i>cmd.exe</i>), with or without ANSI color support. You can also customize the color scheme based on the log level.</p>
+                <p>And simultaneously, you can also write log entries to one or multiple files: for example a specific file for errors and another for debugging.</p>
+                <p>
+                    <a href="./getting-started/quick-start.html#log-output-to-windows-console" aria-label="Built-in search"> <span class="twemoji"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"></path></svg></span>
+                        Learn more
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <div class="showcase">
+            <div class="showcase-text w40">
+                <h2>Add context data into log message</h2>
+                <p>In addition to the basic log message, you may sometimes want to include extra data that helps to provide more context for the event being logged. You can give a variable context with log message. It is a simply VBA dictionary, where you can store key-value pairs that hold relevant information. When you create a log entry, this context can be attached and will be incorporated into the log output, providing deeper insights into the logged event.</p>
+
+                <p>This variable can simply be displayed (or not) into the log message, or can be consumed by using placeholders in log message.</p>
+
+                <p>
+                    <a href="./getting-started/usages/add-context-data-to-log-messages.html" aria-label="Built-in search"> <span class="twemoji"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"></path></svg></span>
+                        Learn more
+                    </a>
+                </p>
+            </div>
+            <div class="showcase-caption">
+                <div class="language-vbscript highlight"><pre id="__code_72"><span></span><button class="md-clipboard md-icon" title="Copy to clipboard" data-clipboard-target="#__code_72 > code"></button><code class="md-code__content"><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-1-1"></a><span class="c1">' Set context </span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-1-2"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">context</span><span class="w"> </span><span class="n">As</span><span class="w"> </span><span class="n">Object</span><span class="p">:</span><span class="w"> </span><span class="k">Set</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">CreateObject</span><span class="p">(</span><span class="s2">"Scripting.Dictionary"</span><span class="p">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-1-3"></a><span class="n">context</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="s2">"Username"</span><span class="p">,</span><span class="w"> </span><span class="s2">"v20100v"</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-1-5"></a><span class="c1">' Only display log context (if configuration's formatter allow to show it)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-1-6"></a><span class="n">Logger</span><span class="p">.</span><span class="n">info</span><span class="w"> </span><span class="s2">"Adding a new user"</span><span class="p">,</span><span class="w"> </span><span class="n">context</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-1-8"></a><span class="c1">' Consume log context with placeholder</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-1-9"></a><span class="n">Logger</span><span class="p">.</span><span class="n">info</span><span class="w"> </span><span class="s2">"Adding the new user: '{username}'"</span><span class="p">,</span><span class="w"> </span><span class="n">context</span>
+</span></code></pre></div>
+                <div class="language-text highlight"><span class="filename">Result</span><pre id="__code_73"><span></span><button class="md-clipboard md-icon" title="Copy to clipboard" data-clipboard-target="#__code_73 > code"></button><code class="md-code__content"><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-2-1"></a>[2024-11-05 09:15:34] app.INFO: Adding a new user | {"Username": "v20100v"}</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-context-data-to-log-messages.html#__codelineno-2-2"></a>[2024-11-05 09:15:34] app.INFO: Adding the new user: 'v20100v' | {"Username": "v20100v"}
+</span></code></pre></div>
+            </div>
+        </div>
+
+        <div class="showcase showcase-reverse">
+            <div class="showcase-caption">
+                <div class="language-text highlight"><pre id="__code_66"><span></span><button class="md-clipboard md-icon" title="Copy to clipboard" data-clipboard-target="#__code_66 > code"></button><code class="md-code__content"><span id="__span-1-12"><a id="__codelineno-1-12" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-12"></a>[2024/12/13 18:59:30] App.INFO: User '35353' has logged in successfully.
+</span><span id="__span-0-102"><a id="__codelineno-0-102" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-10"></a> | extra:
+</span><span id="__span-0-112"><a id="__codelineno-0-112" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-11"></a> | {
+</span><span id="__span-0-122"><a id="__codelineno-0-122" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-12"></a> |    "session-UID": "A09A248CF0",
+</span><span id="__span-0-132"><a id="__codelineno-0-132" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-13"></a> |    "memory": {
+</span><span id="__span-0-142"><a id="__codelineno-0-142" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-14"></a> |       "memory-used": "65%",
+</span><span id="__span-0-152"><a id="__codelineno-0-152" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-15"></a> |       "memory-total": "15,23",
+</span><span id="__span-0-162"><a id="__codelineno-0-162" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-16"></a> |       "memory-available": "5,30"
+</span><span id="__span-0-172"><a id="__codelineno-0-172" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-17"></a> |    },
+</span><span id="__span-0-182"><a id="__codelineno-0-182" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-18"></a> |    "CPU-used": "21,4%"
+</span><span id="__span-0-192"><a id="__codelineno-0-192" href="http://127.0.0.1:8000/vba-monologger/getting-started/usages/add-pre-processor.html#__codelineno-0-19"></a> | }
+</span></code></pre></div>
+            </div>
+            <div class="showcase-text w40">
+                <h2>Enrich log records with pre-processors</h2>
+                <p>Pre-processors are a powerful feature, allowing for additional metadatas to be added to log messages before they are recorded. These functions can be used to enrich log messages with extra information that might not be directly part of the log entry itself, but is still relevant for better understanding and tracking.</p>
+                <p>Pre-processors can modify, format, or even generate additional metadata that can be attached to each log message into the extra property, for example to add a session ID, one or more tags, the CPU usage, the memory usage and more.</p>
+                <p>
+                    <a href="./getting-started/usages/add-pre-processor.html" aria-label="Built-in search"> <span class="twemoji"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"></path></svg></span>
+                        Learn more
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-about">
+    <div class="md-grid md-typeset">
+        <a class="buy-me-a-coffee-qrcode" href="https://www.buymeacoffee.com/vincent.blain">
+            <img alt="Want to support me? Offer me a coffee!" src="./assets/v20100v_buy-me-a-coffee_qrcode.png"/>
+        </a>
+
+        <div class="content-about-text">
+            <h2>Want to support me? Offer me a coffee!</h2>
+            <p>VBA Monologger is fully free and open source under the MIT License, but if you want to support me, you can offer me a coffee <a href="https://www.buymeacoffee.com/vincent.blain">here</a> or by scanning this QR code. Thank you in advance for your assistance and your appreciation ^^.</p>
+
+            <h2>Want to contribute?</h2>
+            <p>Ideas, bug reports, reports a typo in documentation, comments and suggestions, pull-request & Github stars are always welcome on <a href="https://github.com/6i-software/vba-monologger">VBA Monologger repository</a>.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="VBA Monologger" class="md-nav__button md-logo" aria-label="VBA Monologger" data-md-component="logo">
+      
+  <img src="assets/logo_white.png" alt="logo">
+
+    </a>
+    VBA Monologger
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/6i-software/vba-monologger" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    6i-software/vba-monologger
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="index.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="getting-started/introduction.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="getting-started/install.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Install
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="getting-started/quick-start.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Usages
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Usages
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="getting-started/usages/channel.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Identify a logger with a channel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="getting-started/usages/add-context-data-to-log-messages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Add context data to log messages
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="getting-started/usages/add-pre-processor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Add extra data to log messages via a pre-processor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="getting-started/usages/create-custom-formatter.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create a custom formatter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="getting-started/usages/create-custom-logger.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create a custom logger from scratch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="getting-started/usages/create-null-logger.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create a null logger
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="getting-started/usages/inject-logger-into-custom-class-module.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dependency injection for logging capabilities in a custom class module
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="under-the-hood/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Under the hood
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Under the hood
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="under-the-hood/log-severity-levels.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log severity levels
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="under-the-hood/log-record.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log record
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="under-the-hood/formatter.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Formatter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="under-the-hood/handler.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="under-the-hood/pre-processor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pre-processor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="under-the-hood/logger.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logger
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="blog/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="blog/archive/2025.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="blog/archive/2024.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Categories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="blog/category/blog.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+
+        <footer class="md-footer">
+  
+    
+      
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" hidden>
+        
+        
+          
+          <a href="getting-started/introduction.html" class="md-footer__link md-footer__link--next" aria-label="Next: Introduction">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Introduction
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024, 6i-software - 2o1oo
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/v20100v" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:vb20100bv@gmail.com?subject=[6i-VBA%20Monologger]" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M64 112c-8.8 0-16 7.2-16 16v22.1l172.5 141.6c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16zM48 212.2V384c0 8.8 7.2 16 16 16h384c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0zM0 128c0-35.3 28.7-64 64-64h384c35.3 0 64 28.7 64 64v256c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+  
+    
+  
+
+
+  
+    
+  
+
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="analytics" checked>
+          <span class="task-list-indicator"></span>
+          Google Analytics
+        </label>
+      </li>
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.expand", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.instant", "toc.follow", "search.highlight", "search.share", "search.suggest"], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.f13b1293.min.js"></script>
+      
+    
+  </body>
+</html>

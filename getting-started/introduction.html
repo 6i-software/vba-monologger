@@ -1,0 +1,2094 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Discover their VBA Monologger concepts, and how to implement robust logging for your Excel application in VBA.">
+    <link rel="canonical" href="https://6i-software.github.io/vba-monologger/getting-started/introduction.html">
+    <meta name="author" content="2o1oo <vb20100bv@gmail.com>">
+    <link rel="prev" href="../index.html">
+    <link rel="next" href="install.html">
+    <link rel="icon" href="../assets/logo.png">
+    <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+
+    
+    <title>VBA Monologger - Introduction</title>
+
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.d7758b05.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/css/extra-customize.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-LT06F6P562"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-LT06F6P562",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-LT06F6P562",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script>
+  
+
+    
+    
+    
+    <meta name="google-site-verification" content="232S62jZFxoHqiZjIoVueSZT-LjT3NGHUMUqzahLLKI" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="VBA Monologger" />
+    <meta name="twitter:creator" content="2o1oo" />
+    <meta property="og:title" content="VBA Monologger - Introduction" />
+    <meta property="og:description" content="Discover their VBA Monologger concepts, and how to implement robust logging for your Excel application in VBA." />
+    <meta property="og:image" content="https://6i-software.github.io/vba-monologger/assets/logo.png" />
+    <meta property="og:url" content="https://6i-software.github.io/vba-monologger/getting-started/introduction.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="VBA Monologger" />
+    <meta property="og:locale" content="en_US" />
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": "https://6i-software.github.io/vba-monologger/",
+            "name": "VBA Monologger",
+            "description": "Discover their VBA Monologger concepts, and how to implement robust logging for your Excel application in VBA.",
+            "publisher": {
+                "@type": "Organization",
+                "name": "6i Software"
+            }
+        }
+    </script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#preamble" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="VBA Monologger" class="md-header__button md-logo" aria-label="VBA Monologger" data-md-component="logo">
+      
+  <img src="../assets/logo_white.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VBA Monologger
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/6i-software/vba-monologger" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    6i-software/vba-monologger
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="introduction.html" class="md-tabs__link">
+          
+  
+    
+  
+  Getting started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../under-the-hood/index.html" class="md-tabs__link">
+          
+  
+    
+  
+  Under the hood
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../blog/index.html" class="md-tabs__link">
+          
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="VBA Monologger" class="md-nav__button md-logo" aria-label="VBA Monologger" data-md-component="logo">
+      
+  <img src="../assets/logo_white.png" alt="logo">
+
+    </a>
+    VBA Monologger
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/6i-software/vba-monologger" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    6i-software/vba-monologger
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Getting started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="introduction.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preamble" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preamble
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preamble">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-logging-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      A logging system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motivations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Motivations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-vba-monologger" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is VBA Monologger?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concepts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#severity-log-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      Severity log level
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logger" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logger
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identifying-a-logger-with-a-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identifying a logger with a channel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-log-records-with-a-handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Processing log records with a handler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formatting-log-records-the-serialization-of-logs-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formatting log records, the serialization of logs record
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redirection-and-chaining-handlers-stack-handlers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redirection and chaining handlers (stack handlers)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propagation-control-of-logs-bubbling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propagation control of logs (bubbling)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-metadatas-in-log-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding metadatas in log records
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#template-engine-with-placeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Template engine with placeholders
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-processor-of-log-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-processor of log records
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="install.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Install
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="quick-start.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Usages
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Usages
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="usages/channel.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Identify a logger with a channel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="usages/add-context-data-to-log-messages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Add context data to log messages
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="usages/add-pre-processor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Add extra data to log messages via a pre-processor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="usages/create-custom-formatter.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create a custom formatter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="usages/create-custom-logger.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create a custom logger from scratch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="usages/create-null-logger.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create a null logger
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="usages/inject-logger-into-custom-class-module.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dependency injection for logging capabilities in a custom class module
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../under-the-hood/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Under the hood
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Under the hood
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../under-the-hood/log-severity-levels.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log severity levels
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../under-the-hood/log-record.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log record
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../under-the-hood/formatter.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Formatter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../under-the-hood/handler.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../under-the-hood/pre-processor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pre-processor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../under-the-hood/logger.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logger
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../blog/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/archive/2025.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/archive/2024.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Categories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/category/blog.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preamble" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preamble
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preamble">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-logging-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      A logging system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motivations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Motivations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-vba-monologger" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is VBA Monologger?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concepts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#severity-log-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      Severity log level
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logger" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logger
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identifying-a-logger-with-a-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identifying a logger with a channel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-log-records-with-a-handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Processing log records with a handler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formatting-log-records-the-serialization-of-logs-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formatting log records, the serialization of logs record
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redirection-and-chaining-handlers-stack-handlers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redirection and chaining handlers (stack handlers)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propagation-control-of-logs-bubbling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propagation control of logs (bubbling)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-metadatas-in-log-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding metadatas in log records
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#template-engine-with-placeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Template engine with placeholders
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-processor-of-log-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-processor of log records
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Introduction</h1>
+
+<h2 id="preamble">Preamble<a class="headerlink" href="#preamble" title="Permanent link">&para;</a></h2>
+<h3 id="a-logging-system">A logging system<a class="headerlink" href="#a-logging-system" title="Permanent link">&para;</a></h3>
+<p>Logging is a process that involves recording and storing traces of events, activities, or errors that occur during the use of an application. Useful for both developers for debugging and administrators for diagnosing and resolving incidents, logs provide traceability and visibility into the behavior of an application throughout its operation.</p>
+<p>In its simplest form, log entries are recorded in text format, with each line representing an event that occurred during the application's lifecycle.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[2024-11-05 09:15:34] app.INFO: Application started
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>[2024-11-05 09:16:01] app.INFO: Workbook loaded successfully
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>[2024-11-05 09:17:15] app.DEBUG: Task modified
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>[2024-11-05 09:18:45] app.WARNING: Low disk space - risky save
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>[2024-11-05 09:19:03] app.ERROR: Project save failed
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>[2024-11-05 09:20:00] app.INFO: Application closed
+</span></code></pre></div>
+<p>According to the <em>twelve-factor app</em> manifest, you should "<em><a href="https://12factor.net/logs">treat logs as event streams</a></em>". Logs are not just recorded in a file for later consultation. They can also be monitored in real-time in a terminal, sent to a database, or redirected to external log aggregation and analysis tools (such as the ELK stack, Graylog, BetterStack, Splunk...).</p>
+<p>A logging system should offer flexible management, allowing different severity levels of events to be distinguished, so messages can be filtered according to their importance, from simple information to critical errors. It should also be capable of sending logs to multiple destinations simultaneously, such as a terminal, file, database, or monitoring service. Additionally, the log format must be customizable to meet the specific needs of the application and the tools used for analysis, making it easier to manage and interpret the collected data.</p>
+<h3 id="motivations">Motivations<a class="headerlink" href="#motivations" title="Permanent link">&para;</a></h3>
+<p>VBA provides developers with the ability to automate tasks, interact with the features of Microsoft Office applications, and even create applications with a graphical user interface (<code>Userform</code>). However, compared to other development ecosystems, VBA only offers a rudimentary logging solution, limited to the <code>Debug.Print</code> function, which writes to the Excel console (a.k.a. the Excel immediate window).</p>
+<p>The <em>VBA Monologger</em> library project was born out of the need for a more advanced and flexible logging solution in the VBA ecosystem. It is (heavily) inspired by the PSR-3 standard in the PHP ecosystem and its most recognized implementation, the <a href="https://github.com/Seldaek/monolog">Monolog</a> library, which itself is inspired by the <a href="https://logbook.readthedocs.io/en/stable/">Logbook</a> library in Python.</p>
+<p>The goal of this library is to provide similar features and capabilities, particularly by offering a modular architecture that can easily adapt to different use cases. </p>
+<h3 id="what-is-vba-monologger">What is VBA Monologger?<a class="headerlink" href="#what-is-vba-monologger" title="Permanent link">&para;</a></h3>
+<p>VBA Monologger is an advanced and flexible logging solution for VBA (<em>Visual Basic for Applications</em>) ecosystem.</p>
+<p>Main features:</p>
+<ul>
+<li>Customize the logging format to define how log messages are structured and displayed.</li>
+<li>Specify the destination where logs should be viewed (e.g., VBA console <em>a.k.a</em> Excel's immediate window, Windows console (cmd.exe) with ANSI color support, file...) and configure the conditions under which logging events are triggered based on specific criteria.</li>
+<li>Manages 8 standard severity levels to classify the importance of log messages, following the PSR-3 standard.</li>
+<li>Enrich log records with pre-processors, enabling the addition of context, transformation of data, or customization of log entries to suit specific needs (e.g. add CPU or memory usage, generate a UID for each session, add tags... and more).</li>
+<li>Use the provided loggers in the library (<em>e.g.</em> <code>LoggerConsoleVBA</code>, <code>LoggerConsole</code> or <code>LoggerFile</code>) for basic usage, or create your own custom logging system.</li>
+<li>Easily develop your own custom formatter, handler, and pre-processors to tailor the logging system to your specific needs. By creating unique formatting styles, specialized handlers, and custom pre-processing logic, you can enhance the functionality and flexibility of your logging setup, ensuring it meets the precise requirements of your applications and workflows.</li>
+</ul>
+<h2 id="concepts">Concepts<a class="headerlink" href="#concepts" title="Permanent link">&para;</a></h2>
+<h3 id="severity-log-level">Severity log level<a class="headerlink" href="#severity-log-level" title="Permanent link">&para;</a></h3>
+<p>It indicates the severity of each event, from the most trivial to the most catastrophic, and allow administrators or developers to filter messages based on their importance.</p>
+<p><em>VBA Monologger</em> manages 8 standard severity levels <strong>to classify the importance of log messages</strong>, following the <a href="https://www.php-fig.org/psr/psr-3/">PSR-3</a> standard, which is itself based on <a href="https://www.rfc-editor.org/rfc/rfc5424">RFC-5424</a>, the standard defined by the IETF (<em>Internet Engineering Task Force</em>) to specify the format of messages for the Syslog protocol, which is used for transmitting logs over IP networks.</p>
+<table>
+<thead>
+<tr>
+<th>Log level</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>EMERGENCY</code></td>
+<td>Indicates a very critical situation that requires immediate attention. (<em>system crash, data corruption</em>)</td>
+</tr>
+<tr>
+<td><code>ALERT</code></td>
+<td>Signals an alert condition. (<em>critical disk space running out</em>)</td>
+</tr>
+<tr>
+<td><code>CRITICAL</code></td>
+<td>Indicates a serious error. (<em>database connection failure, server downtime</em>)</td>
+</tr>
+<tr>
+<td><code>ERROR</code></td>
+<td>Represents an error in the system. (<em>failed to save user data, unexpected exception</em>)</td>
+</tr>
+<tr>
+<td><code>WARNING</code></td>
+<td>A warning about a potential problem. (<em>use a deprecated function used, low memory warning</em>)</td>
+</tr>
+<tr>
+<td><code>NOTICE</code></td>
+<td>Important notifications that are not urgent. (<em>user login successful, configuration change detected</em>)</td>
+</tr>
+<tr>
+<td><code>INFO</code></td>
+<td>General information about the normal operation. (<em>system startup, data processed successfully</em>)</td>
+</tr>
+<tr>
+<td><code>TRACE</code></td>
+<td>Detailed information for debugging. (<em>variable values during loop iteration, execution details</em>). Notes, that the '<strong>debug</strong>' method exposes presents in PSR-3 is rename into '<strong>trace</strong>' in order to be compatible in VBA ecosystem.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="logger">Logger<a class="headerlink" href="#logger" title="Permanent link">&para;</a></h3>
+<p><strong>The logger is the central component of this library, acting as the primary interface for recording, categorizing, and managing log messages throughout an application</strong>. It provides developers with a highly configurable and flexible tool for implementing custom logging logic tailored to their specific needs. By using a logger, applications can systematically capture events and system states, facilitating both real-time monitoring and historical analysis of system behavior.</p>
+<p>The logger is designed to handle multiple logging levels, directing each log entry to the appropriate handlers (<em>i.e.</em> appropriate destinations) and applying the correct formatting to messages. It also supports the use of various pre-processors, which can enrich log messages with extra contextual information, allowing for complex logging logic while keeping code readable and straightforward.</p>
+<pre class="mermaid"><code>mindmap
+  root((Logger))
+    node1(Handlers)
+      HandlerConsoleVBA&lt;br&gt;*for all levels*
+        FormatterLine
+      HandlerConsole&lt;br&gt;*for all levels*
+        FormatterANSIColoredLine
+      HandlerFile&lt;br&gt;*exclude debug level*
+        FormatterJSON
+      HandlerEmail&lt;br&gt;*for level greater than error*
+        FormatterHTML
+    node2(Processors)
+      ProcessorPlaceholders
+      ProcessorUID
+    node3(Name of loger, a.k.a. log channel)</code></pre>
+<p>Additionally, the logger standardizes and simplifies the use of logging methods (such as methods: <code>logger.trace</code>, <code>logger.info</code>, ...). It offers a consistent and intuitive approach to logging at different levels of severity, letting developers effortlessly call the appropriate logging level without dealing with the underlying technical details. Each log level can be invoked through a simple, clear method, making logging an integral yet unobtrusive part of the development process. </p>
+<p>Every logger implements the <code>LoggerInterface</code>, which provides the following methods:</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Logger</span><span class="p">.</span><span class="n">emergency</span><span class="w"> </span><span class="s2">&quot;A critical failure occurred in the application.&quot;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">Logger</span><span class="p">.</span><span class="n">alert</span><span class="w"> </span><span class="s2">&quot;Action required: unable to generate the dashboard.&quot;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">Logger</span><span class="p">.</span><span class="n">critical</span><span class="w"> </span><span class="s2">&quot;System is in an unstable state.&quot;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">Logger</span><span class="p">.</span><span class="n">error</span><span class="w"> </span><span class="s2">&quot;An error occurred with the user &#39;DRZCFOS2&#39;.&quot;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">Logger</span><span class="p">.</span><span class="n">warning</span><span class="w"> </span><span class="s2">&quot;&#39;Beetlejuice&#39; should not be called more than 3 times.&quot;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">Logger</span><span class="p">.</span><span class="n">notice</span><span class="w"> </span><span class="s2">&quot;Process completed successfully with minor issues.&quot;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">Logger</span><span class="p">.</span><span class="n">info</span><span class="w"> </span><span class="s2">&quot;User &#39;UltraVomit&#39; has logged in successfully.&quot;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">Logger</span><span class="p">.</span><span class="n">trace</span><span class="w"> </span><span class="s2">&quot;Authentication function call for user &#39;Bob Morane&#39;.&quot;</span><span class="w"> </span>
+</span></code></pre></div>
+<h3 id="identifying-a-logger-with-a-channel">Identifying a logger with a channel<a class="headerlink" href="#identifying-a-logger-with-a-channel" title="Permanent link">&para;</a></h3>
+<p><strong>A channel is a powerful way to identify which part of an application a log entry is associated with</strong>. This is especially useful in large applications with multiple components and multiple loggers. The idea is to have several logging systems sharing the same handler, all writing into a single log file. Channels help identify the source of the log, making filtering and searching more manageable.</p>
+<p>Here’s an example with three distinct logging channels to demonstrate how they help differentiate logs by application component: one channel for the main application (<code>app</code>), another for authentication (<code>auth</code>), and a third for data processing (<code>data</code>).</p>
+<div class="language-text highlight"><span class="filename">Logging system with multiples loggers identified by channels</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>[2024-11-05 09:15:34] auth.INFO: User login successful
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>[2024-11-05 09:16:01] app.INFO: Dashboard loaded successfully
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>[2024-11-05 09:16:20] data.DEBUG: Data import started
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>[2024-11-05 09:17:30] auth.WARNING: Suspicious login attempt detected
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>[2024-11-05 09:18:45] data.ERROR: Data import failed
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>[2024-11-05 09:19:03] app.INFO: User preferences saved
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>[2024-11-05 09:20:00] app.INFO: Application shutdown initiated
+</span></code></pre></div>
+<h3 id="processing-log-records-with-a-handler">Processing log records with a handler<a class="headerlink" href="#processing-log-records-with-a-handler" title="Permanent link">&para;</a></h3>
+<p><strong>A log handler is a key component responsible for processing each log entry</strong>. When a log message is generated, it is not simply recorded; it must be directed to a location where it can be viewed and used. This is where the handler comes in, determining where and how each log entry will be sent or saved. </p>
+<p>Here are some examples of <em>built-in</em> log handlers provided in VBAMonologger:</p>
+<table>
+<thead>
+<tr>
+<th>Handler</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HandlerConsoleVBA</code></td>
+<td>Sends log messages to the console of VBA Project IDE (<em>Excel's Immediate Window</em>).</td>
+</tr>
+<tr>
+<td><code>HandlerConsole</code></td>
+<td>Sends log messages to the Windows console (<em>cmd.exe</em>).</td>
+</tr>
+<tr>
+<td><code>HandlerFile</code></td>
+<td>Write log messages into a text file.</td>
+</tr>
+<tr>
+<td><del><code>HandlerEmail</code></del></td>
+<td><del>Sends messages by email, typically used to alert an administrator in case of critical errors.</del> (<em>not yet available</em>)</td>
+</tr>
+</tbody>
+</table>
+<p>The benefit of using different handlers lies not only in applying specific treatments to logs but also in filtering messages based on their severity level. A handler can be configured to handle only certain severity levels. For example, one handler could be set to log only critical errors to a dedicated file, while another handler records all events in a general log file.</p>
+<h3 id="formatting-log-records-the-serialization-of-logs-record">Formatting log records, the serialization of logs record<a class="headerlink" href="#formatting-log-records-the-serialization-of-logs-record" title="Permanent link">&para;</a></h3>
+<p><strong>Each <em>handler</em> is associated with a unique <em>formatter</em>, a specialized component responsible for defining the structure and presentation of log messages</strong>. The formatter processes and organizes each log entry, converting it from its raw form to a readable format tailored to a specific type (text, HTML, JSON, etc.). This process can be seen as similar to the serialization of a log record.</p>
+<p><em>VBA Monologger</em> provides the following formatters:</p>
+<table>
+<thead>
+<tr>
+<th>Log Formatter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FormatterLine</code></td>
+<td>The default formatter that represents each log entry on a single line of text.</td>
+</tr>
+<tr>
+<td><code>FormatterANSIColoredLine</code></td>
+<td>A version derived from <em>FormatterLine</em> that supports color coding each log entry line using ANSI escape sequences.</td>
+</tr>
+<tr>
+<td><code>FormatterJSON</code></td>
+<td>Formats the logs in JSON. This is the most interoperable format, facilitating integration with external log aggregation and analysis tools (e.g., <em>ELK stack</em>).</td>
+</tr>
+<tr>
+<td><del><code>FormatterHTML</code></del></td>
+<td><del>Produces messages in HTML format, typically used when sending logs via email.</del> (<em>not yet available</em>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="redirection-and-chaining-handlers-stack-handlers">Redirection and chaining handlers (<em>stack handlers</em>)<a class="headerlink" href="#redirection-and-chaining-handlers-stack-handlers" title="Permanent link">&para;</a></h3>
+<p><strong>In the log processing, there's no limitation to having multiple handlers into logger</strong>, so that the same log entry can be sent to multiple destinations in the same time with different formatter: console, writing to a file, or sending via email. Each handler acts sequentially, one after the other, in the order they were added to the logger's stack. </p>
+<p>When a log event occurs, it passes through all handlers, each performing its own processing.</p>
+<p>This mechanism provides great flexibility in log processing because each handler can be independently configured to perform specific actions without interfering with the others.</p>
+<h3 id="propagation-control-of-logs-bubbling">Propagation control of logs (<em>bubbling</em>)<a class="headerlink" href="#propagation-control-of-logs-bubbling" title="Permanent link">&para;</a></h3>
+<p><strong>When multiple handlers are referenced in a logger, each handler can choose either to block the propagation of a log message (<em>a.k.a.</em> bubbling) within the processing chain or to allow it to continue to other handlers in the stack.</strong> The control of this propagation is managed by setting the <code>bubble</code> boolean property attached to each <em>handler</em>. </p>
+<p>When a <em>handler</em> blocks propagation (<em>i.e.</em> <code>bubble = false</code>), it means the log message will not be passed to the <em>handlers</em> below it in the stack. Otherwise, the message will continue to propagate until every <em>handler</em> in the stack has had a chance to process it.</p>
+<p>Let's imagine a logging system with three <em>handlers</em>:</p>
+<ul>
+<li>First, a <code>HandlerEmail</code> to send error-level logs (<code>level &gt;= ERROR</code>) via email, without propagation (<code>bubble = false</code>).</li>
+<li>Next, a <code>HandlerFile</code> to log other messages in a file, excluding the trace level (<code>TRACE &lt; level &lt; ERROR</code>).</li>
+<li>And finally, a <code>HandlerConsole</code> to display the remaining logs in the console (<code>level &lt; ERROR</code>).</li>
+</ul>
+<p>With this custom logging system, when an error-level log is captured by <code>HandlerEmail</code>, the first handler in the stack, it will not propagate to the other <em>handlers</em>. An <code>ERROR</code> level log will only be sent via email. It will not be recorded in the log file (<code>HandlerFile</code>), nor displayed in the console (<code>HandlerConsole</code>).</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Logger as Logger
+    participant HandlerEmail as HandlerEmail&lt;br&gt;($bubble = false, level = ERROR)
+    participant HandlerFile as HandlerFile&lt;br&gt;(level = NOTICE)
+    participant HandlerConsole as HandlerConsole&lt;br&gt;(level = DEBUG)
+
+    %% ERROR level log
+    Logger-&gt;&gt;HandlerEmail: ERROR level log
+    HandlerEmail--&gt;&gt;HandlerEmail: Send log via email
+    HandlerEmail--xHandlerFile: Propagation blocked&lt;br&gt;($bubble = false)
+    Note right of HandlerEmail: The error message is handled &lt;br&gt;only by HandlerEmail &lt;br&gt;and is not processed elsewhere.</code></pre>
+<p>And when a log of level <code>INFO</code> is recorded, it is not captured by the first <code>HandlerEmail</code>. Its processing starts with the <code>HandlerFile</code>, which allows the propagation of the messages. The log is then sent to the <code>HandlerConsole</code> for processing. Therefore, this log will be recorded in a log file and displayed in the console.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Logger as Logger
+    participant HandlerEmail as HandlerEmail&lt;br&gt;($bubble = false, level = ERROR)
+    participant HandlerFile as HandlerFile&lt;br&gt;(level = NOTICE)
+    participant HandlerConsole as HandlerConsole&lt;br&gt;(level = DEBUG)
+
+    %% INFO level log
+    Logger-&gt;&gt;HandlerEmail: INFO level log
+    HandlerEmail--xHandlerEmail: Ignored (insufficient level)
+    HandlerEmail-&gt;&gt;HandlerFile: INFO level log
+    HandlerFile--&gt;&gt;HandlerFile: Log saved to file
+    HandlerFile--&gt;&gt;HandlerConsole: Propagation (bubble = true)
+    HandlerConsole--&gt;&gt;HandlerConsole: Displayed in console
+    Note right of HandlerFile: INFO level log is processed&lt;br&gt;by HandlerFile and HandlerConsole.</code></pre>
+<h3 id="adding-metadatas-in-log-records">Adding metadatas in log records<a class="headerlink" href="#adding-metadatas-in-log-records" title="Permanent link">&para;</a></h3>
+<p>In addition to the basic log message, you may sometimes want to include extra information that helps to provide more context for the event being logged. This could include things like the username of the person triggering the event, a session ID, or any other piece of data that can assist in understanding the log entry better. </p>
+<p><em>VBA Monologger</em> offers two options for adding complementary data to a log record: <code>context</code> and <code>extra</code>.</p>
+<ul>
+<li>The <code>context</code> is used to add information directly related to the logged event, such as details about an error or an ongoing operation.</li>
+<li>Meanwhile, <code>extra</code> is reserved for additional metadata, often generated automatically or added by pre-processors, providing a global context.</li>
+</ul>
+<p>Whether it's the <code>context</code> option or the <code>extra</code> option, they are essentially VBA dictionaries, where you can store key-value pairs that hold relevant information. When you create a log entry, this context can be attached and will be incorporated into the log output, providing deeper insights into the logged event. This feature is a great way to enrich your log entries with important details and provide better traceability and understanding of your application's behavior.</p>
+<div class="language-vbscript highlight"><span class="filename">Using placeholders with data context</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">&#39; Set context </span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">context</span><span class="w"> </span><span class="n">As</span><span class="w"> </span><span class="n">Object</span><span class="p">:</span><span class="w"> </span><span class="k">Set</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">CreateObject</span><span class="p">(</span><span class="s2">&quot;Scripting.Dictionary&quot;</span><span class="p">)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">context</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="s2">&quot;Username&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;v20100v&quot;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1">&#39; Set extra </span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">extra</span><span class="w"> </span><span class="n">As</span><span class="w"> </span><span class="n">Object</span><span class="p">:</span><span class="w"> </span><span class="k">Set</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">CreateObject</span><span class="p">(</span><span class="s2">&quot;Scripting.Dictionary&quot;</span><span class="p">)</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">extra</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="s2">&quot;CPU-Usage&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;51%&quot;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">Logger</span><span class="p">.</span><span class="n">info</span><span class="w"> </span><span class="s2">&quot;Adding a new user&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">context</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">Logger</span><span class="p">.</span><span class="n">info</span><span class="w"> </span><span class="s2">&quot;Adding the new user: &#39;{username}&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">context</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="n">Logger</span><span class="p">.</span><span class="n">info</span><span class="w"> </span><span class="s2">&quot;Adding the new user: &#39;{username}&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">extra</span>
+</span></code></pre></div>
+<div class="language-text highlight"><span class="filename">Result</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>[2024-11-05 09:15:34] app.INFO: Adding a new user | {&quot;Username&quot;: &quot;v20100v&quot;}
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>[2024-11-05 09:15:34] app.INFO: Adding the new user: &#39;v20100v&#39; | {&quot;Username&quot;: &quot;v20100v&quot;}
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>[2024-11-05 09:15:34] app.INFO: Adding the new user: &#39;v20100v&#39; | {&quot;Username&quot;: &quot;v20100v&quot;} | extra: {&quot;CPU-Usage&quot;:&quot;51%&quot;}
+</span></code></pre></div>
+<h3 id="template-engine-with-placeholders">Template engine with placeholders<a class="headerlink" href="#template-engine-with-placeholders" title="Permanent link">&para;</a></h3>
+<p>Regardless of which log handler is used and which formatter is applied, the fields within the <code>context</code> can be accessed as template variables within the log message. It is not possible to use the data present in <code>extra</code>; only the data in <code>context</code> is utilized by the template engine.</p>
+<p>This templating engine is provided by the pre-processor <code>ProcessorPlaceholders</code>, which uses <code>context</code> data to replace variables in log messages. It allows to embed context values directly into log message text with placeholders. All template variables are enclosed in <code>{}</code> brackets. </p>
+<p>Notes, if a particular key doesn’t exist in the context, it will be replaced by an empty string.</p>
+<p>In the example above, the engine automatically replaces the placeholder <code>{username}</code> with its corresponding value from the context dictionary, in this case, <code>v20100v</code>.</p>
+<h3 id="pre-processor-of-log-records">Pre-processor of log records<a class="headerlink" href="#pre-processor-of-log-records" title="Permanent link">&para;</a></h3>
+<p>Pre-processors are a powerful feature, allowing for additional metadatas to be added to log messages before they are recorded. These functions can be used to enrich log messages with extra information that might not be directly part of the log entry itself, but is still relevant for better understanding and tracking. Pre-processors can modify, format, or even generate additional metadata that can be attached to each log message into the <code>extra</code> property. A logger can reference one or more pre-processors.</p>
+<p>In VBA Monologger, several built-in processors offer specific functionalities to enhance the log entry by adding additional context or modifying it in various ways before it is passed to the handlers. Here are some examples of the available pre-processors:</p>
+<table>
+<thead>
+<tr>
+<th>Log processor</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ProcessorPlaceholders</code></td>
+<td>Allows to replace specific variables or placeholders in log messages with their corresponding values, adding dynamic context to the logs. The <code>context</code> variable must be a VBA <code>Scripting.Dictionary</code>. (<em>e.g.</em> <code>logger.info("Authentication failed for user '{UserName}' with id '{UserID}'.", context)</code>.</td>
+</tr>
+<tr>
+<td><code>ProcessorTags</code></td>
+<td>Adds one or more tags to a log entry.</td>
+</tr>
+<tr>
+<td><code>ProcessorUID</code></td>
+<td>Adds a unique identifier (UID) to each session . The generated UID consists of hexadecimal characters, and its size can be configured.</td>
+</tr>
+<tr>
+<td><code>ProcessorUsageMemory</code></td>
+<td>Adds the computer's memory usage to each log entry. The system's current memory status is retrieved using the <code>GlobalMemoryStatusEx</code> API in Windows.</td>
+</tr>
+<tr>
+<td><code>ProcessorUsageCPU</code></td>
+<td>Adds the computer's cpu usage to each log entry.</td>
+</tr>
+</tbody>
+</table>
+<p>Result of a logger with pre-processors : placeholders, tags (<code>environment, user_role</code>), UID, usage memory and usage CPU.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>[2024/12/13 18:59:30] App.INFO: User &#39;35353&#39; has logged in successfully.
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a> | context: 
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a> | {
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a> |    &quot;UserName&quot;: &quot;Bob&quot;,
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a> |    &quot;UserID&quot;: 35353,
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a> |    &quot;Operation&quot;: &quot;create&quot;,
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a> |    &quot;environment&quot;: &quot;production&quot;,
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a> |    &quot;user_role&quot;: &quot;admin&quot;
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a> | }
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a> | extra: 
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a> | {
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a> |    &quot;session-UID&quot;: &quot;A09A248CF0&quot;,
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a> |    &quot;memory&quot;: {
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a> |       &quot;memory-used&quot;: &quot;65%&quot;,
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a> |       &quot;memory-total&quot;: &quot;15,23&quot;,
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a> |       &quot;memory-available&quot;: &quot;5,30&quot;
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a> |    },
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a> |    &quot;CPU-used&quot;: &quot;21,5%&quot;
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a> | }
+</span></code></pre></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../index.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Welcome">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Welcome
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="install.html" class="md-footer__link md-footer__link--next" aria-label="Next: Install">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Install
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024, 6i-software - 2o1oo
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/v20100v" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:vb20100bv@gmail.com?subject=[6i-VBA%20Monologger]" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M64 112c-8.8 0-16 7.2-16 16v22.1l172.5 141.6c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16zM48 212.2V384c0 8.8 7.2 16 16 16h384c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0zM0 128c0-35.3 28.7-64 64-64h384c35.3 0 64 28.7 64 64v256c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+  
+    
+  
+
+
+  
+    
+  
+
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="analytics" checked>
+          <span class="task-list-indicator"></span>
+          Google Analytics
+        </label>
+      </li>
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.expand", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.instant", "toc.follow", "search.highlight", "search.share", "search.suggest"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f13b1293.min.js"></script>
+      
+    
+  </body>
+</html>

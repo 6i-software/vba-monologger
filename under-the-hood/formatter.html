@@ -1,0 +1,2426 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Learn about log formatters in VBA Monologger. Understand how to transform and structure log records into readable formats such as text, JSON, and HTML.">
+    <link rel="canonical" href="https://6i-software.github.io/vba-monologger/under-the-hood/formatter.html">
+    <meta name="author" content="2o1oo <vb20100bv@gmail.com>">
+    <link rel="prev" href="log-record.html">
+    <link rel="next" href="handler.html">
+    <link rel="icon" href="../assets/logo.png">
+    <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+
+    
+    <title>VBA Monologger - Formatter</title>
+
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.d7758b05.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/css/extra-customize.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-LT06F6P562"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-LT06F6P562",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-LT06F6P562",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script>
+  
+
+    
+    
+    
+    <meta name="google-site-verification" content="232S62jZFxoHqiZjIoVueSZT-LjT3NGHUMUqzahLLKI" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="VBA Monologger" />
+    <meta name="twitter:creator" content="2o1oo" />
+    <meta property="og:title" content="VBA Monologger - Formatter" />
+    <meta property="og:description" content="Learn about log formatters in VBA Monologger. Understand how to transform and structure log records into readable formats such as text, JSON, and HTML." />
+    <meta property="og:image" content="https://6i-software.github.io/vba-monologger/assets/logo.png" />
+    <meta property="og:url" content="https://6i-software.github.io/vba-monologger/under-the-hood/formatter.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="VBA Monologger" />
+    <meta property="og:locale" content="en_US" />
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": "https://6i-software.github.io/vba-monologger/",
+            "name": "VBA Monologger",
+            "description": "Learn about log formatters in VBA Monologger. Understand how to transform and structure log records into readable formats such as text, JSON, and HTML.",
+            "publisher": {
+                "@type": "Organization",
+                "name": "6i Software"
+            }
+        }
+    </script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#concept" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="VBA Monologger" class="md-header__button md-logo" aria-label="VBA Monologger" data-md-component="logo">
+      
+  <img src="../assets/logo_white.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VBA Monologger
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Formatter
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/6i-software/vba-monologger" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    6i-software/vba-monologger
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../getting-started/introduction.html" class="md-tabs__link">
+          
+  
+    
+  
+  Getting started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="index.html" class="md-tabs__link">
+          
+  
+    
+  
+  Under the hood
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../blog/index.html" class="md-tabs__link">
+          
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="VBA Monologger" class="md-nav__button md-logo" aria-label="VBA Monologger" data-md-component="logo">
+      
+  <img src="../assets/logo_white.png" alt="logo">
+
+    </a>
+    VBA Monologger
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/6i-software/vba-monologger" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    6i-software/vba-monologger
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/introduction.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/install.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Install
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/quick-start.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Usages
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Usages
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/usages/channel.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Identify a logger with a channel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/usages/add-context-data-to-log-messages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Add context data to log messages
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/usages/add-pre-processor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Add extra data to log messages via a pre-processor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/usages/create-custom-formatter.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create a custom formatter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/usages/create-custom-logger.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create a custom logger from scratch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/usages/create-null-logger.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create a null logger
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/usages/inject-logger-into-custom-class-module.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dependency injection for logging capabilities in a custom class module
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Under the hood
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Under the hood
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="log-severity-levels.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log severity levels
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="log-record.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log record
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Formatter
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="formatter.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Formatter
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concept
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modeling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formatterline-the-default-formatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      FormatterLine, the default formatter
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FormatterLine, the default formatter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-line-formatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a line formatter
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating a line formatter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#format-a-log-record-with-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Format a log record with channel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format-a-log-record-with-context-and-extra-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Format a log record with context and extra metadata
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-log-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch log management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customizing-the-line-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customizing the line template
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Customizing the line template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#available-placeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available placeholders
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-the-line-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Changing the line template
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-prefix-and-suffix-of-placeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using prefix and suffix of placeholders
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-or-hide-log-context-and-extra-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Show or hide log context and extra metadata
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beautify-representation-of-log-context-and-extra-whitespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beautify representation of log context and extra (whitespace)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-colors-support-with-formatteransicoloredline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add colors support with FormatterANSIColoredLine
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Add colors support with FormatterANSIColoredLine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#not-through-inheritance-but-by-composing-with-formatterline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Not through inheritance, but by composing with FormatterLine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customizing-the-color-scheme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customizing the color scheme
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-ansi-sequence-colors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available ANSI sequence colors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="handler.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pre-processor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pre-processor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="logger.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logger
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../blog/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/archive/2025.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/archive/2024.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Categories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/category/blog.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concept
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modeling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formatterline-the-default-formatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      FormatterLine, the default formatter
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FormatterLine, the default formatter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-line-formatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a line formatter
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating a line formatter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#format-a-log-record-with-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Format a log record with channel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format-a-log-record-with-context-and-extra-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Format a log record with context and extra metadata
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-log-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch log management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customizing-the-line-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customizing the line template
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Customizing the line template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#available-placeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available placeholders
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-the-line-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Changing the line template
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-prefix-and-suffix-of-placeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using prefix and suffix of placeholders
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-or-hide-log-context-and-extra-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Show or hide log context and extra metadata
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beautify-representation-of-log-context-and-extra-whitespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beautify representation of log context and extra (whitespace)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-colors-support-with-formatteransicoloredline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add colors support with FormatterANSIColoredLine
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Add colors support with FormatterANSIColoredLine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#not-through-inheritance-but-by-composing-with-formatterline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Not through inheritance, but by composing with FormatterLine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customizing-the-color-scheme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customizing the color scheme
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-ansi-sequence-colors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available ANSI sequence colors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Formatter</h1>
+
+<h2 id="concept">Concept<a class="headerlink" href="#concept" title="Permanent link">&para;</a></h2>
+<p>A log formatter is used to transform and structure a log record into a readable representation that adheres to a specific format (<em>e.g.</em>, text file, JSON, HTML…). </p>
+<p><strong>VBA Monologger</strong> provides the following formatters:</p>
+<table>
+<thead>
+<tr>
+<th>Log Formatter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FormatterLine</code></td>
+<td>The default formatter that represents each log entry on a single line of text.</td>
+</tr>
+<tr>
+<td><code>FormatterANSIColoredLine</code></td>
+<td>A version derived from <em>FormatterLine</em> that supports color coding each log entry line by using ANSI escape sequences.</td>
+</tr>
+<tr>
+<td><del><code>FormatterJSON</code></del></td>
+<td><del>Formats the logs in JSON. This is the most interoperable format, facilitating integration with external log aggregation and analysis tools (e.g., <em>ELK stack</em>).</del> (<em>not yet available</em>)</td>
+</tr>
+<tr>
+<td><del><code>FormatterHTML</code></del></td>
+<td><del>Produces messages in HTML format, typically used when sending logs via email.</del> (<em>not yet available</em>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="modeling">Modeling<a class="headerlink" href="#modeling" title="Permanent link">&para;</a></h2>
+<p>Its behavior is defined in the <code>VBAMonologger.Formatter.FormatterInterface</code>, which exposes two methods.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">Function</span><span class="w"> </span><span class="nf">format</span><span class="p">(</span><span class="k">ByRef</span><span class="w"> </span><span class="n">record</span><span class="w"> </span><span class="n">As</span><span class="w"> </span><span class="n">LogRecordInterface</span><span class="p">)</span><span class="w"> </span><span class="n">As</span><span class="w"> </span><span class="n">Variant</span>
+</span></code></pre></div>
+<p>This method takes a log record (an instance implementing <code>LogRecordInterface</code>) as input and returns a formatted representation of that record. The output can be a string or any other data type, depending on the specific implementation of the formatter. The generated output includes information such as the creation date and time of the record, the channel, log level, message, context, and additional data.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">Function</span><span class="w"> </span><span class="nf">formatBatch</span><span class="p">(</span><span class="k">ByRef</span><span class="w"> </span><span class="n">records</span><span class="p">()</span><span class="w"> </span><span class="n">As</span><span class="w"> </span><span class="n">LogRecordInterface</span><span class="p">)</span><span class="w"> </span><span class="n">As</span><span class="w"> </span><span class="n">Variant</span>
+</span></code></pre></div>
+<p>This method formats an array of log records. It iterates through each record in the array, applies the defined formatting, and returns output that combines all the formatted records.</p>
+<p>By providing this interface, it is easy to implement different types of formatters without modifying or intervening in the client code that uses these formatters. New formatters can be added to the system at any time, as long as they adhere to the methods defined in the interface.</p>
+<h2 id="formatterline-the-default-formatter">FormatterLine, the default formatter<a class="headerlink" href="#formatterline-the-default-formatter" title="Permanent link">&para;</a></h2>
+<p>Let's demonstrate an implementation of <code>FormatterInterface</code> with the <code>FormatterLine</code> class. It is the default formatter that outputs a log entry as a single-line text representation.</p>
+<pre class="mermaid"><code>classDiagram
+    direction TB
+
+    class FormatterInterface {
+        &lt;&lt;Interface&gt;&gt;
+        +Function format(ByRef record As LogRecordInterface) As Variant
+        +Function formatBatch(ByRef records() As LogRecordInterface) As Variant
+    }
+
+    class FormatterLine {
+        &lt;&lt;Class&gt;&gt;
+        +Function construct(Optional paramTemplateLine As String, Optional paramWhitespace As Variant) As FormatterInterface
+        +Property Get templateLine() As String
+        +Property Let templateLine(ByVal newTemplateLine As String)
+        +Function setTemplateLineDefault() As void
+        +Function setTemplateLineWithNewlineForContextAndExtra() As void
+        +Function format(ByRef paramLogRecord As LogRecordInterface) As Variant
+        +Function formatBatch(ByRef records() As LogRecordInterface) As Variant
+        +Function toString() As String
+        -Function pApplyPlaceholder((ByVal output As String, placeholder As String, value As String) As String
+        -Function pRemoveEmptyPlaceholder(ByVal output As String, placeholder As String) As String
+        -Function pGetPrefixFromTemplate(ByVal templateLine As String, ByVal placeholder As String) As String
+        -Function pAddPrefixToJsonLines(ByVal json As String, ByVal prefix As String) As String
+
+        -Const TEMPLATE_LINE_SIMPLE As String
+        -String pTemplateLine
+        -Variant pWhitespace
+        -Boolean showContext
+        -Boolean showExtra
+        -Boolean withAllowingInlineLineBreaks
+        -Boolean withWhitespace
+        -String withPrefixToJsonLines
+    }
+
+    FormatterLine ..|&gt; FormatterInterface : Implements
+    FormatterLine ..|&gt; StringableInterface : Implements</code></pre>
+<h3 id="creating-a-line-formatter">Creating a line formatter<a class="headerlink" href="#creating-a-line-formatter" title="Permanent link">&para;</a></h3>
+<p>Here’s how to create a line formatter and use it on log entries.</p>
+<p><div class="language-vbscript highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">formatter</span><span class="w"> </span><span class="n">As</span><span class="w"> </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">FormatterLine</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">Set</span><span class="w"> </span><span class="n">formatter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">FormatterLine</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">Debug</span><span class="p">.</span><span class="n">Print</span><span class="w"> </span><span class="n">formatter</span><span class="p">.</span><span class="n">toString</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nb">Debug</span><span class="p">.</span><span class="n">Print</span><span class="w"> </span><span class="s2">&quot;&gt;&gt;&gt; Output a minimal log record&quot;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">Set</span><span class="w"> </span><span class="n">dummyRecord</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dummyRecord</span><span class="p">.</span><span class="n">construct</span><span class="p">(</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="s2">&quot;I believe I can fly!&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">LEVEL_INFO</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">)</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="nb">Debug</span><span class="p">.</span><span class="n">Print</span><span class="w"> </span><span class="n">formatter</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">dummyRecord</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="no">vbCrLf</span>
+</span></code></pre></div>
+<div class="language-text highlight"><span class="filename">Result</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>[VBAMonologger.Formatter.FormatterLine]
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>| Template line: [{{ datetime }}] {{ channel &lt;./&gt;}}{{ level_name }}: {{ message }}{{&lt; | ctx=/&gt; context }}{{&lt; | extra=/&gt; extra }}
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>| Show context: True
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>| Show extra: True
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>&gt;&gt;&gt; Output a minimal log record
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>[2024/11/12 16:13:44] INFO: I believe I can fly
+</span></code></pre></div></p>
+<h4 id="format-a-log-record-with-channel">Format a log record with channel<a class="headerlink" href="#format-a-log-record-with-channel" title="Permanent link">&para;</a></h4>
+<p><div class="language-vbscript highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">Debug</span><span class="p">.</span><span class="n">Print</span><span class="w"> </span><span class="s2">&quot;&gt;&gt;&gt; Output record with channel name&quot;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">Set</span><span class="w"> </span><span class="n">dummyRecord</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dummyRecord</span><span class="p">.</span><span class="n">construct</span><span class="p">(</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="s2">&quot;I believe I can fly!&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">LEVEL_NOTICE</span><span class="p">,</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="s2">&quot;App&quot;</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">)</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nb">Debug</span><span class="p">.</span><span class="n">Print</span><span class="w"> </span><span class="n">formatter</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">dummyRecord</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="language-text highlight"><span class="filename">Result</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>&gt;&gt;&gt; Output record with channel name
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>[2024/11/12 16:13:44] App.NOTICE: I believe I can fly
+</span></code></pre></div></p>
+<h4 id="format-a-log-record-with-context-and-extra-metadata">Format a log record with context and extra metadata<a class="headerlink" href="#format-a-log-record-with-context-and-extra-metadata" title="Permanent link">&para;</a></h4>
+<p><div class="language-vbscript highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">Debug</span><span class="p">.</span><span class="n">Print</span><span class="w"> </span><span class="s2">&quot;&gt;&gt;&gt; Output log record with context and extra metadatas&quot;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">Set</span><span class="w"> </span><span class="n">dummyRecord</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dummyRecord</span><span class="p">.</span><span class="n">construct</span><span class="p">(</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="s2">&quot;I believe I can fly!&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">LEVEL_NOTICE</span><span class="p">,</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="s2">&quot;App.Authentification&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span><span class="n">logContext</span><span class="p">,</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span><span class="n">logExtra</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="p">)</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="nb">Debug</span><span class="p">.</span><span class="n">Print</span><span class="w"> </span><span class="n">formatter</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">dummyRecord</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="language-text highlight"><span class="filename">Result</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>&gt;&gt;&gt; Output log record with context and extra metadatas
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>[2024/11/12 16:13:44] App.Authentification.EMERGENCY: A critical failure occurred in the application | ctx={&quot;UserName&quot;:&quot;v20100v&quot;,&quot;UserID&quot;:25508,&quot;Operation&quot;:&quot;Create&quot;} | extra={&quot;ExecutionTime&quot;:&quot;3,9127 seconds&quot;}
+</span></code></pre></div></p>
+<h4 id="batch-log-management">Batch log management<a class="headerlink" href="#batch-log-management" title="Permanent link">&para;</a></h4>
+<p>This class also supports batch processing of multiple log entries, according to the implementation of the interface <code>VBAMonologger.Formatter.FormatterInterface</code>. The <code>formatBatch</code> method allows you to format a series of log records and concatenate them into a single string, which is useful when you want to display or save multiple logs at once.</p>
+<h3 id="customizing-the-line-template">Customizing the line template<a class="headerlink" href="#customizing-the-line-template" title="Permanent link">&para;</a></h3>
+<p>The <code>FormatterLine</code> uses a <strong>line template</strong>, as a string, in order to format each log entry. It uses regular expressions to handle placeholders within the line template, allowing them to be defined with prefixes and suffixes to modify their final output. This template defines the representation of a log entry, with <strong>line placeholders</strong> that will be replaced by actual values from the log record. Please note, this is unrelated to the preprocessors placeholders. It's a different templating engine.</p>
+<p>A prefix text can be added before the placeholder’s value, and also a suffix text can be added after the placeholder's value. If a placeholder has no value, then the prefix and postfix are not displayed in the final output. Here’s how a placeholder can be structured in the template:</p>
+<div class="language-twig highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="cp">{{</span> <span class="o">&lt;</span><span class="nv">prefix</span><span class="o">/&gt;</span> <span class="nv">placeholder</span> <span class="o">&lt;</span><span class="nv">suffix</span><span class="o">/&gt;</span> <span class="cp">}}</span>
+</span></code></pre></div>
+<p>The line formatter provides two lines templates:</p>
+<ul>
+<li>
+<p><strong>A default line template</strong>, enable by default or by <code>formatter.setTemplateLineDefault()</code> method. It looks like the following:
+   <div class="language-twig highlight"><span class="filename">Default line template</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="x">[</span><span class="cp">{{</span> <span class="nv">datetime</span> <span class="cp">}}</span><span class="x">] </span><span class="cp">{{</span> <span class="nv">channel</span> <span class="o">&lt;</span><span class="err">.</span><span class="o">/&gt;</span><span class="cp">}}{{</span> <span class="nv">level_name</span> <span class="cp">}}</span><span class="x">: </span><span class="cp">{{</span> <span class="nv">message</span> <span class="cp">}}{{</span><span class="o">&lt;</span> <span class="o">|</span> <span class="nf">context</span><span class="o">:</span> <span class="o">/&gt;</span> <span class="nv">context</span> <span class="cp">}}{{</span><span class="o">&lt;</span> <span class="o">|</span> <span class="nf">extra</span><span class="o">:</span> <span class="o">/&gt;</span> <span class="nv">extra</span> <span class="cp">}}</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>And a line template with newline for log context and extra</strong>, that you can enable it with the method <code>formatter.setTemplateLineWithNewlineForContextAndExtra()</code>
+    <div class="language-twig highlight"><span class="filename">Line template with new line for data context and extra</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="x">[</span><span class="cp">{{</span> <span class="nv">datetime</span> <span class="cp">}}</span><span class="x">] </span><span class="cp">{{</span> <span class="nv">channel</span> <span class="o">&lt;</span><span class="err">.</span><span class="o">/&gt;</span><span class="cp">}}{{</span> <span class="nv">level_name</span> <span class="cp">}}</span><span class="x">: </span><span class="cp">{{</span> <span class="nv">message</span> <span class="cp">}}{{</span><span class="o">&lt;</span><span class="nv">\n</span> <span class="o">|</span> <span class="nf">context</span><span class="o">:</span> <span class="o">/&gt;</span> <span class="nv">context</span> <span class="cp">}}{{</span><span class="o">&lt;</span><span class="nv">\n</span> <span class="o">|</span> <span class="nf">extra</span><span class="o">:</span> <span class="o">/&gt;</span> <span class="nv">extra</span> <span class="cp">}}</span>
+</span></code></pre></div></p>
+</li>
+</ul>
+<h4 id="available-placeholders">Available placeholders<a class="headerlink" href="#available-placeholders" title="Permanent link">&para;</a></h4>
+<p>These placeholders include:</p>
+<table>
+<thead>
+<tr>
+<th>Placeholder&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{{datetime}}</code></td>
+<td>The date and time of the log entry.</td>
+</tr>
+<tr>
+<td><code>{{channel}}</code></td>
+<td>The channel (or source) from which the log originates.</td>
+</tr>
+<tr>
+<td><code>{{level_name}}</code></td>
+<td>The log level (<em>e.g.</em>, <code>INFO</code>, <code>ERROR</code>, <code>DEBUG</code> ...).</td>
+</tr>
+<tr>
+<td><code>{{message}}</code></td>
+<td>The main log message.</td>
+</tr>
+<tr>
+<td><code>{{context}}</code></td>
+<td>The log context data. This includes arbitrary key-value pairs.</td>
+</tr>
+<tr>
+<td><code>{{extra}}</code></td>
+<td>Extra metadata or custom information attached to the log entry. This includes arbitrary key-value pairs, typically added by pre-processors.</td>
+</tr>
+</tbody>
+</table>
+<p>So you can customize the template to fit your needs. </p>
+<p>For example, if you prefer a simpler format or want to add additional information, you can easily adjust the template using the templateLine property. This provides flexibility in defining the exact format of your logs, whether for console output or a log file.</p>
+<h4 id="changing-the-line-template">Changing the line template<a class="headerlink" href="#changing-the-line-template" title="Permanent link">&para;</a></h4>
+<p>To change the template line just set the property <code>templateLine</code>. With this line template, it will produce new output:</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">Set</span><span class="w"> </span><span class="n">formatter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">FormatterLine</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">formatter</span><span class="p">.</span><span class="n">templateLine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_</span><span class="w"> </span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">   </span><span class="s2">&quot;{{datetime}} | {{ channel }} | {{ level_name }} | {{ message }}&quot;</span>
+</span></code></pre></div>
+<div class="language-text highlight"><span class="filename">Result with new template</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>&gt;&gt;&gt; Output minimal log record 
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>2024/11/12 16:11:24 | | NOTICE | I believe I can fly
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>&gt;&gt;&gt; Output record with channel name
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>2024/11/12 16:13:44 | App | NOTICE | I believe I can fly
+</span></code></pre></div>
+<p>As tou can see, when the log record have not chanel value, we would to not have the '|' character. To hide it, in this case, we need to use prefixes and suffixes placeholder.</p>
+<h4 id="using-prefix-and-suffix-of-placeholders">Using prefix and suffix of placeholders<a class="headerlink" href="#using-prefix-and-suffix-of-placeholders" title="Permanent link">&para;</a></h4>
+<p>This formatting system uses regular expressions to handle placeholders within the log template, allowing them to be defined with <em>prefixes</em> and <em>suffixes</em> to modify their final output. </p>
+<p>Here’s how a placeholder can be structured in the template:</p>
+<div class="language-twig highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="cp">{{</span> <span class="o">&lt;</span><span class="nv">prefix</span><span class="o">/&gt;</span> <span class="nv">placeholder</span> <span class="o">&lt;</span><span class="nv">suffix</span><span class="o">/&gt;</span> <span class="cp">}}</span>
+</span></code></pre></div>
+<p>The prefix text is added before the placeholder’s value, and the suffixe text is added after the placeholder's value. And if a placeholder has no value, then the prefix and postfix are not displayed in the final output. </p>
+<p>For example, using this new line template with prefix and suffix on <code>{{ channel }}</code> placeholder. With this new line template, it will produce new output.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">Set</span><span class="w"> </span><span class="n">formatter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">FormatterLine</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">formatter</span><span class="p">.</span><span class="n">templateLine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;{{datetime}} | {{ &lt;Chanel:/&gt;channel&lt; | /&gt; }}{{ level_name }} | {{ message }}{{&lt; | ctx: /&gt; context}}{{&lt; | extra: /&gt; extra &lt; |/&gt; }}&quot;</span>
+</span></code></pre></div>
+<div class="language-text highlight"><span class="filename">Result</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>&gt;&gt;&gt; Output minimal log record 
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>2024/11/12 16:11:24 | NOTICE | I believe I can fly
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>&gt;&gt;&gt; Output record with channel name
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>2024/11/12 16:13:44 | Channel: App | NOTICE | I believe I can fly
+</span></code></pre></div>
+<p>Indeed, in this example, if the log entry does not contain a value for the <code>{{channel}}</code> placeholder, so the prefix <code>"Channel:"</code> and the suffix <code>" | "</code> associated will not appear in the final output. This behavior ensures that the log formatting remains clean and consistent, without unnecessary or empty placeholders cluttering the output when no value is provided for them.</p>
+<h4 id="show-or-hide-log-context-and-extra-metadata">Show or hide log context and extra metadata<a class="headerlink" href="#show-or-hide-log-context-and-extra-metadata" title="Permanent link">&para;</a></h4>
+<p>Logs can include context information (such as data specific to the execution of a process) and additional metadata. The <code>FormatterLine</code> class allows you to control the display of this data using the <code>showContext</code> and <code>showExtra</code> properties. </p>
+<p>By default, these properties are set to <code>True</code>, but you can hide them by setting the properties to <code>False</code>.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">Set</span><span class="w"> </span><span class="n">formatter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">FormatterLine</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="n">formatter</span><span class="p">.</span><span class="n">showContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">False</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="n">formatter</span><span class="p">.</span><span class="n">showExtra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">False</span>
+</span></code></pre></div>
+<h4 id="beautify-representation-of-log-context-and-extra-whitespace">Beautify representation of log context and extra (whitespace)<a class="headerlink" href="#beautify-representation-of-log-context-and-extra-whitespace" title="Permanent link">&para;</a></h4>
+<p>Here's an example demonstrating how to beautify the representation of log context and extra data. The code below sets up a formatter to include newlines for log context and extra metadata, allowing for a more readable log output. This setup is particularly useful during the development phase for debugging, as it makes log outputs more readable and easier to analyze.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">Set</span><span class="w"> </span><span class="n">formatter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">FormatterLine</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="n">formatter</span><span class="p">.</span><span class="n">setTemplateLineWithNewlineForContextAndExtra</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="n">formatter</span><span class="p">.</span><span class="n">withWhitespace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">True</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="n">formatter</span><span class="p">.</span><span class="n">withAllowingInlineLineBreaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">True</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="n">formatter</span><span class="p">.</span><span class="n">withPrefixToJsonLines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot; | &quot;</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="nb">Debug</span><span class="p">.</span><span class="n">Print</span><span class="w"> </span><span class="s2">&quot;&gt;&gt;&gt; Output log record with context and extra metadatas&quot;</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="k">Set</span><span class="w"> </span><span class="n">dummyRecord</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dummyRecord</span><span class="p">.</span><span class="n">construct</span><span class="p">(</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">  </span><span class="s2">&quot;I believe I can fly!&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">  </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">LEVEL_NOTICE</span><span class="p">,</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">  </span><span class="s2">&quot;App&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">  </span><span class="n">logContext</span><span class="p">,</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">  </span><span class="n">logExtra</span>
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="p">)</span>
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="nb">Debug</span><span class="p">.</span><span class="n">Print</span><span class="w"> </span><span class="n">formatter</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">dummyRecord</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="language-text highlight"><span class="filename">Result</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>&gt;&gt;&gt; Output log record with context and extra metadatas
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>[2024/11/12 16:13:44] App.NOTICE: I believe I can fly!
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a> | context: 
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a> | { 
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a> |    &quot;UserName&quot;:&quot;v20100v&quot;,
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a> |    &quot;UserID&quot;:25508,
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a> |    &quot;Operation&quot;:&quot;Create&quot;
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a> | } 
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a> | extra: 
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a> | {
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a> |     &quot;ExecutionTime&quot;:&quot;3,9127 seconds&quot;
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a> | }
+</span></code></pre></div>
+<h2 id="add-colors-support-with-formatteransicoloredline">Add colors support with FormatterANSIColoredLine<a class="headerlink" href="#add-colors-support-with-formatteransicoloredline" title="Permanent link">&para;</a></h2>
+<p>The main purpose of <code>FormatterANSIColoredLine</code> is to augment FormatterLine by adding color support. It formats log messages by converting them into text strings using the templating model provided by <code>FormatterLine</code>, while applying ANSI escape sequences for coloring the messages in terminals based on the log level. </p>
+<p>It enables the customization of log display by assigning specific colors to each log level through a configurable color palette.</p>
+<p><img alt="VBAMonologger-output-WindowsConsole.png" src="../getting-started/VBAMonologger-output-WindowsConsole.png" /></p>
+<h3 id="not-through-inheritance-but-by-composing-with-formatterline">Not through inheritance, but by composing with FormatterLine<a class="headerlink" href="#not-through-inheritance-but-by-composing-with-formatterline" title="Permanent link">&para;</a></h3>
+<p>As VBA does not support inheritance, the <code>FormatterANSIColoredLine</code> class is composed of an instance of <code>FormatterLine</code>, granting access to the same methods. It also includes a <code>colorScheme</code> dictionary to specify the colors.</p>
+<pre class="mermaid"><code>classDiagram
+    direction TB
+
+    class FormatterANSIColoredLine {
+        &lt;&lt;Class&gt;&gt;
+        +Function construct(Optional paramTemplateLine As String) As FormatterInterface
+        +Property Get templateLine() As String
+        +Property Let templateLine(ByVal newTemplateLine As String)
+        +Property Get colorScheme() As Scripting.Dictionary
+        +Property Set colorScheme(ByVal newColorScheme As Scripting.Dictionary)
+        +Property showContext As Boolean
+        +Property showExtra As Boolean
+        +Property withWhitespace as Boolean
+        +Property withAllowingInlineLineBreaks as Boolean
+
+        +Function setTemplateLineWithNewlineForContextAndExtra() as void
+        +Function getDefaultColorScheme() As Scripting.Dictionary
+        +Function getTrafficLightColorScheme() As Scripting.Dictionary
+        +Function getANSIEscapeSequenceColorOfLogLevel(levelName As String) As String
+        +Function getANSIEscapeSequenceColorReset() As String
+        +Function format(ByRef paramLogRecord As LogRecordInterface) As Variant
+        +Function formatBatch(ByRef records() As LogRecordInterface) As Variant
+        +Function toString() As String
+        -FormatterLine pFormatterLine
+        -Scripting.Dictionary pColorScheme
+    }
+
+    class FormatterInterface {
+        &lt;&lt;Interface&gt;&gt;
+    }
+
+    class StringableInterface {
+        &lt;&lt;Interface&gt;&gt;
+    }
+
+    class FormatterLine {
+        &lt;&lt;Class&gt;&gt;
+    }
+
+    FormatterLine ..|&gt; FormatterInterface : Implements
+    FormatterANSIColoredLine ..|&gt; FormatterInterface : Implements
+    FormatterANSIColoredLine ..|&gt; StringableInterface : Implements
+    FormatterANSIColoredLine o-- FormatterLine : Contains
+    FormatterLine ..|&gt; StringableInterface : Implements</code></pre>
+<p>The use of this formatter is similar to that of <code>FormatterLine</code>. You can change the line template, show or hide log context and extra pre-processors metadata.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">formatterWithColor</span><span class="w"> </span><span class="n">As</span><span class="w"> </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">formatterANSIColoredLine</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">Set</span><span class="w"> </span><span class="n">formatterWithColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">formatterANSIColoredLine</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="n">formatterWithColor</span><span class="p">.</span><span class="n">showContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="n">formatterWithColor</span><span class="p">.</span><span class="n">showExtra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="nb">Debug</span><span class="p">.</span><span class="n">Print</span><span class="w"> </span><span class="n">formatterWithColor</span><span class="p">.</span><span class="n">toString</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="nb">Debug</span><span class="p">.</span><span class="n">Print</span><span class="w"> </span><span class="s2">&quot;=== Output record minimal ===&quot;</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">record</span><span class="w"> </span><span class="n">As</span><span class="w"> </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">LogRecord</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="k">Set</span><span class="w"> </span><span class="n">record</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">LogRecord</span>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="k">Set</span><span class="w"> </span><span class="n">record</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="n">construct</span><span class="p">(</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="w">    </span><span class="s2">&quot;I believe I can fly&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="w">    </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">LEVEL_INFO</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="p">)</span>
+</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="nb">Debug</span><span class="p">.</span><span class="n">Print</span><span class="w"> </span><span class="n">formatterWithColor</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="no">vbCrLf</span>
+</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>
+</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="nb">Debug</span><span class="p">.</span><span class="n">Print</span><span class="w"> </span><span class="s2">&quot;=== Output by using FormatBatch on records collection ===&quot;</span>
+</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">records</span><span class="p">()</span><span class="w"> </span><span class="n">As</span><span class="w"> </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">LogRecordInterface</span>
+</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="k">ReDim</span><span class="w"> </span><span class="n">records</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="n">To</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span>
+</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="n">records</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randomLogRecordsForEachLevel</span>
+</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a><span class="nb">Debug</span><span class="p">.</span><span class="n">Print</span><span class="w"> </span><span class="n">formatterWithColor</span><span class="p">.</span><span class="n">formatBatch</span><span class="p">(</span><span class="n">records</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="no">vbCrLf</span>
+</span></code></pre></div>
+<div class="language-text highlight"><span class="filename">Result</span><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>[VBAMonologger.Formatter.FormatterAnsiColoredLine]
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>| Template line: [{{ datetime }}] {{ channel &lt;./&gt;}}{{ level_name }}: {{ message }}{{&lt; | ctx=/&gt; context }}{{&lt; | extra=/&gt; extra }}
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>| Show context: False
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>| Show extra: False
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>| Color sheme:
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>| {
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>|   &quot;DEBUG&quot;: &quot;\u001B[37m&quot;,
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>|   &quot;INFO&quot;: &quot;\u001B[32m&quot;,
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>|   &quot;NOTICE&quot;: &quot;\u001B[36m&quot;,
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>|   &quot;WARNING&quot;: &quot;\u001B[33m&quot;,
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>|   &quot;ERROR&quot;: &quot;\u001B[31m&quot;,
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>|   &quot;CRITICAL&quot;: &quot;\u001B[31;4m&quot;,
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>|   &quot;ALERT&quot;: &quot;\u001B[37;41m&quot;,
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>|   &quot;EMERGENCY&quot;: &quot;\u001B[41;37;5m&quot;,
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>|   &quot;RESET&quot;: &quot;\u001B[0m&quot;
+</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>| }
+</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>
+</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>=== Output record minimal ===
+</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>[32m[2024/11/12 17:50:17] INFO: I believe I can fly[0m
+</span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>
+</span><span id="__span-20-21"><a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>=== Output by using FormatBatch on records collection ===
+</span><span id="__span-20-22"><a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>[41;37;5m[2024/11/12 17:50:17] App.Authentification.EMERGENCY: A critical failure occurred in the application for {Operation} process[0m
+</span><span id="__span-20-23"><a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>[37;41m[2024/11/12 17:50:17] App.Authentification.ALERT: Action required for process {Operation} failure.[0m
+</span><span id="__span-20-24"><a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a>[31;4m[2024/11/12 17:50:17] App.Authentification.CRITICAL: System is in an unstable state. Unable to authenticate {UserId}.[0m
+</span><span id="__span-20-25"><a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a>[31m[2024/11/12 17:50:17] App.Authentification.ERROR: An error occurred when the user {UserId} try to {Operation} the file {file}.[0m
+</span><span id="__span-20-26"><a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a>[33m[2024/11/12 17:50:17] App.Authentification.WARNING: The user {UserId} does not exist. Unable to perform &#39;{Operation}&#39; user file.[0m
+</span><span id="__span-20-27"><a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a>[36m[2024/11/12 17:50:17] App.Authentification.NOTICE: Process completed successfully with minor issues for {UserId}.[0m
+</span><span id="__span-20-28"><a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a>[32m[2024/11/12 17:50:17] App.Authentification.INFO: User {UserId} has logged in successfully.[0m
+</span><span id="__span-20-29"><a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a>[37m[2024/11/12 17:50:17] App.Authentification.DEBUG: Authentification function call for user {UserId}.[0m
+</span></code></pre></div>
+<p>As you can see, each log entry is properly wrapped in an ANSI escape sequence to apply color. However, the VBA console does not support displaying these escape ANSI sequences, so you would need to view these messages in a compatible console that supports ANSI color codes. You should see the following result:</p>
+<p><img alt="formatterAnsiColored_defaultColorScheme.png" src="../assets/formatterAnsiColored_defaultColorScheme.png" /></p>
+<h3 id="customizing-the-color-scheme">Customizing the color scheme<a class="headerlink" href="#customizing-the-color-scheme" title="Permanent link">&para;</a></h3>
+<p>To change the color scheme, all you need to do is create a dictionary and assign a color to each log level. This allows you to customize the colors for different severity levels, such as "DEBUG," "INFO," "ERROR," and so on. The dictionary maps each log level to a specific ANSI color code, enabling you to control the appearance of each type of log message when displayed in a terminal or compatible environment.</p>
+<p>By updating the dictionary, you can easily modify the color scheme without altering the underlying code logic, providing flexibility in how the logs are visually represented.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">Public</span><span class="w"> </span><span class="kd">Function</span><span class="w"> </span><span class="nf">getCustomColorScheme</span><span class="p">()</span><span class="w"> </span><span class="n">As</span><span class="w"> </span><span class="n">Scripting</span><span class="p">.</span><span class="nb">Dictionary</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">   </span><span class="kd">Dim</span><span class="w"> </span><span class="nv">colorScheme</span><span class="w"> </span><span class="n">As</span><span class="w"> </span><span class="n">Scripting</span><span class="p">.</span><span class="nb">Dictionary</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">   </span><span class="k">Set</span><span class="w"> </span><span class="n">colorScheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">Scripting</span><span class="p">.</span><span class="nb">Dictionary</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">   </span><span class="n">colorScheme</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="s2">&quot;DEBUG&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">Chr</span><span class="o">$</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="s2">&quot;[2;32m&quot;</span><span class="w"> </span><span class="c1">&#39; FG Green faint</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="w">   </span><span class="n">colorScheme</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="s2">&quot;INFO&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">Chr</span><span class="o">$</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="s2">&quot;[32m&quot;</span><span class="w"> </span><span class="c1">&#39; FG Green normal</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="w">   </span><span class="n">colorScheme</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="s2">&quot;NOTICE&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">Chr</span><span class="o">$</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="s2">&quot;[1;32m&quot;</span><span class="w"> </span><span class="c1">&#39; FG Green bright</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="w">   </span><span class="n">colorScheme</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="s2">&quot;WARNING&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">Chr</span><span class="o">$</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="s2">&quot;[2;33m&quot;</span><span class="w"> </span><span class="c1">&#39; FG Yellow faint</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="w">   </span><span class="n">colorScheme</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="s2">&quot;ERROR&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">Chr</span><span class="o">$</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="s2">&quot;[33m&quot;</span><span class="w"> </span><span class="c1">&#39; FG Yellow normal</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="w">   </span><span class="n">colorScheme</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="s2">&quot;CRITICAL&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">Chr</span><span class="o">$</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="s2">&quot;[31m&quot;</span><span class="w"> </span><span class="c1">&#39; FG Red normal</span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="w">   </span><span class="n">colorScheme</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="s2">&quot;ALERT&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">Chr</span><span class="o">$</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="s2">&quot;[1;31m&quot;</span><span class="w"> </span><span class="c1">&#39; FG Red bright</span>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="w">   </span><span class="n">colorScheme</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="s2">&quot;EMERGENCY&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">Chr</span><span class="o">$</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="s2">&quot;[41;37;5m&quot;</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="w">   </span><span class="n">colorScheme</span><span class="p">.</span><span class="n">Add</span><span class="w"> </span><span class="s2">&quot;RESET&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">Chr</span><span class="o">$</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="s2">&quot;[0m&quot;</span>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="w">   </span><span class="k">Set</span><span class="w"> </span><span class="n">getCustomColorScheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colorScheme</span>
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="k">End</span><span class="w"> </span><span class="k">Function</span>
+</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>
+</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">formatterAnsiColoredLine</span><span class="w"> </span><span class="n">As</span><span class="w"> </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">formatterAnsiColoredLine</span>
+</span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="k">Set</span><span class="w"> </span><span class="n">formatterAnsiColoredLine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">New</span><span class="w"> </span><span class="n">VBAMonologger</span><span class="p">.</span><span class="n">formatterAnsiColoredLine</span>
+</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="k">Set</span><span class="w"> </span><span class="n">formatterAnsiColoredLine</span><span class="p">.</span><span class="n">colorScheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getCustomColorScheme</span>
+</span><span id="__span-21-20"><a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a><span class="n">formatterAnsiColoredLine</span><span class="p">.</span><span class="n">showContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">False</span>
+</span><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a><span class="n">formatterAnsiColoredLine</span><span class="p">.</span><span class="n">showExtra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">False</span>
+</span></code></pre></div>
+<p><img alt="formatterAnsiColored_defaultColorScheme.png" src="../assets/formatterAnsiColored_customColorScheme.png" /></p>
+<p>To get an ANSI sequence color, you can also use the <code>VBAMonologger.ANSI</code> module. It provides various ANSI escape sequences to colorize your text output. You can combine styles using the "&amp;" operator. For example to get a bright red background with white foreground text, use the following: <code>VBAMonologger.ANSI.BG_BRIGHT_RED &amp; VBAMonologger.ANSI.WHITE</code>.</p>
+<p>Here’s an example of how to create a custom color scheme:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>Public Function getCustomColorScheme() As Scripting.Dictionary
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>   Dim colorScheme As Scripting.Dictionary
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>   Set colorScheme = New Scripting.Dictionary
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>   colorScheme.Add &quot;DEBUG&quot;, VBAMonologger.ANSI.WHITE
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>   colorScheme.Add &quot;INFO&quot;, VBAMonologger.ANSI.GREEN
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>   colorScheme.Add &quot;NOTICE&quot;, VBAMonologger.ANSI.CYAN
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>   colorScheme.Add &quot;WARNING&quot;, VBAMonologger.ANSI.YELLOW
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>   colorScheme.Add &quot;ERROR&quot;, VBAMonologger.ANSI.BRIGHT_RED
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>   colorScheme.Add &quot;CRITICAL&quot;, VBAMonologger.ANSI.RED
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>   colorScheme.Add &quot;ALERT&quot;, _ 
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>      VBAMonologger.ANSI.BG_BRIGHT_RED &amp; VBAMonologger.ANSI.WHITE
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>   colorScheme.Add &quot;EMERGENCY&quot;, _ 
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>      VBAMonologger.ANSI.BG_RED &amp; VBAMonologger.ANSI.WHITE
+</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>
+</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a>   Set getCustomColorScheme = colorScheme
+</span><span id="__span-22-16"><a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a>End Function
+</span></code></pre></div>
+<h3 id="available-ansi-sequence-colors">Available ANSI sequence colors<a class="headerlink" href="#available-ansi-sequence-colors" title="Permanent link">&para;</a></h3>
+<p>The <code>VBAMonologger.ANSI</code> module provides a variety of ANSI escape sequences for styling text. </p>
+<p>Here’s a list of the available sequences:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Function Name</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RESET</code></td>
+<td>Reset all attributes</td>
+</tr>
+<tr>
+<td><code>BOLD</code></td>
+<td>Bold text style</td>
+</tr>
+<tr>
+<td><code>WEAK</code></td>
+<td>Weak (dim) text style</td>
+</tr>
+<tr>
+<td><code>UNDERLINE</code></td>
+<td>Underline text</td>
+</tr>
+<tr>
+<td><code>BLINK</code></td>
+<td>Blink text</td>
+</tr>
+<tr>
+<td><code>REVERSE</code></td>
+<td>Reverse foreground and background colors</td>
+</tr>
+<tr>
+<td><code>HIDDEN</code></td>
+<td>Hidden text</td>
+</tr>
+<tr>
+<td><code>BLACK</code></td>
+<td>Black foreground color</td>
+</tr>
+<tr>
+<td><code>RED</code></td>
+<td>Red foreground color</td>
+</tr>
+<tr>
+<td><code>GREEN</code></td>
+<td>Green foreground color</td>
+</tr>
+<tr>
+<td><code>YELLOW</code></td>
+<td>Yellow foreground color</td>
+</tr>
+<tr>
+<td><code>BLUE</code></td>
+<td>Blue foreground color</td>
+</tr>
+<tr>
+<td><code>MAGENTA</code></td>
+<td>Magenta foreground color</td>
+</tr>
+<tr>
+<td><code>CYAN</code></td>
+<td>Cyan foreground color</td>
+</tr>
+<tr>
+<td><code>WHITE</code></td>
+<td>White foreground color</td>
+</tr>
+<tr>
+<td><code>BRIGHT_BLACK</code></td>
+<td>Bright black foreground color</td>
+</tr>
+<tr>
+<td><code>BRIGHT_RED</code></td>
+<td>Bright red foreground color</td>
+</tr>
+<tr>
+<td><code>BRIGHT_GREEN</code></td>
+<td>Bright green foreground color</td>
+</tr>
+<tr>
+<td><code>BRIGHT_YELLOW</code></td>
+<td>Bright yellow foreground color</td>
+</tr>
+<tr>
+<td><code>BRIGHT_BLUE</code></td>
+<td>Bright blue foreground color</td>
+</tr>
+<tr>
+<td><code>BRIGHT_MAGENTA</code></td>
+<td>Bright magenta foreground color</td>
+</tr>
+<tr>
+<td><code>BRIGHT_CYAN</code></td>
+<td>Bright cyan foreground color</td>
+</tr>
+<tr>
+<td><code>BRIGHT_WHITE</code></td>
+<td>Bright white foreground color</td>
+</tr>
+<tr>
+<td><code>BG_BLACK</code></td>
+<td>Black background color</td>
+</tr>
+<tr>
+<td><code>BG_RED</code></td>
+<td>Red background color</td>
+</tr>
+<tr>
+<td><code>BG_GREEN</code></td>
+<td>Green background color</td>
+</tr>
+<tr>
+<td><code>BG_YELLOW</code></td>
+<td>Yellow background color</td>
+</tr>
+<tr>
+<td><code>BG_BLUE</code></td>
+<td>Blue background color</td>
+</tr>
+<tr>
+<td><code>BG_MAGENTA</code></td>
+<td>Magenta background color</td>
+</tr>
+<tr>
+<td><code>BG_CYAN</code></td>
+<td>Cyan background color</td>
+</tr>
+<tr>
+<td><code>BG_WHITE</code></td>
+<td>White background color</td>
+</tr>
+<tr>
+<td><code>BG_BRIGHT_BLACK</code></td>
+<td>Bright black background color</td>
+</tr>
+<tr>
+<td><code>BG_BRIGHT_RED</code></td>
+<td>Bright red background color</td>
+</tr>
+<tr>
+<td><code>BG_BRIGHT_GREEN</code></td>
+<td>Bright green background color</td>
+</tr>
+<tr>
+<td><code>BG_BRIGHT_YELLOW</code></td>
+<td>Bright yellow background color</td>
+</tr>
+<tr>
+<td><code>BG_BRIGHT_BLUE</code></td>
+<td>Bright blue background color</td>
+</tr>
+<tr>
+<td><code>BG_BRIGHT_MAGENTA</code></td>
+<td>Bright magenta background color</td>
+</tr>
+<tr>
+<td><code>BG_BRIGHT_CYAN</code></td>
+<td>Bright cyan background color</td>
+</tr>
+<tr>
+<td><code>BG_BRIGHT_WHITE</code></td>
+<td>Bright white background color</td>
+</tr>
+</tbody>
+</table>
+<p>Enjoy the ... colors!</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="log-record.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Log record">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Log record
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="handler.html" class="md-footer__link md-footer__link--next" aria-label="Next: Handler">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Handler
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024, 6i-software - 2o1oo
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/v20100v" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:vb20100bv@gmail.com?subject=[6i-VBA%20Monologger]" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M64 112c-8.8 0-16 7.2-16 16v22.1l172.5 141.6c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16zM48 212.2V384c0 8.8 7.2 16 16 16h384c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0zM0 128c0-35.3 28.7-64 64-64h384c35.3 0 64 28.7 64 64v256c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+  
+    
+  
+
+
+  
+    
+  
+
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="analytics" checked>
+          <span class="task-list-indicator"></span>
+          Google Analytics
+        </label>
+      </li>
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.expand", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.instant", "toc.follow", "search.highlight", "search.share", "search.suggest"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f13b1293.min.js"></script>
+      
+    
+  </body>
+</html>
