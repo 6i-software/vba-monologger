@@ -290,6 +290,6 @@ Result of a logger with pre-processors : placeholders, tags (`environment, user_
  |       "memory-total": "15,23",
  |       "memory-available": "5,30"
  |    },
- |    "CPU-used": "21,4%"
+ |    "CPU-used": "21,5%"
  | }
 ```
